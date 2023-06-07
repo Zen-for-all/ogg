@@ -1,3 +1,9 @@
+<?php include 'view/parts/ld_list.php'; ?>
+
+<div class="clear pT20"></div>
+<hr>
+<div class="clear pT20"></div>
+
 <h2>Добавить запись:</h2>
 <form action="../../model/add_ld.php" method="post">
   <input type="date" name="date">Дата<br>

@@ -8,6 +8,8 @@ require 'controller/functions.php';
 include 'view/parts/header.php';
 
 if (isset($_SESSION['userid'])) {
+  $user = new User($_SESSION['userid']);
+
   include 'view/parts/menu.php';
 
   if (isset($_GET['page']) && $_GET['page'] == 'journal') {
