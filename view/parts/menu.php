@@ -5,3 +5,5 @@
   </ul>
 </nav>
 <div class="clear pT20"></div>
+<hr>
+<div class="clear pT20"></div>

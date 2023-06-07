@@ -1,8 +1,6 @@
 <?php
 session_start();
-require_once 'connect.php';
-require_once '../controller/setting.php';
-require_once '../controller/functions.php';
+require 'connect.php';
 
 $login = trim(htmlentities($_POST['login']));
 $email = trim(htmlentities($_POST['email']));
