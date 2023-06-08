@@ -24,7 +24,7 @@ if ($text == '' && $notice == '') {
 
   $result = mysqli_query($connect, "SELECT `id` FROM `ld` ORDER BY id DESC LIMIT 1;");
   $ldlast = mysqli_fetch_assoc($result);
-  $ldnew = $ldlist . ' ' .$ldlast['id'];
+  $ldnew = $ldlist . ' ' . $ldlast['id'];
 
   $setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `ldlist` = '$ldnew' WHERE `id` = '$user'");
 }
