@@ -15,6 +15,9 @@ if (isset($_SESSION['userid'])) {
   if (isset($_GET['page']) && $_GET['page'] == 'journal') {
     $title = 'Днвник сновидений';
     require 'view/pages/journal.php';
+  } elseif (isset($_GET['page']) && $_GET['page'] == 'location') {
+    $title = 'Локации';
+    require 'view/pages/location.php';
   } else {
     $title = 'Главная';
     require 'view/parts/main.php';

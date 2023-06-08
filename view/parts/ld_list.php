@@ -1,7 +1,7 @@
 <h2>ОСы</h2><br>
 
 <?php
-$ldArray = explode(" ", $user->ldlist);
+$ldArray = explode(" ", trim($user->ldlist));
 
 foreach ($ldArray as $ldValue) {
   $ld = new Ld($ldValue);

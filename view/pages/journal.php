@@ -17,8 +17,8 @@
   </select>
   Локация<br>
 
-  <input type="number" name="quality">Качество<br>
-  <input type="number" name="interest">Интерес<br>
+  <input type="number" name="quality" min="1" max="10">Качество<br>
+  <input type="number" name="interest" min="1" max="10">Интерес<br>
 
   <select name="method">
     <option value="1">Значение 1</option>
