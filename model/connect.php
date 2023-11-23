@@ -1,6 +1,4 @@
 <?php
-
-
 $connect = mysqli_connect('localhost', 'root', '', 'ogg');
 
 if (!($connect)) {
