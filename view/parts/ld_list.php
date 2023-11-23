@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var $user
+ */
+?>
+
 <h2>ОСы</h2><br>
 
 <?php
@@ -5,7 +11,7 @@ if (trim($user->ldlist) != '') {
   $ldArray = explode(" ", trim($user->ldlist));
   foreach ($ldArray as $ldValue) {
     $ld = new Ld($ldValue);
-    echo 'Дата:' . $ldValue;
+    echo 'Дата:' . $ld->date;
     echo '<br>';
     echo 'Время:' . $ld->time;
     echo '<br>';
