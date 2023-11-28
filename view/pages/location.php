@@ -1,7 +1,7 @@
-<?php include 'view/parts/location_list.php'; ?>
+<section class="block">
+  <?php include 'view/parts/location_list.php'; ?>
+</section>
 
-<div class="clear pT20"></div>
-<hr>
-<div class="clear pT20"></div>
-
-<?php include 'view/parts/location_add.php'; ?>
+<section class="block">
+  <?php include 'view/parts/location_add.php'; ?>
+</section>

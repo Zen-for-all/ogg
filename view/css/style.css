@@ -42,9 +42,6 @@ input, textarea{
     position: relative;
     float: left;
 }
-section.block_all{
-    padding: 40px 0;
-}
 .block{
     width: 100%;
     max-width: 1140px;

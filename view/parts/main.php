@@ -1,1 +1,3 @@
-main
+<section class="block">
+  main
+</section>

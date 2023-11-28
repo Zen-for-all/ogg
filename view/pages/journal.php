@@ -1,3 +1,7 @@
-<?php include 'view/parts/ld_list.php'; ?>
+<section class="block">
+  <?php include 'view/parts/ld_list.php'; ?>
+</section>
 
-<?php include 'view/parts/ld_add.php'; ?>
+<section class="block">
+  <?php include 'view/parts/ld_add.php'; ?>
+</section>
