@@ -90,9 +90,9 @@ section.block_all{
     background: #999;
 }
 a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay-close, .header, button:before, .slick-arrow{
-    -webkit-transition: all 0.5s ease 0.1s;
-    -moz-transition: all 0.5s ease 0.1s;
-    -o-transition: all 0.5s ease 0.1s;
-    -ms-transition: all 0.5s ease 0.1s;
-    transition: all 0.5s ease 0.1s;
+    transition: all 0.4s;
+}
+
+body {
+    font-family: Georgia, serif;
 }
