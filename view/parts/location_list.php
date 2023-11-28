@@ -9,9 +9,9 @@ foreach ($locationArray as $locationValue) {
   $location = new Location($locationValue);
 
   // print info about location
-  echo 'Название:' . $location->title;
+  echo 'Название: ' . $location->title;
   echo '<br>';
-  echo 'Описание:' . $location->text;
+  echo 'Описание: ' . $location->text;
   echo '<br><br>';
   ?>
 

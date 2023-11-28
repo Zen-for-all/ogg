@@ -11,6 +11,7 @@ include 'view/parts/head.php';
 if (isset($_SESSION['userid'])) {
   $user = new User($_SESSION['userid']);
 
+  // header
   include 'view/parts/header.php';
 
   if (isset($_GET['page']) && $_GET['page'] === 'journal') {
