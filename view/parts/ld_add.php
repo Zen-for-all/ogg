@@ -1,25 +1,43 @@
 <h2>Добавить запись:</h2>
 <form action="../../model/add_ld.php" method="post">
-  <input type="date" name="date">Дата<br>
-  <input type="time" name="time">Время<br>
-  <input type="number" name="duration">Длительность<br>
-
+  <p>Дата</p>
+  <input type="date" name="date"><br>
+  <p>Время</p>
+  <input type="time" name="time"><br>
+  <p>Длительность (сек)</p>
+  <input type="number" name="duration"><br>
+  <p>Локация</p>
   <select name="location">
-    <option value="1">Значение 1</option>
-    <option value="2">Значение 2</option>
-    <option value="3">Значение 3</option>
+    <option value="0">Выберите локацию</option>
+
+    <?php
+    $locationArray = explode(" ", trim($user->ldlocations));
+
+    foreach ($locationArray as $locationValue) {
+      $location = new Location($locationValue);
+      echo 'Название:' . $location->title;
+      echo '<option value="' .  $location->id . '">' . $location->title . '</option>';
+    }
+    ?>
+
   </select>
-  Локация<br>
-
-  <input type="number" name="quality" min="1" max="10">Качество<br>
-  <input type="number" name="interest" min="1" max="10">Интерес<br>
-
+  <br>
+  <p>Качество</p>
+  <input type="number" name="quality" min="1" max="10"><br>
+  <p>Интерес</p>
+  <input type="number" name="interest" min="1" max="10"><br>
+  <p>Метод входа</p>
   <select name="method">
-    <option value="1">Значение 1</option>
-    <option value="2">Значение 2</option>
-    <option value="3">Значение 3</option>
+    <option value="0">Выберите метод</option>
+
+    <?php
+    foreach ($enterMethod as $key => $value) {
+      echo '<option value="' . $key . '">' . $value . '</option>';
+    }
+    ?>
+
   </select>
-  Метод входа<br>
+  <br>
 
   <p>Описание</p>
   <textarea name="text"></textarea><br>
