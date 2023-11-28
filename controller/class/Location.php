@@ -4,6 +4,7 @@ class Location
   public $id;
   public $title;
   public $text;
+  public $user;
 
   function __construct(int $id)
   {
@@ -18,5 +19,6 @@ class Location
     $allInfo = mysqli_fetch_assoc($result);
     $this->title = $allInfo['title'];
     $this->text = $allInfo['text'];
+    $this->user = $allInfo['user'];
   }
 }
