@@ -37,7 +37,7 @@ input, textarea{
 }
 
 /*=================== ZFDoom ===================*/
-.block_all, .block_100, .block_75, .block_66, .block_50, .block_33, .block_25{
+.block_100, .block_75, .block_66, .block_50, .block_33, .block_25{
     width: 100%;
     position: relative;
     float: left;
@@ -92,4 +92,12 @@ a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay
 
 body {
     font-family: Georgia, serif;
+}
+
+.ld_info, .edit_ld_form {
+    display: none;
+}
+
+.show {
+    display: block;
 }
