@@ -18,25 +18,66 @@ if (trim($user->ldlist) != '') {
     // get all info about location
     $location = new Location($ld->location);
 
+    $ldDate = $ld->date;
+    $ldTime = $ld->time;
+    $ldDuration = $ld->duration;
+    $locationId = $location->id;
+    $locationTitle = $location->title;
+    $ldQuality = $ld->quality;
+    $ldInterest = $ld->interest;
+    $ldMethod = $enterMethod[$ld->method];
+    $ldText = $ld->text;
+    $ldNotice = $ld->notice;
+
     // print info about ld
-    echo 'Дата: ' . $ld->date;
+    echo 'Дата: ' . $ldDate;
     echo '<br>';
-    echo 'Время: ' . $ld->time;
-    echo '<br>';
-    echo 'Длительность: ' . $ld->duration;
-    echo '<br>';
-    echo 'Локация: ' . $location->title;
-    echo '<br>';
-    echo 'Качество: ' . $ld->quality;
-    echo '<br>';
-    echo 'Интерес: ' . $ld->interest;
-    echo '<br>';
-    echo 'Метод входа: ' . $enterMethod[$ld->method];
-    echo '<br><br>';
-    echo 'Описание:<br>' . $ld->text;
-    echo '<br><br>';
-    echo 'Заметки:<br>' . $ld->notice;
+
+    if ($ldTime != false) {
+      echo 'Время: ' . $ldTime;
+      echo '<br>';
+    }
+
+    if ($ldDuration != false) {
+      echo 'Длительность: ' . $ldDuration;
+      echo '<br>';
+    }
+
+    if ($locationTitle != false) {
+      echo 'Локация: ' . $locationTitle;
+      echo '<br>';
+    }
+
+    if ($ldQuality != false) {
+      echo 'Качество: ' . $ldQuality;
+      echo '<br>';
+    }
+
+    if ($ldInterest != false) {
+      echo 'Интерес: ' . $ldInterest;
+      echo '<br>';
+    }
+
+    if ($ldMethod != false) {
+      echo 'Метод входа: ' . $ldMethod;
+      echo '<br>';
+    }
+
+    if ($ldText != false) {
+      echo '<br>';
+      echo 'Описание:<br>' . $ldText;
+      echo '<br>';
+    }
+
+    if ($ldNotice != false) {
+      echo '<br>';
+      echo 'Заметки:<br>' . $ldNotice;
+      echo '<br>';
+    }
     ?>
+
+    <h2>Редактировать запись:</h2>
+    <?php include 'ld_add.php'; ?>
 
     <br><br>
 
@@ -49,5 +90,7 @@ if (trim($user->ldlist) != '') {
     <?php
     echo '<br><hr><br>';
   }
+
+  unset($ldValue);
 }
 ?>
