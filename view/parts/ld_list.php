@@ -86,7 +86,7 @@
 
         </div>
 
-        <div class="block_all edit_ld_form">
+        <div class="block_all edit_ld_form hide">
           <h2>Редактировать запись:</h2>
 
           <?php include 'ld_add.php'; ?>
@@ -96,13 +96,18 @@
         <div class="clear pT20"></div>
 
         <!-- button for edit ld -->
-        <div class="btn edit_ld_btn">Редактировать</div>
+        <div class="btn edit_ld_btn show">
+          <span class="show">Редактировать</span>
+          <span class="hide">Отменить</span>
+        </div>
 
         <!-- button for delete ld -->
-        <form action="../../model/delete_ld.php" method="post">
-          <input type="hidden" name="delete" value="<?=$ldValue?>">
-          <input type="submit" value="Удалить" class="btn">
-        </form>
+        <div class="delete_ld show">
+          <form action="../../model/delete_ld.php" method="post">
+            <input type="hidden" name="delete" value="<?=$ldValue?>">
+            <input type="submit" value="Удалить" class="btn">
+          </form>
+        </div>
         <div class="clear"></div>
       </div>
 

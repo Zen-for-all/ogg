@@ -1,27 +1,57 @@
-<h2>Локации</h2><br>
+<h2>Локации</h2>
+<br>
 
-<?php
-// get locations id's array
-$locationArray = explode(" ", trim($user->ldlocations));
-
-foreach ($locationArray as $locationValue) {
-  // get all info about location
-  $location = new Location($locationValue);
-
-  // print info about location
-  echo 'Название: ' . $location->title;
-  echo '<br>';
-  echo 'Описание: ' . $location->text;
-  echo '<br><br>';
-  ?>
-
-  <!-- button for delete location -->
-  <form action="../../model/delete_location.php" method="post">
-    <input type="hidden" name="delete" value="<?=$locationValue?>">
-    <input type="submit" value="Удалить">
-  </form>
+<div class="block_all">
 
   <?php
-  echo '<br><hr><br>';
-}
-?>
+  // get locations id's array
+  $locationArray = explode(" ", trim($user->ldlocations));
+
+  foreach ($locationArray as $locationValue) {
+    // get all info about location
+    $location = new Location($locationValue);
+    $locationTitle = $location->title;
+    $locationText = $location->text;
+    ?>
+
+    <!--print info about location-->
+    <div class="block_all location_item">
+      <div class="block_all location_info show">
+        <p><?= $locationTitle ?></p>
+        <?php if ($locationText != false) { ?>
+          <br>
+          <p>Описание:</p>
+          <p><?= $locationText ?></p>
+        <?php } ?>
+      </div>
+    </div>
+
+    <div class="block_all edit_location_form hide">
+      <h2>Редактировать локацию:</h2>
+
+      <?php include 'location_add.php'; ?>
+
+    </div>
+
+    <div class="clear pT20"></div>
+
+    <!-- button for edit ld -->
+    <div class="btn edit_location_btn show">
+      <span class="show">Редактировать</span>
+      <span class="hide">Отменить</span>
+    </div>
+
+    <!-- button for delete location -->
+    <div class="delete_location show">
+      <form action="../../model/delete_location.php" method="post">
+        <input type="hidden" name="delete" value="<?=$locationValue?>">
+        <input type="submit" value="Удалить">
+      </form>
+    </div>
+
+    <?php
+    echo '<br><hr><br>';
+  }
+  ?>
+
+</div>

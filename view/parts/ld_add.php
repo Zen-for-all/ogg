@@ -55,14 +55,12 @@ if ($ldValue === null) {
   <br>
 
   <p>Описание</p>
-  <textarea name="text">
-    <?php if ($ldText != false) { echo $ldText; } ?>
-  </textarea><br>
+  <textarea name="text"><?php if ($ldText != false) { echo $ldText; } ?></textarea>
+  <br>
 
   <p>Заметки</p>
-  <textarea name="notice">
-    <?php if ($ldNotice != false) { echo $ldNotice; } ?>
-  </textarea><br>
+  <textarea name="notice"><?php if ($ldNotice != false) { echo $ldNotice; } ?></textarea>
+  <br>
 
   <input type="submit">
 
