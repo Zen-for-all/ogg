@@ -24,33 +24,33 @@
           <p><?= $locationText ?></p>
         <?php } ?>
       </div>
-    </div>
 
-    <div class="block_all edit_location_form hide">
-      <h2>Редактировать локацию:</h2>
+      <div class="block_all edit_location_form hide">
+        <h2>Редактировать локацию:</h2>
 
-      <?php include 'location_add.php'; ?>
+        <?php include 'location_add.php'; ?>
 
-    </div>
+      </div>
 
-    <div class="clear pT20"></div>
+      <div class="clear pT20"></div>
 
-    <!-- button for edit ld -->
-    <div class="btn edit_location_btn show">
-      <span class="show">Редактировать</span>
-      <span class="hide">Отменить</span>
-    </div>
+      <!-- button for edit ld -->
+      <div class="btn edit_location_btn">
+        <span class="show">Редактировать</span>
+        <span class="hide">Отменить</span>
+      </div>
 
-    <!-- button for delete location -->
-    <div class="delete_location show">
-      <form action="../../model/delete_location.php" method="post">
-        <input type="hidden" name="delete" value="<?=$locationValue?>">
-        <input type="submit" value="Удалить">
-      </form>
+      <!-- button for delete location -->
+      <div class="delete_location show">
+        <form action="../../model/delete_location.php" method="post">
+          <input type="hidden" name="delete" value="<?=$locationValue?>">
+          <input type="submit" value="Удалить" class="btn">
+        </form>
+      </div>
+      <div class="clear"></div>
     </div>
 
     <?php
-    echo '<br><hr><br>';
   }
   ?>
 
