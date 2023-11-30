@@ -34,4 +34,8 @@ $(document).ready(function(){
     $(this).parent().find('.edit_location_form').toggleClass('show').toggleClass('hide');
     $(this).parent().find('.delete_location').toggleClass('show').toggleClass('hide');
   });
+
+  $('.btn_show').click(function(){
+    $(this).parent().find('.block_hide').toggleClass('show').toggleClass('hide');
+  });
 });

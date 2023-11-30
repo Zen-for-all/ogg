@@ -1,11 +1,18 @@
 <section class="block">
   <?php include 'view/parts/location_list.php'; ?>
 </section>
+<div class="clear"></div>
 
-<section class="block">
-  <h2>Добавить локацию:</h2>
-  <?php
-  unset($locationValue);
-  include 'view/parts/location_add.php';
-  ?>
-</section>
+<div class="block">
+  <div class="btn btn_show">+ Добавить локацию</div>
+  <div class="clear"></div>
+
+  <div class="block_all block_hide hide">
+    <h2>Добавить локацию:</h2>
+    <?php
+    unset($locationValue);
+    include 'view/parts/location_add.php';
+    ?>
+  </div>
+</div>
+<div class="clear"></div>
