@@ -19,13 +19,15 @@
       $ld = new Ld($ldValue);
 
       // get all info about location
-      $location = new Location($ld->location);
+      if ($ld->location != false) {
+        $location = new Location($ld->location);
+        $locationId = $location->id;
+        $locationTitle = $location->title;
+      }
 
       $ldDate = $ld->date;
       $ldTime = $ld->time;
       $ldDuration = $ld->duration;
-      $locationId = $location->id;
-      $locationTitle = $location->title;
       $ldQuality = $ld->quality;
       $ldInterest = $ld->interest;
       $ldMethod = $enterMethod[$ld->method];

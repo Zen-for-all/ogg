@@ -15,4 +15,6 @@ if ($locationValue === null) {
   <br>
 
   <input type="submit">
+
+  <?php unset($locationTitle, $locationText); ?>
 </form>

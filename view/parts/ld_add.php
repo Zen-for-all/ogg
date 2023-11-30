@@ -64,7 +64,5 @@ if ($ldValue === null) {
 
   <input type="submit">
 
-  <?php
-  unset($ldDate, $ldTime, $ldDuration, $locationId, $locationTitle, $ldQuality, $ldInterest, $ldMethod, $ldText, $ldNotice);
-  ?>
+  <?php unset($ldDate, $ldTime, $ldDuration, $locationId, $locationTitle, $ldQuality, $ldInterest, $ldMethod, $ldText, $ldNotice); ?>
 </form>
