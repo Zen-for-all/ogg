@@ -4,7 +4,7 @@ require 'connect.php';
 
 // get $_POST params
 $id = $_POST['id'];
-$date = $_POST['date'];
+$date = date("d.m.y", strtotime($_POST['date']));
 $time = $_POST['time'];
 $duration = $_POST['duration'];
 $location = $_POST['location'];

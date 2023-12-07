@@ -95,18 +95,24 @@ function getLastLdDate($ldArrayObjects) {
     $ldDateLits[] = $ld->date;
   }
 
-  $lastDate = max($ldDateLits);
+
+  //$lastDate = max($ldDateLits);
+  $dateObjects = array_map(function($date) {
+    return DateTime::createFromFormat('d.m.y', $date);
+  }, $ldDateLits);
+
+  $maxDate  = max($dateObjects);
+  $lastDate = $maxDate->format('d.m.y');
 
   return $lastDate;
 }
 
 // get quantity days from last ld
 function getIntervalLastLd($lastDate) {
-  $date = new DateTime($lastDate);
-  var_dump($date);
+  /*$date = new DateTime($lastDate);
   $today = new DateTime();
   $interval = $today->diff($date);
-  $intervalLastLd = $interval->format('%a');
+  $intervalLastLd = $interval->format('%a');*/
 
   return $intervalLastLd;
 }

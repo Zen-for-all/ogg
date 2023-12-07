@@ -13,17 +13,17 @@
   $hoursDuration = floor($summDuration / 3600);
   $minutesDuration = floor(($summDuration % 3600) / 60);
   $secondsDuration = $summDuration % 60;
-
-
   ?>
 
-  <p>Всего ОСов: <?=$quantityLd?></p>
-  <p>Общая длительность: <?php echo "$hoursDuration ч, $minutesDuration мин, $secondsDuration сек";?></p>
-  <p>Средняя длительность: <?=$averageDuration?> сек</p>
-  <p>Среднее качество: <?=$averageQuality?></p>
-  <p>Средняя интересность: <?=$averageInterest?></p>
+  <?php if ($quantityLd > 3) { ?>
+    <p>Всего ОСов: <?=$quantityLd?></p>
+    <p>Общая длительность: <?php echo "$hoursDuration ч, $minutesDuration мин, $secondsDuration сек";?></p>
+    <p>Средняя длительность: <?=$averageDuration?> сек</p>
+    <p>Среднее качество: <?=$averageQuality?></p>
+    <p>Средняя интересность: <?=$averageInterest?></p>
 
-  <?php if ($quantityLd > 0) { ?>
-    <p>Последний был: <?=$lastDate?> (<?=$intervalLastLd?>д назад)</p>
+    <?php if ($quantityLd > 0) { ?>
+      <p>Последний был: <?=$lastDate?> (<?=$intervalLastLd?>д назад)</p>
+    <?php } ?>
   <?php } ?>
 </section>
