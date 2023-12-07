@@ -28,6 +28,7 @@ function getLd($ldList) {
 // get summ duration
 function getQuantity($ldArrayObjects) {
   $summDuration = 0;
+
   foreach ($ldArrayObjects as $ld) {
     $summDuration += intval($ld->duration);
   }
@@ -39,6 +40,7 @@ function getQuantity($ldArrayObjects) {
 function getAverageDuration($ldArrayObjects) {
   $summDuration = 0;
   $quantityLd = 0;
+
   foreach ($ldArrayObjects as $ld) {
     if (intval($ld->duration) != 0) {
       $summDuration += intval($ld->duration);
@@ -55,6 +57,7 @@ function getAverageDuration($ldArrayObjects) {
 function getAverageQuality($ldArrayObjects) {
   $summQuality = 0;
   $quantityLd = 0;
+
   foreach ($ldArrayObjects as $ld) {
     if (intval($ld->duration) != 0) {
       $summQuality += intval($ld->quality);
@@ -71,6 +74,7 @@ function getAverageQuality($ldArrayObjects) {
 function getAverageInterest($ldArrayObjects) {
   $summInterest = 0;
   $quantityLd = 0;
+
   foreach ($ldArrayObjects as $ld) {
     if (intval($ld->duration) != 0) {
       $summInterest += intval($ld->interest);
@@ -81,4 +85,28 @@ function getAverageInterest($ldArrayObjects) {
   $averageInterest = $summInterest / $quantityLd;
 
   return round($averageInterest, 1);
+}
+
+// get last ld date
+function getLastLdDate($ldArrayObjects) {
+  $ldDateLits = [];
+
+  foreach ($ldArrayObjects as $ld) {
+    $ldDateLits[] = $ld->date;
+  }
+
+  $lastDate = max($ldDateLits);
+
+  return $lastDate;
+}
+
+// get quantity days from last ld
+function getIntervalLastLd($lastDate) {
+  $date = new DateTime($lastDate);
+  var_dump($date);
+  $today = new DateTime();
+  $interval = $today->diff($date);
+  $intervalLastLd = $interval->format('%a');
+
+  return $intervalLastLd;
 }

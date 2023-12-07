@@ -6,6 +6,8 @@
   $averageDuration = getAverageDuration($ldArrayObjects);
   $averageQuality = getAverageQuality($ldArrayObjects);
   $averageInterest = getAverageInterest($ldArrayObjects);
+  $lastDate = getLastLdDate($ldArrayObjects);
+  $intervalLastLd = getIntervalLastLd($lastDate);
 
   $summDuration = getQuantity($ldArrayObjects);
   $hoursDuration = floor($summDuration / 3600);
@@ -20,5 +22,8 @@
   <p>Средняя длительность: <?=$averageDuration?> сек</p>
   <p>Среднее качество: <?=$averageQuality?></p>
   <p>Средняя интересность: <?=$averageInterest?></p>
-  <p>Последний был:</p>
+
+  <?php if ($quantityLd > 0) { ?>
+    <p>Последний был: <?=$lastDate?> (<?=$intervalLastLd?>д назад)</p>
+  <?php } ?>
 </section>
