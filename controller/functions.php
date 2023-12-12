@@ -15,14 +15,16 @@ function de($str) {
 // get array objects ld from user id
 function getLd($ldList) {
   $ldArrayObjects = [];
-  $ldArrayId = explode(" ", trim($ldList));
 
-  foreach ($ldArrayId as $ldId) {
-    $ld = new Ld($ldId);
-    $ldArrayObjects[] = $ld;
+  if ($ldList != false) {
+    $ldArrayId = explode(" ", trim($ldList));
+    foreach ($ldArrayId as $ldId) {
+      $ld = new Ld($ldId);
+      $ldArrayObjects[] = $ld;
+    }
+
+    return $ldArrayObjects;
   }
-
-  return $ldArrayObjects;
 }
 
 // get summ duration
@@ -109,9 +111,40 @@ function getLastLdDate($ldArrayObjects) {
 
 // get quantity days from last ld
 function getIntervalLastLd($lastDate) {
-  $lastDate = DateTime::createFromFormat('d.m.y', $lastDate);
-  $today = new DateTime();
-  $interval = $today->diff($lastDate);
+  if ($lastDate != false) {
+    $lastDate = DateTime::createFromFormat('d.m.y', $lastDate);
+    $today = new DateTime();
+    $interval = $today->diff($lastDate);
 
-  return $interval->days;
+    return $interval->days;
+  }
+}
+
+//get all ld
+function getAllLd() {
+  global $connect;
+  $result = mysqli_query($connect, "SELECT id FROM `ld`");
+
+  $idArray = [];
+  while($allInfo = mysqli_fetch_assoc($result)) {
+    $idArray[] = $allInfo['id'];
+  }
+
+  if ($idArray != false) {
+    $ldListObjects = [];
+    foreach ($idArray as $id) {
+      $ld = new Ld($id);
+      $ldListObjects[] = $ld;
+    }
+  }
+
+  return $ldListObjects;
+}
+
+// get user quantity
+function getUserQuantity() {
+  global $connect;
+  $result = mysqli_query($connect, "SELECT id FROM `user`");
+
+  return mysqli_num_rows($result);
 }
