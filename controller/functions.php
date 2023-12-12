@@ -109,10 +109,9 @@ function getLastLdDate($ldArrayObjects) {
 
 // get quantity days from last ld
 function getIntervalLastLd($lastDate) {
-  /*$date = new DateTime($lastDate);
+  $lastDate = DateTime::createFromFormat('d.m.y', $lastDate);
   $today = new DateTime();
-  $interval = $today->diff($date);
-  $intervalLastLd = $interval->format('%a');*/
+  $interval = $today->diff($lastDate);
 
-  return $intervalLastLd;
+  return $interval->days;
 }
