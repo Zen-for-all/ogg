@@ -40,6 +40,7 @@
     <?php if ($quantityLd > 3) { ?>
       <p>Последний был: <?=$lastDate?> (<?=$intervalLastLd?>д назад)</p>
     <?php } ?>
+    <div class="clear pT20"></div>
   <?php } ?>
 
   <?php if (1) { ?>

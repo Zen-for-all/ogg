@@ -22,6 +22,10 @@ if (isset($_SESSION['userid'])) {
     // locations page
     $title = 'Локации';
     require 'view/pages/location.php';
+  } elseif (isset($_GET['page']) && $_GET['page'] === 'settings') {
+    // settings page
+    $title = 'Настройки';
+    require 'view/pages/settings.php';
   } else {
     // main page
     $title = 'Главная';
