@@ -4,9 +4,9 @@
 
 <form method="post" action="../../model/import_ld.php" enctype="multipart/form-data">
   <label for="fileInput">Выберите файл:</label>
-  <input type="file" name="csv_file" accept=".csv" /><br>
+  <input type="file" name="txt_file" accept=".txt" /><br>
   <div class="clear"></div>
-  <input type="submit" name="upload_csv" value="Загрузить" />
+  <input type="submit" name="upload_txt" value="Загрузить" />
 </form>
 <div class="clear pT20"></div>
 
