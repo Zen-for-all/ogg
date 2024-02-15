@@ -23,16 +23,53 @@
         $location = new Location($ld->location);
         $locationId = $location->id;
         $locationTitle = $location->title;
+      } else {
+        $locationTitle = false;
       }
 
       $ldDate = $ld->date;
-      $ldTime = $ld->time;
-      $ldDuration = $ld->duration;
-      $ldQuality = $ld->quality;
-      $ldInterest = $ld->interest;
-      $ldMethod = $enterMethod[$ld->method];
-      $ldText = $ld->text;
-      $ldNotice = $ld->notice;
+
+      if ($ld->time != 0) {
+        $ldTime = $ld->time;
+      } else {
+        $ldTime = false;
+      }
+
+      if ($ld->duration != 0) {
+        $ldDuration = $ld->duration;
+      } else {
+        $ldDuration = false;
+      }
+
+      if ($ld->quality != 0) {
+        $ldQuality = $ld->quality;
+      } else {
+        $ldQuality = false;
+      }
+
+      if ($ld->interest != 0) {
+        $ldInterest = $ld->interest;
+      } else {
+        $ldInterest = false;
+      }
+
+      if ($ld->method != 0) {
+        $ldMethod = $enterMethod[$ld->method];
+      } else {
+        $ldMethod = false;
+      }
+
+      if ($ld->text != 0) {
+        $ldText = $ld->text;
+      } else {
+        $ldText = false;
+      }
+
+      if ($ld->notice != 0) {
+        $ldNotice = $ld->notice;
+      } else {
+        $ldNotice = false;
+      }
       ?>
 
       <div class="block_all ld_item">

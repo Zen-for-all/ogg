@@ -11,6 +11,7 @@
     <h2>Добавить локацию:</h2>
     <?php
     unset($locationValue);
+    $locationValue = $locationTitle = $locationText = false;
     include 'view/parts/location_add.php';
     ?>
   </div>

@@ -1,5 +1,5 @@
 <?php
-if ($locationValue === null) {
+if ($locationValue == false) {
   echo '<form action="../../model/add_location.php" method="post">';
 } else {
   echo '<form action="../../model/edit_location.php" method="post">';

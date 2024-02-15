@@ -1,5 +1,5 @@
 <?php
-if ($ldValue === null) {
+if ($ldValue == false) {
   echo '<form action="../../model/add_ld.php" method="post">';
 } else {
   echo '<form action="../../model/edit_ld.php" method="post">';
