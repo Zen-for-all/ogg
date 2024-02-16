@@ -101,3 +101,32 @@ body {
 .show {
     display: block;
 }
+
+.pagination {
+    display: table;
+    margin: 20px auto;
+}
+
+.pagination li {
+    display: block;
+    position: relative;
+    float: left;
+    list-style: none;
+}
+
+.pagination li:first-child,
+.pagination li:last-child,
+.pagination li:nth-child(2),
+.pagination li:nth-last-child(2) {
+    margin: 0 10px;
+}
+
+.pagination li a, .pagination li span {
+    display: block;
+    position: relative;
+    float: left;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.pagination li.arrow a {}

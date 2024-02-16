@@ -1,5 +1,6 @@
 <section class="block">
   <?php include 'view/parts/ld_list.php'; ?>
+  <?php include 'view/parts/pagination.php'; ?>
 </section>
 <div class="clear"></div>
 

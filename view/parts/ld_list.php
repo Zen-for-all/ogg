@@ -14,6 +14,22 @@
     // get ld id's array
     $ldArray = explode(" ", trim($user->ldlist));
 
+    // get current ld list
+    $pages = ceil(count($ldArray) / $ld_on_page);
+    if (isset($_GET['p'])) {
+      $current_page = $_GET['p'];
+    } else {
+      $current_page = 1;
+    }
+
+    if (!isset($_GET['p']) || $_GET['p'] === 1) {
+      $ldArray = array_slice($ldArray, 0, $ld_on_page);
+    } else {
+      $start_ld = $current_page * $ld_on_page - $ld_on_page;
+      $ldArray = array_slice($ldArray, $start_ld, $ld_on_page);
+    }
+
+    // print current ld list
     foreach ($ldArray as $ldValue) {
       // get all info about ld
       $ld = new Ld($ldValue);

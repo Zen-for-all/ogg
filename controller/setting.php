@@ -1,6 +1,8 @@
 <?php
-$siteName = 'Ogg'; // site title
+// site title
+$siteName = 'Ogg';
 
+// enter methods
 $enterMethod = [
   1 => 'Спонтанное осознание',
   2 => 'Вход на засыпании',
@@ -8,3 +10,6 @@ $enterMethod = [
   4 => 'Якорь',
   5 => 'Внешнее воздействие'
 ];
+
+// post on list page
+$ld_on_page = 10;
