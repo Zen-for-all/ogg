@@ -43,6 +43,7 @@ foreach ($array_ld as $ld) {
   // get $_POST params
   $date = date("d.m.y", strtotime($ld[0]));
   $time = $ld[1];
+  $duration = 0;
   $duration = $ld[2];
   $text = trim(htmlentities($ld[3]));
   $quality = $ld[4];
