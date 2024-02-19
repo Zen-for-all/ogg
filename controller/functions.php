@@ -28,7 +28,7 @@ function getLd($ldList) {
 }
 
 // get summ duration
-function getQuantity($ldArrayObjects) {
+function getDuration($ldArrayObjects) {
   $summDuration = 0;
 
   foreach ($ldArrayObjects as $ld) {

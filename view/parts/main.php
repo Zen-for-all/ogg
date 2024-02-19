@@ -8,7 +8,7 @@
     $averageQuality = getAverageQuality($ldArrayObjects);
     $averageInterest = getAverageInterest($ldArrayObjects);
     $lastDate = getLastLdDate($ldArrayObjects);
-    $summDuration = getQuantity($ldArrayObjects);
+    $summDuration = getDuration($ldArrayObjects);
     $hoursDuration = floor($summDuration / 3600);
     $minutesDuration = floor(($summDuration % 3600) / 60);
     $secondsDuration = $summDuration % 60;
@@ -16,16 +16,21 @@
   }
 
   // global info
-  $quantityLdGlobal = count(getAllLd());
+  $ldArrayObjectsGlobal = getAllLd();
+  $quantityLdGlobal = count($ldArrayObjectsGlobal);
   if ($quantityLdGlobal > 0) {
     $averageDurationGlobal = 0;
     $averageQualityGlobal = 0;
     $averageInterestGlobal = 0;
-    $summDurationGlobal = 0;
+    $summDurationGlobal = getDuration($ldArrayObjectsGlobal);
     $hoursDurationGlobal = floor($summDurationGlobal / 3600);
     $minutesDurationGlobal = floor(($summDurationGlobal % 3600) / 60);
     $secondsDurationGlobal = $summDurationGlobal % 60;
     $userQuantity = getUserQuantity();
+
+    $averageDurationGlobal = getAverageDuration($ldArrayObjectsGlobal);
+    $averageQualityGlobal = getAverageQuality($ldArrayObjectsGlobal);
+    $averageInterestGlobal = getAverageInterest($ldArrayObjectsGlobal);
   }
   ?>
 
@@ -44,12 +49,16 @@
   <?php } ?>
 
   <?php if (1) { ?>
+    <?php
+
+    ?>
     <h3>Общая статистика</h3>
     <p>Количество участников: <?=$userQuantity?></p>
     <p>Всего ОСов: <?=$quantityLdGlobal?></p>
-    <p>Общая длительность: <?php echo "$hoursDuration ч, $minutesDuration мин, $secondsDuration сек";?></p>
-    <p>Средняя длительность: <?=$averageDuration?> сек</p>
-    <p>Среднее качество: <?=$averageQuality?></p>
-    <p>Средняя интересность: <?=$averageInterest?></p>
+
+    <p>Общая длительность: <?php echo "$hoursDurationGlobal ч, $minutesDurationGlobal мин, $secondsDurationGlobal сек";?></p>
+    <p>Средняя длительность: <?=$averageDurationGlobal?> сек</p>
+    <p>Среднее качество: <?=$averageQualityGlobal?></p>
+    <p>Средняя интересность: <?=$averageInterestGlobal?></p>
   <?php } ?>
 </section>
