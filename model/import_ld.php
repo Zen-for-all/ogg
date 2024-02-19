@@ -41,7 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["upload_txt"])) {
 
 foreach ($array_ld as $ld) {
   // get $_POST params
-  $date = date("d.m.y", strtotime($ld[0]));
+  $date = DateTime::createFromFormat('d.m.y', $ld[0]);
+  if ($date !== false) {
+    $date = $date->format('d.m.y');
+  } else {
+    $date = date("d.m.y", strtotime($ld[0],0));
+  }
+
   $time = $ld[1];
   $duration = 0;
   $duration = $ld[2];
