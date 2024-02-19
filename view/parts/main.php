@@ -1,38 +1,38 @@
+<?php
+// personal info
+if ($user->ldlist != false) {
+  $ldArrayObjects =  getLd($user->ldlist);
+  $quantityLd = count($ldArrayObjects);
+  $averageDuration = getAverageDuration($ldArrayObjects);
+  $averageQuality = getAverageQuality($ldArrayObjects);
+  $averageInterest = getAverageInterest($ldArrayObjects);
+  $lastDate = getLastLdDate($ldArrayObjects);
+  $summDuration = getDuration($ldArrayObjects);
+  $hoursDuration = floor($summDuration / 3600);
+  $minutesDuration = floor(($summDuration % 3600) / 60);
+  $secondsDuration = $summDuration % 60;
+  $intervalLastLd = getIntervalLastLd($lastDate);
+}
+
+// global info
+$ldArrayObjectsGlobal = getAllLd();
+$quantityLdGlobal = count($ldArrayObjectsGlobal);
+if ($quantityLdGlobal > 0) {
+  $averageDurationGlobal = 0;
+  $averageQualityGlobal = 0;
+  $averageInterestGlobal = 0;
+  $summDurationGlobal = getDuration($ldArrayObjectsGlobal);
+  $hoursDurationGlobal = floor($summDurationGlobal / 3600);
+  $minutesDurationGlobal = floor(($summDurationGlobal % 3600) / 60);
+  $secondsDurationGlobal = $summDurationGlobal % 60;
+  $userQuantity = getUserQuantity();
+  $averageDurationGlobal = getAverageDuration($ldArrayObjectsGlobal);
+  $averageQualityGlobal = getAverageQuality($ldArrayObjectsGlobal);
+  $averageInterestGlobal = getAverageInterest($ldArrayObjectsGlobal);
+}
+?>
+
 <section class="block">
-  <?php
-  // personal info
-  if ($user->ldlist != false) {
-    $ldArrayObjects =  getLd($user->ldlist);
-    $quantityLd = count($ldArrayObjects);
-    $averageDuration = getAverageDuration($ldArrayObjects);
-    $averageQuality = getAverageQuality($ldArrayObjects);
-    $averageInterest = getAverageInterest($ldArrayObjects);
-    $lastDate = getLastLdDate($ldArrayObjects);
-    $summDuration = getDuration($ldArrayObjects);
-    $hoursDuration = floor($summDuration / 3600);
-    $minutesDuration = floor(($summDuration % 3600) / 60);
-    $secondsDuration = $summDuration % 60;
-    $intervalLastLd = getIntervalLastLd($lastDate);
-  }
-
-  // global info
-  $ldArrayObjectsGlobal = getAllLd();
-  $quantityLdGlobal = count($ldArrayObjectsGlobal);
-  if ($quantityLdGlobal > 0) {
-    $averageDurationGlobal = 0;
-    $averageQualityGlobal = 0;
-    $averageInterestGlobal = 0;
-    $summDurationGlobal = getDuration($ldArrayObjectsGlobal);
-    $hoursDurationGlobal = floor($summDurationGlobal / 3600);
-    $minutesDurationGlobal = floor(($summDurationGlobal % 3600) / 60);
-    $secondsDurationGlobal = $summDurationGlobal % 60;
-    $userQuantity = getUserQuantity();
-
-    $averageDurationGlobal = getAverageDuration($ldArrayObjectsGlobal);
-    $averageQualityGlobal = getAverageQuality($ldArrayObjectsGlobal);
-    $averageInterestGlobal = getAverageInterest($ldArrayObjectsGlobal);
-  }
-  ?>
 
   <?php if ($quantityLd > 3) { ?>
     <h3>Личная статистика</h3>
