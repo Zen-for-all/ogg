@@ -35,7 +35,7 @@ if ($ldArrayObjectsGlobal != false) {
 ?>
 
 <section class="block">
-  <?php if ($user->ldlist != false && $quantityLd > 3) { ?>
+  <?php if ($user->ldlist != false && $quantityLd > 0) { ?>
     <h3>Личная статистика</h3>
     <p>Всего ОСов: <?=$quantityLd?></p>
     <p>Общая длительность: <?php echo "$hoursDuration ч, $minutesDuration мин, $secondsDuration сек";?></p>

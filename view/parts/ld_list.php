@@ -10,7 +10,7 @@
 <div class="block_all">
 
   <?php
-  if (trim($user->ldlist) != '') {
+  if ($user->ldlist != null) {
     // get ld id's array
     $ldArray = explode(" ", trim($user->ldlist));
 
