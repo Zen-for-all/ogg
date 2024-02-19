@@ -130,8 +130,8 @@ function getAllLd() {
     $idArray[] = $allInfo['id'];
   }
 
+  $ldListObjects = [];
   if ($idArray != false) {
-    $ldListObjects = [];
     foreach ($idArray as $id) {
       $ld = new Ld($id);
       $ldListObjects[] = $ld;

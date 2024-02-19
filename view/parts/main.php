@@ -16,25 +16,26 @@ if ($user->ldlist != false) {
 
 // global info
 $ldArrayObjectsGlobal = getAllLd();
-$quantityLdGlobal = count($ldArrayObjectsGlobal);
-if ($quantityLdGlobal > 0) {
-  $averageDurationGlobal = 0;
-  $averageQualityGlobal = 0;
-  $averageInterestGlobal = 0;
-  $summDurationGlobal = getDuration($ldArrayObjectsGlobal);
-  $hoursDurationGlobal = floor($summDurationGlobal / 3600);
-  $minutesDurationGlobal = floor(($summDurationGlobal % 3600) / 60);
-  $secondsDurationGlobal = $summDurationGlobal % 60;
-  $userQuantity = getUserQuantity();
-  $averageDurationGlobal = getAverageDuration($ldArrayObjectsGlobal);
-  $averageQualityGlobal = getAverageQuality($ldArrayObjectsGlobal);
-  $averageInterestGlobal = getAverageInterest($ldArrayObjectsGlobal);
+if ($ldArrayObjectsGlobal != false) {
+  $quantityLdGlobal = count($ldArrayObjectsGlobal);
+  if ($quantityLdGlobal > 0) {
+    $averageDurationGlobal = 0;
+    $averageQualityGlobal = 0;
+    $averageInterestGlobal = 0;
+    $summDurationGlobal = getDuration($ldArrayObjectsGlobal);
+    $hoursDurationGlobal = floor($summDurationGlobal / 3600);
+    $minutesDurationGlobal = floor(($summDurationGlobal % 3600) / 60);
+    $secondsDurationGlobal = $summDurationGlobal % 60;
+    $userQuantity = getUserQuantity();
+    $averageDurationGlobal = getAverageDuration($ldArrayObjectsGlobal);
+    $averageQualityGlobal = getAverageQuality($ldArrayObjectsGlobal);
+    $averageInterestGlobal = getAverageInterest($ldArrayObjectsGlobal);
+  }
 }
 ?>
 
 <section class="block">
-
-  <?php if ($quantityLd > 3) { ?>
+  <?php if ($user->ldlist != false && $quantityLd > 3) { ?>
     <h3>Личная статистика</h3>
     <p>Всего ОСов: <?=$quantityLd?></p>
     <p>Общая длительность: <?php echo "$hoursDuration ч, $minutesDuration мин, $secondsDuration сек";?></p>
@@ -48,10 +49,7 @@ if ($quantityLdGlobal > 0) {
     <div class="clear pT20"></div>
   <?php } ?>
 
-  <?php if (1) { ?>
-    <?php
-
-    ?>
+  <?php if ($ldArrayObjectsGlobal != false) { ?>
     <h3>Общая статистика</h3>
     <p>Количество участников: <?=$userQuantity?></p>
     <p>Всего ОСов: <?=$quantityLdGlobal?></p>

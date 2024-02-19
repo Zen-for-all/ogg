@@ -20,14 +20,16 @@ if ($ldValue == false) {
     <option value="0">Выберите локацию</option>
 
     <?php
-    $locationArray = explode(" ", trim($user->ldlocations));
+    if ($user->ldlocations != false) {
+      $locationArray = explode(" ", trim($user->ldlocations));
 
-    foreach ($locationArray as $locationValue) {
-      $location = new Location($locationValue);
-      if ($locationValue == $locationId) {
-        echo '<option value="' .  $location->id . '" selected>' . $location->title . '</option>';
-      } else {
-        echo '<option value="' .  $location->id . '">' . $location->title . '</option>';
+      foreach ($locationArray as $locationValue) {
+        $location = new Location($locationValue);
+        if ($locationValue == $locationId) {
+          echo '<option value="' .  $location->id . '" selected>' . $location->title . '</option>';
+        } else {
+          echo '<option value="' .  $location->id . '">' . $location->title . '</option>';
+        }
       }
     }
     ?>
