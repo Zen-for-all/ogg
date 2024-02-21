@@ -20,16 +20,14 @@ if ($ldValue == false) {
     <option value="0">Выберите локацию</option>
 
     <?php
-    if ($user->ldlocations != false) {
-      $locationArray = explode(" ", trim($user->ldlocations));
+    $locationArray = explode(" ", trim($user->ldlocations));
 
-      foreach ($locationArray as $locationValue) {
-        $location = new Location($locationValue);
-        if ($locationValue == $locationId) {
-          echo '<option value="' .  $location->id . '" selected>' . $location->title . '</option>';
-        } else {
-          echo '<option value="' .  $location->id . '">' . $location->title . '</option>';
-        }
+    foreach ($locationArray as $locationValue) {
+      $location = new Location($locationValue);
+      if ($locationValue == $locationId) {
+        echo '<option value="' .  $location->id . '" selected>' . $location->title . '</option>';
+      } else {
+        echo '<option value="' .  $location->id . '">' . $location->title . '</option>';
       }
     }
     ?>
@@ -49,7 +47,11 @@ if ($ldValue == false) {
 
     <?php
     foreach ($enterMethod as $key => $value) {
-      echo '<option value="' . $key . '">' . $value . '</option>';
+      if ($ldMethod == $value) {
+        echo '<option value="' . $key . '" selected>' . $value . '</option>';
+      } else {
+        echo '<option value="' . $key . '">' . $value . '</option>';
+      }
     }
     ?>
 
