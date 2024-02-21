@@ -7,10 +7,15 @@ if ($ldValue == false) {
 }
 ?>
   <p>Дата</p>
-  <input type="date" name="date" value="<?php if ($ldDate != false) { echo $ldDate; } else { echo date("Y-m-d"); } ?>"><br>
+  <?php
+  $timestamp = strtotime($ldDate);
+  $formattedDate = date("Y-m-d", $timestamp);
+  ?>
+  <input type="date" name="date" value="<?php if ($formattedDate != false) { echo $formattedDate; } else { echo date("Y-m-d"); } ?>"><br>
 
   <p>Время</p>
-  <input type="time" name="time" value="<?php if ($ldTime != false) { echo $ldTime; } ?>"><br>
+  <?php $formattedTime = date("H:i", strtotime($ldTime)); ?>
+  <input type="time" name="time" value="<?php if ($formattedTime != false) { echo $formattedTime; } ?>"><br>
 
   <p>Длительность (сек)</p>
   <input type="number" name="duration" value="<?php if ($ldDuration != false) { echo $ldDuration; } ?>"><br>
