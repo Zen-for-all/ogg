@@ -49,7 +49,7 @@ if ($ldArrayObjectsGlobal != false) {
     <div class="clear pT20"></div>
   <?php } ?>
 
-  <?php if ($ldArrayObjectsGlobal != false) { ?>
+  <?php if ($ldArrayObjectsGlobal != false && $userQuantity > 0) { ?>
     <h3>Общая статистика</h3>
     <p>Количество участников: <?=$userQuantity?></p>
     <p>Всего ОСов: <?=$quantityLdGlobal?></p>

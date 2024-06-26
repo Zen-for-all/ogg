@@ -11,7 +11,7 @@ if ($ldValue == false) {
   $timestamp = strtotime($ldDate);
   $formattedDate = date("Y-m-d", $timestamp);
   ?>
-  <input type="date" name="date" value="<?php if ($formattedDate != false) { echo $formattedDate; } else { echo date("Y-m-d"); } ?>"><br>
+  <input type="date" name="date" value="<?php if ($timestamp != false) { echo $formattedDate; } else { echo date("Y-m-d"); } ?>"><br>
 
   <p>Время</p>
   <?php $formattedTime = date("H:i", strtotime($ldTime)); ?>
@@ -21,18 +21,22 @@ if ($ldValue == false) {
   <input type="number" name="duration" value="<?php if ($ldDuration != false) { echo $ldDuration; } ?>"><br>
 
   <p>Локация</p>
+
   <select name="location">
     <option value="0">Выберите локацию</option>
 
     <?php
     $locationArray = explode(" ", trim($user->ldlocations));
 
-    foreach ($locationArray as $locationValue) {
-      $location = new Location($locationValue);
-      if ($locationValue == $locationId) {
-        echo '<option value="' .  $location->id . '" selected>' . $location->title . '</option>';
-      } else {
-        echo '<option value="' .  $location->id . '">' . $location->title . '</option>';
+    if ($user->ldlocations !== null) {
+      foreach ($locationArray as $locationValue) {
+        $location = new Location($locationValue);
+        $locationId = $location->id;
+        if ($locationValue == $locationId) {
+          echo '<option value="' .  $location->id . '" selected>' . $location->title . '</option>';
+        } else {
+          echo '<option value="' .  $location->id . '">' . $location->title . '</option>';
+        }
       }
     }
     ?>
