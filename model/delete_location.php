@@ -6,7 +6,7 @@ $user = $_SESSION['userid'];
 $locationId = $_POST['delete'];
 
 // delete location in location list
-$deleteLd = mysqli_query($connect, "DELETE FROM `location` WHERE `id` = '$locationId'");
+$deleteLdLocation = mysqli_query($connect, "DELETE FROM `location` WHERE `id` = '$locationId'");
 
 // delete location in user info
 $result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");
