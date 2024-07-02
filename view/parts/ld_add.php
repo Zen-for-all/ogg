@@ -21,7 +21,6 @@ if ($ldValue == false) {
   <input type="number" name="duration" value="<?php if ($ldDuration != false) { echo $ldDuration; } ?>"><br>
 
   <p>Локация</p>
-
   <select name="location">
     <option value="0">Выберите локацию</option>
 
@@ -32,7 +31,7 @@ if ($ldValue == false) {
       foreach ($locationArray as $locationValue) {
         $location = new Location($locationValue);
         $locationId = $location->id;
-        if ($locationValue == $locationId) {
+        if ($locationValue == $ld->location) {
           echo '<option value="' .  $location->id . '" selected>' . $location->title . '</option>';
         } else {
           echo '<option value="' .  $location->id . '">' . $location->title . '</option>';
