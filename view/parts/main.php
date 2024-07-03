@@ -12,6 +12,7 @@ if ($user->ldlist != false) {
   $minutesDuration = floor(($summDuration % 3600) / 60);
   $secondsDuration = $summDuration % 60;
   $intervalLastLd = getIntervalLastLd($lastDate);
+  $maxDuration = getLongestLd($ldArrayObjects);
 }
 
 // global info
@@ -30,18 +31,20 @@ if ($ldArrayObjectsGlobal != false) {
     $averageDurationGlobal = getAverageDuration($ldArrayObjectsGlobal);
     $averageQualityGlobal = getAverageQuality($ldArrayObjectsGlobal);
     $averageInterestGlobal = getAverageInterest($ldArrayObjectsGlobal);
+    $maxDurationGlobal = getLongestLd($ldArrayObjectsGlobal);
   }
 }
 ?>
 
 <section class="block">
   <?php if ($user->ldlist != false && $quantityLd > 0) { ?>
-    <h3>Личная статистика</h3>
+    <h3>Личная статистика <b></b><?=$user->login?>:</h3>
     <p>Всего ОСов: <?=$quantityLd?></p>
     <p>Общая длительность: <?php echo "$hoursDuration ч, $minutesDuration мин, $secondsDuration сек";?></p>
     <p>Средняя длительность: <?=$averageDuration?> сек</p>
     <p>Среднее качество: <?=$averageQuality?></p>
     <p>Средняя интересность: <?=$averageInterest?></p>
+    <p>Самый длинный ОС: <?=$maxDuration?> сек</p>
 
     <?php if ($quantityLd > 3) { ?>
       <p>Последний был: <?=$lastDate?> (<?=$intervalLastLd?>д назад)</p>
@@ -50,7 +53,7 @@ if ($ldArrayObjectsGlobal != false) {
   <?php } ?>
 
   <?php if ($ldArrayObjectsGlobal != false && $userQuantity > 0) { ?>
-    <h3>Общая статистика</h3>
+    <h3>Общая статистика:</h3>
     <p>Количество участников: <?=$userQuantity?></p>
     <p>Всего ОСов: <?=$quantityLdGlobal?></p>
 
@@ -58,5 +61,6 @@ if ($ldArrayObjectsGlobal != false) {
     <p>Средняя длительность: <?=$averageDurationGlobal?> сек</p>
     <p>Среднее качество: <?=$averageQualityGlobal?></p>
     <p>Средняя интересность: <?=$averageInterestGlobal?></p>
+    <p>Самый длинный ОС: <?=$maxDurationGlobal?> сек</p>
   <?php } ?>
 </section>

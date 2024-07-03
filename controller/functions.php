@@ -148,3 +148,16 @@ function getUserQuantity() {
 
   return mysqli_num_rows($result);
 }
+
+// get average duration
+function getLongestLd($ldArrayObjects) {
+  $maxDuration = 0;
+
+  foreach ($ldArrayObjects as $object) {
+    if ((int)$object->duration > $maxDuration) {
+      $maxDuration = (int)$object->duration;
+    }
+  }
+
+  return round($maxDuration);
+}
