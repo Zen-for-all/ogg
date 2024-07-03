@@ -26,6 +26,10 @@ if (isset($_SESSION['userid'])) {
     // settings page
     $title = 'Настройки';
     require 'view/pages/settings.php';
+  } elseif (isset($_GET['page']) && $_GET['page'] === 'delete') {
+    // delete user page
+    $title = 'Удаление аккаунта';
+    require 'view/pages/delete_user_page.php';
   } else {
     // main page
     $title = 'Главная';
