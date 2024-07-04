@@ -50,9 +50,12 @@ function getAverageDuration($ldArrayObjects) {
     }
   }
 
-  $averageDuration = $summDuration / $quantityLd;
-
-  return round($averageDuration);
+  if ($quantityLd != 0) {
+    $averageDuration = $summDuration / $quantityLd;
+    return round($averageDuration);
+  } else {
+    return null;
+  }
 }
 
 // get average quality
@@ -67,9 +70,12 @@ function getAverageQuality($ldArrayObjects) {
     }
   }
 
-  $averageDuration = $summQuality / $quantityLd;
-
-  return round($averageDuration, 1);
+  if ($quantityLd != 0) {
+    $averageDuration = $summQuality / $quantityLd;
+    return round($averageDuration, 1);
+  } else {
+    return null;
+  }
 }
 
 // get average interest
@@ -84,9 +90,12 @@ function getAverageInterest($ldArrayObjects) {
     }
   }
 
-  $averageInterest = $summInterest / $quantityLd;
-
-  return round($averageInterest, 1);
+  if ($quantityLd != 0) {
+    $averageInterest = $summInterest / $quantityLd;
+    return round($averageInterest, 1);
+  } else {
+    return null;
+  }
 }
 
 // get last ld date

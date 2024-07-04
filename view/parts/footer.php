@@ -5,7 +5,7 @@
       <div class="clear pT20"></div>
       <a href='controller/logout.php'>Выйти</a>
       <br>
-      <a href='/?page=delete'>Удалить акаунт</a>
+      <a href='/?page=user_delete'>Удалить акаунт</a>
       <div class="clear pT20"></div>
     </footer>
   <?php } ?>

@@ -15,5 +15,7 @@
     include 'view/parts/ld_add.php';
     ?>
   </div>
+  <br>
+  <a href="/">Удалить все записи</a>
 </div>
 <div class="clear"></div>
