@@ -16,6 +16,6 @@
     ?>
   </div>
   <br>
-  <a href="/">Удалить все записи</a>
+  <a href="/?page=ld_delete">Удалить все записи</a>
 </div>
 <div class="clear"></div>
