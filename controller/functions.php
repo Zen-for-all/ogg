@@ -161,3 +161,22 @@ function getLongestLd($ldArrayObjects) {
 
   return round($maxDuration);
 }
+
+// get excerpt from text
+function excerpt($text, $length) {
+  // Check if the text length is less than or equal to the desired length
+  if (strlen($text) <= $length) {
+    return $text;
+  }
+
+  // Find the last space within the desired length
+  $lastSpace = strrpos(substr($text, 0, $length), ' ');
+
+  // If no space found, truncate to the exact length
+  if ($lastSpace === false) {
+    return substr($text, 0, $length) . '...';
+  }
+
+  // Truncate to the last space and add ellipsis
+  return substr($text, 0, $lastSpace) . '...';
+}

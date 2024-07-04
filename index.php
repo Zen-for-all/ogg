@@ -30,6 +30,10 @@ if (isset($_SESSION['userid'])) {
     // delete user page
     $title = 'Удаление аккаунта';
     require 'view/pages/delete_user_page.php';
+  } elseif (isset($_GET['page']) && $_GET['page'] === 'ld') {
+    // Ld page
+    $title = 'ОС';
+    require 'view/pages/ld_page.php';
   } else {
     // main page
     $title = 'Главная';

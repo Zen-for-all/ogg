@@ -90,17 +90,19 @@
 
       <div class="block_all ld_item">
         <div class="block_all ld_info show">
+          <a href="/?page=ld&id=<?=$ld->id?>">
+            <?php
+            // print info about ld
+            echo $ldDate;
+
+            if ($ldTime != false) {
+              echo ' (' . $ldTime . ')';
+            }
+            ?>
+          </a>
+          <br>
 
           <?php
-          // print info about ld
-          echo 'Дата: ' . $ldDate;
-          echo '<br>';
-
-          if ($ldTime != false) {
-            echo 'Время: ' . $ldTime;
-            echo '<br>';
-          }
-
           if ($ldDuration != false) {
             echo 'Длительность: ' . $ldDuration;
             echo '<br>';
@@ -128,13 +130,15 @@
 
           if ($ldText != false) {
             echo '<br>';
-            echo 'Описание:<br>' . $ldText;
+            echo 'Описание:<br>';
+            echo excerpt($ldText, 300);
             echo '<br>';
           }
 
           if ($ldNotice != false) {
             echo '<br>';
-            echo 'Заметки:<br>' . $ldNotice;
+            echo 'Заметки:<br>';
+            echo excerpt($ldNotice, 200);
             echo '<br>';
           }
           ?>
