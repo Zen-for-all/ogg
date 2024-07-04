@@ -15,5 +15,7 @@
     include 'view/parts/location_add.php';
     ?>
   </div>
+  <br>
+  <a href="/?page=location_delete">Удалить все локации</a>
 </div>
 <div class="clear"></div>

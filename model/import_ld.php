@@ -76,5 +76,5 @@ foreach ($array_ld as $ld) {
   $setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `ldlist` = '$ldnew' WHERE `id` = '$user'");
 }
 
-header("location:/?page=journal");
+header("location:/");
 ?>

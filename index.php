@@ -34,6 +34,10 @@ if (isset($_SESSION['userid'])) {
     // delete ld page
     $title = 'Удаление записей';
     require 'view/pages/delete_ld_page.php';
+  } elseif (isset($_GET['page']) && $_GET['page'] === 'location_delete') {
+    // delete locations page
+    $title = 'Удаление локаций';
+    require 'view/pages/delete_location_page.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'ld') {
     // Ld page
     $title = 'ОС';
