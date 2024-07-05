@@ -14,6 +14,37 @@
     // get ld id's array
     $ldArray = explode(" ", trim($user->ldlist));
 
+    // Get all the information for the provided IDs
+    $allInfoArray = getAllInfo($ldArray);
+
+    // Initialize an array to hold Ld objects
+    $ldObjects = [];
+    // Create Ld objects and fill them with the fetched information
+    foreach ($ldArray as $id) {
+      $ld = new Ld($id);
+      // Fill the Ld object with the corresponding data
+      $ld->getInfo($allInfoArray[$id]);
+      // Add the Ld object to the array
+      $ldObjects[] = $ld;
+    }
+
+    // Sort the array of Ld objects by the 'date' attribute
+    sortLdObjects($ldObjects, 'date');
+    //sortLdObjects($ldObjects, 'time');
+    //sortLdObjects($ldObjects, 'duration');
+    //sortLdObjects($ldObjects, 'location');
+    //sortLdObjects($ldObjects, 'quality');
+    //sortLdObjects($ldObjects, 'interest');
+    //sortLdObjects($ldObjects, 'method');
+
+    // Map the sorted array of Ld objects to an array of their IDs
+    $ldArray = array_map(function($ld) {
+      return $ld->id;
+    }, $ldObjects);
+
+    // sort reverse
+    $ldArray = array_reverse($ldArray);
+
     // get current ld list
     $pages = ceil(count($ldArray) / $ld_on_page);
     if (isset($_GET['p'])) {

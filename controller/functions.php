@@ -189,3 +189,42 @@ function excerpt($text, $length) {
   // Truncate to the last space and add ellipsis
   return substr($text, 0, $lastSpace) . '...';
 }
+
+// sort by parameters
+function sortLdObjects(&$ldObjects, $parameter){
+  usort($ldObjects, function($a, $b) use ($parameter) {
+    if ($parameter === 'date') {
+      // Convert the date to UNIX timestamp
+      $dateA = DateTime::createFromFormat('d.m.y', $a->date)->getTimestamp();
+      $dateB = DateTime::createFromFormat('d.m.y', $b->date)->getTimestamp();
+      if ($dateA === $dateB) {
+        // If the dates are equal, compare the times
+        $timeA = DateTime::createFromFormat('H:i', $a->time)->getTimestamp();
+        $timeB = DateTime::createFromFormat('H:i', $b->time)->getTimestamp();
+        return $timeA - $timeB;
+      }
+      return $dateA - $dateB;
+    }
+    // Compare other parameters as numbers
+    return (int)$a->$parameter - (int)$b->$parameter;
+  });
+}
+
+// get all the information on the array of IDs
+function getAllInfo($ldArray) {
+  global $connect;
+  // Convert array of IDs into a comma-separated string
+  $ids = implode(",", $ldArray);
+  // SQL query to get all records with IDs in the provided list
+  $query = "SELECT * FROM `ld` WHERE `id` IN ($ids)";
+  // Execute the query
+  $result = mysqli_query($connect, $query);
+  // Initialize an array to hold all the information
+  $allInfoArray = [];
+  // Fetch each row and store it in the array with the ID as the key
+  while ($row = mysqli_fetch_assoc($result)) {
+    $allInfoArray[$row['id']] = $row;
+  }
+  // Return the array with all the information
+  return $allInfoArray;
+}
