@@ -19,23 +19,25 @@ if (isset($urlComponents['query'])) {
 ?>
 
 <?php if (isset($pages) && $pages > 1) { ?>
-  <ul class="pagination">
-    <?php if ($current_page != 1) { ?>
-      <li class="arrow"><a href="<?php echo $updatedURL ?>&p=<?php echo $current_page - 1 ?>"><</a></li>
-    <?php } ?>
+  <nav>
+    <ul class="pagination">
+      <?php if ($current_page != 1) { ?>
+        <li class="page-item"><a class="page-link" href="<?php echo $updatedURL ?>&p=<?php echo $current_page - 1 ?>"><</a></li>
+      <?php } ?>
 
-    <?php for ($i = 1; $i <= $pages; $i++) { ?>
-      <?php if ($i == $current_page || $i == 1 || $i == $pages || $i == ($current_page - 1) || $i == ($current_page + 1)) { ?>
-        <?php if ($i == $current_page) { ?>
-          <li><span><?php echo $i ?></span></li>
-        <?php } else { ?>
-          <li><a href="<?php echo $updatedURL ?>&p=<?php echo $i ?>"><?php echo $i ?></a></li>
+      <?php for ($i = 1; $i <= $pages; $i++) { ?>
+        <?php if ($i == $current_page || $i == 1 || $i == $pages || $i == ($current_page - 1) || $i == ($current_page + 1)) { ?>
+          <?php if ($i == $current_page) { ?>
+            <li class="page-item disabled"><a class="page-link" href="<?php echo $updatedURL ?>&p=<?php echo $i ?>"><?php echo $i ?></a></li>
+          <?php } else { ?>
+            <li class="page-item"><a class="page-link" href="<?php echo $updatedURL ?>&p=<?php echo $i ?>"><?php echo $i ?></a></li>
+          <?php } ?>
         <?php } ?>
       <?php } ?>
-    <?php } ?>
 
-    <?php if ($current_page != $pages) { ?>
-      <li class="arrow"><a href="<?php echo $updatedURL ?>&p=<?php echo $current_page + 1 ?>">></a></li>
-    <?php } ?>
-  </ul>
+      <?php if ($current_page != $pages) { ?>
+        <li class="page-item"><a class="page-link" href="<?php echo $updatedURL ?>&p=<?php echo $current_page + 1 ?>">></a></li>
+      <?php } ?>
+    </ul>
+  </nav>
 <?php } ?>

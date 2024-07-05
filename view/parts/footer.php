@@ -1,12 +1,15 @@
   <?php if (isset($_SESSION['userid'])) { // user exist ?>
-    <footer class="container">
-      <div class="clear pT20"></div>
-      <hr>
-      <div class="clear pT20"></div>
-      <a href='controller/logout.php'>Выйти</a>
-      <br>
-      <a href='/?page=user_delete'>Удалить акаунт</a>
-      <div class="clear pT20"></div>
+    <footer class="container-fluid bg-body-tertiary mt-5">
+      <div class="container py-3">
+        <div class="row">
+          <div class="col">
+            <a class="db" href='controller/logout.php'>Выйти</a>
+          </div>
+          <div class="col">
+            <a class="db" href='/?page=user_delete'>Удалить акаунт</a>
+          </div>
+        </div>
+      </div>
     </footer>
   <?php } ?>
 

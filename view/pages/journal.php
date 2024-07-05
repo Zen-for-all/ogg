@@ -2,7 +2,7 @@
   <?php include 'view/parts/ld_list.php'; ?>
   <?php include 'view/parts/pagination.php'; ?>
 
-  <div class="btn btn_show">+ Добавить запись</div>
+  <div class="btn btn-light btn_show">+ Добавить запись</div>
   <div class="clear"></div>
 
   <div class="block_all block_hide hide">

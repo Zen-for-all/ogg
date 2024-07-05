@@ -1,8 +1,10 @@
 /*==================== ZFReset ====================*/
+/*
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, q, small, strong,b, dl, dt, dd, ol, ul, li, form, label, legend, article, aside, canvas, figure, footer, header, hgroup, menu, nav, section, audio, video{margin: 0; padding: 0; font-size: 100%;} article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display: block; position: relative; padding: 0; list-style: none;} audio, canvas, iframe, img, svg, video{vertical-align: middle;} textarea{resize: vertical;} *{outline: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;} a img{border: none;} img{max-width: 100%; height: auto;} strong, b{font-weight: bold;}
+*/
 
 /*==================== ZFHelp ====================*/
-.tar{text-align: right;}
+/*.tar{text-align: right;}
 .tal{text-align: left;}
 .tac{text-align: center;}
 .rl{
@@ -31,13 +33,13 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-input, textarea{
+}*/
+/*input, textarea{
     font-family: inherit;
-}
+}*/
 
 /*=================== ZFDoom ===================*/
-.block_100, .block_75, .block_66, .block_50, .block_33, .block_25{
+/*.block_100, .block_75, .block_66, .block_50, .block_33, .block_25{
     width: 100%;
     position: relative;
     float: left;
@@ -57,8 +59,9 @@ input, textarea{
 .block_66{max-width: 66.66%;}
 .block_50{max-width: 50%;}
 .block_33{max-width: 33.33%;}
-.block_25{max-width: 25%;}
+.block_25{max-width: 25%;}*/
 .dn, .db_tab, .db_mob, .db_mini{display: none;}
+.db {display: block;}
 .clear{clear: both;}
 .pT5{padding-top: 5px;}
 .pT10{padding-top: 10px;}
@@ -72,7 +75,7 @@ input, textarea{
 .pT80{padding-top: 80px;}
 .pT90{padding-top: 90px;}
 .pT100{padding-top: 100px;}
-.btn{
+/*.btn{
     display: block;
     position: relative;
     float: left;
@@ -85,14 +88,14 @@ input, textarea{
 .btn:hover{
     color: #fff;
     background: #999;
-}
+}*/
 a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay-close, .header, button:before, .slick-arrow{
     transition: all 0.4s;
 }
 
-body {
+/*body {
     font-family: Georgia, serif;
-}
+}*/
 
 .hide {
     display: none;
@@ -102,6 +105,7 @@ body {
     display: block;
 }
 
+/*
 .pagination {
     display: table;
     margin: 20px auto;
@@ -127,6 +131,4 @@ body {
     float: left;
     padding: 5px;
     text-decoration: none;
-}
-
-.pagination li.arrow a {}
+}*/

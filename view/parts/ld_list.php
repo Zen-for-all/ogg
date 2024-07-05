@@ -213,10 +213,8 @@
 
         </div>
 
-        <div class="clear pT20"></div>
-
         <!-- button for edit ld -->
-        <div class="btn edit_ld_btn show">
+        <div class="edit_ld_btn show btn me-3">
           <span class="show">Редактировать</span>
           <span class="hide">Отменить</span>
         </div>
@@ -225,7 +223,7 @@
         <div class="delete_ld show">
           <form action="../../model/delete_ld.php" method="post">
             <input type="hidden" name="delete" value="<?=$ldValue?>">
-            <input type="submit" value="Удалить" class="btn">
+            <input type="submit" value="Удалить" class="btn btn-danger">
           </form>
         </div>
         <div class="clear"></div>
