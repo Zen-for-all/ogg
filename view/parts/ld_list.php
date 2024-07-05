@@ -8,6 +8,24 @@
 <br>
 
 <div class="block_all">
+  <h3>Сортировка:</h3>
+  <a href="/?page=journal&sort=date">Дата +-</a><br>
+  <a href="/?page=journal&sort=date&reverse=1">Дата -+</a><br>
+  <a href="/?page=journal&sort=time">Время +-</a><br>
+  <a href="/?page=journal&sort=time&reverse=1">Время -+</a><br>
+  <a href="/?page=journal&sort=duration">Длительность +-</a><br>
+  <a href="/?page=journal&sort=duration&reverse=1">Длительность -+</a><br>
+  <a href="/?page=journal&sort=location">Локации +-</a><br>
+  <a href="/?page=journal&sort=location&reverse=1">Локации -+</a><br>
+  <a href="/?page=journal&sort=quality">Качество +-</a><br>
+  <a href="/?page=journal&sort=quality&reverse=1">Качество -+</a><br>
+  <a href="/?page=journal&sort=interest">Интересность +-</a><br>
+  <a href="/?page=journal&sort=interest&reverse=1">Интересность -+</a><br>
+  <a href="/?page=journal&sort=method">Метод входа +-</a><br>
+  <a href="/?page=journal&sort=method&reverse=1">Метод входа -+</a><br>
+  <br>
+  <hr>
+  <br>
 
   <?php
   if ($user->ldlist != null) {
@@ -28,22 +46,34 @@
       $ldObjects[] = $ld;
     }
 
-    // Sort the array of Ld objects by the 'date' attribute
-    sortLdObjects($ldObjects, 'date');
-    //sortLdObjects($ldObjects, 'time');
-    //sortLdObjects($ldObjects, 'duration');
-    //sortLdObjects($ldObjects, 'location');
-    //sortLdObjects($ldObjects, 'quality');
-    //sortLdObjects($ldObjects, 'interest');
-    //sortLdObjects($ldObjects, 'method');
+    // Sort the array of Ld objects by attribute
+    if (isset($_GET['sort']) && $_GET['sort'] === 'time') {
+      sortLdObjects($ldObjects, 'time');
+    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'duration') {
+      sortLdObjects($ldObjects, 'duration');
+    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'location') {
+      sortLdObjects($ldObjects, 'location');
+    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'quality') {
+      sortLdObjects($ldObjects, 'quality');
+    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'interest') {
+      sortLdObjects($ldObjects, 'interest');
+    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'method') {
+      sortLdObjects($ldObjects, 'method');
+    } else {
+      sortLdObjects($ldObjects, 'date');
+    }
 
     // Map the sorted array of Ld objects to an array of their IDs
     $ldArray = array_map(function($ld) {
       return $ld->id;
     }, $ldObjects);
 
-    // sort reverse
     $ldArray = array_reverse($ldArray);
+
+    // sort reverse
+    if (isset($_GET['reverse']) && $_GET['reverse'] === '1') {
+      $ldArray = array_reverse($ldArray);
+    }
 
     // get current ld list
     $pages = ceil(count($ldArray) / $ld_on_page);
