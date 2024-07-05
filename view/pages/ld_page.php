@@ -1,4 +1,4 @@
-<div class="block">
+<div class="container">
   <?php
   $idLd = $_GET['id'];
 

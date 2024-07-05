@@ -1,9 +1,6 @@
-<section class="block">
+<section class="container">
   <?php include 'view/parts/location_list.php'; ?>
-</section>
-<div class="clear"></div>
 
-<div class="block">
   <div class="btn btn_show">+ Добавить локацию</div>
   <div class="clear"></div>
 
@@ -17,5 +14,4 @@
   </div>
   <br>
   <a href="/?page=location_delete">Удалить все локации</a>
-</div>
-<div class="clear"></div>
+</section>

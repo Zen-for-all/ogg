@@ -1,10 +1,7 @@
-<section class="block">
+<section class="container">
   <?php include 'view/parts/ld_list.php'; ?>
   <?php include 'view/parts/pagination.php'; ?>
-</section>
-<div class="clear"></div>
 
-<div class="block">
   <div class="btn btn_show">+ Добавить запись</div>
   <div class="clear"></div>
 
@@ -17,5 +14,4 @@
   </div>
   <br>
   <a href="/?page=ld_delete">Удалить все записи</a>
-</div>
-<div class="clear"></div>
+</section>

@@ -36,7 +36,7 @@ if ($ldArrayObjectsGlobal != false) {
 }
 ?>
 
-<section class="block">
+<section class="container">
   <?php if ($user->ldlist != false && $quantityLd > 0) { ?>
     <h3>Личная статистика <b></b><?=$user->login?>:</h3>
     <p>Всего ОСов: <?=$quantityLd?></p>

@@ -1,4 +1,4 @@
-<header class="block">
+<header class="container">
   <div class="clear pT20"></div>
   <?php include 'menu.php'; ?>
 

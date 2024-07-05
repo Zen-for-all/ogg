@@ -1,4 +1,4 @@
-<section class="block">
+<section class="container">
   <h1><?php echo $title; ?></h1>
   <div class="clear pT20"></div>
 
