@@ -13,7 +13,7 @@ if ($ldValue == false) {
       $timestamp = strtotime($ldDate);
       $formattedDate = date("Y-m-d", $timestamp);
       ?>
-      <input type="date" class="form-control" name="date" value="<?php if ($timestamp != false) { echo $formattedDate; } else { echo date("Y-m-d"); } ?>">
+      <input type="date" class="form-control" name="date" value="<?php if ($ldDate != false) { echo $formattedDate; } else { echo date("Y-m-d"); } ?>">
     </div>
 
     <div class="col-6 col-md-4 mb-4">

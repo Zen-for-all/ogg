@@ -191,19 +191,34 @@ function excerpt($text, $length) {
 }
 
 // sort by parameters
-function sortLdObjects(&$ldObjects, $parameter){
+function sortLdObjects(&$ldObjects, $parameter) {
   usort($ldObjects, function($a, $b) use ($parameter) {
     if ($parameter === 'date') {
       // Convert the date to UNIX timestamp
-      $dateA = DateTime::createFromFormat('d.m.y', $a->date)->getTimestamp();
-      $dateB = DateTime::createFromFormat('d.m.y', $b->date)->getTimestamp();
-      if ($dateA === $dateB) {
-        // If the dates are equal, compare the times
-        $timeA = DateTime::createFromFormat('H:i', $a->time)->getTimestamp();
-        $timeB = DateTime::createFromFormat('H:i', $b->time)->getTimestamp();
-        return $timeA - $timeB;
+      $dateA = DateTime::createFromFormat('d.m.y', $a->date);
+      $dateB = DateTime::createFromFormat('d.m.y', $b->date);
+
+      if ($dateA && $dateB) {
+        $timestampA = $dateA->getTimestamp();
+        $timestampB = $dateB->getTimestamp();
+
+        if ($timestampA === $timestampB) {
+          // If the dates are equal, compare the times
+          $timeA = DateTime::createFromFormat('H:i', $a->time);
+          $timeB = DateTime::createFromFormat('H:i', $b->time);
+
+          if ($timeA && $timeB) {
+            return $timeA->getTimestamp() - $timeB->getTimestamp();
+          } else {
+            // Handle error if time format is incorrect
+            return 0;
+          }
+        }
+        return $timestampA - $timestampB;
+      } else {
+        // Handle error if date format is incorrect
+        return 0;
       }
-      return $dateA - $dateB;
     }
     // Compare other parameters as numbers
     return (int)$a->$parameter - (int)$b->$parameter;
