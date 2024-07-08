@@ -6,7 +6,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 /*==================== ZFHelp ====================*/
 /*.tar{text-align: right;}
 .tal{text-align: left;}
-.tac{text-align: center;}
+.tac{text-align: center;}*/
 .rl{
     position: relative;
     float: left;
@@ -15,51 +15,7 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
     position: relative;
     float: right;
 }
-.flex{
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-}
-.flex_vertical{
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}*/
-/*input, textarea{
-    font-family: inherit;
-}*/
-
 /*=================== ZFDoom ===================*/
-/*.block_100, .block_75, .block_66, .block_50, .block_33, .block_25{
-    width: 100%;
-    position: relative;
-    float: left;
-}
-.block{
-    width: 100%;
-    max-width: 1140px;
-    position: relative;
-    margin: 0 auto;
-}
-.p_x>div{
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.block.p_xx{max-width: 1170px;}
-.block_75{max-width: 75%;}
-.block_66{max-width: 66.66%;}
-.block_50{max-width: 50%;}
-.block_33{max-width: 33.33%;}
-.block_25{max-width: 25%;}*/
 .dn, .db_tab, .db_mob, .db_mini{display: none;}
 .db {display: block;}
 .clear{clear: both;}
@@ -75,27 +31,9 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 .pT80{padding-top: 80px;}
 .pT90{padding-top: 90px;}
 .pT100{padding-top: 100px;}
-/*.btn{
-    display: block;
-    position: relative;
-    float: left;
-    padding: 10px;
-    margin: 10px 0;
-    line-height: 1;
-    border: 1px solid #999;
-    cursor: pointer;
-}
-.btn:hover{
-    color: #fff;
-    background: #999;
-}*/
 a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay-close, .header, button:before, .slick-arrow{
     transition: all 0.4s;
 }
-
-/*body {
-    font-family: Georgia, serif;
-}*/
 
 .hide {
     display: none;
@@ -105,30 +43,8 @@ a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay
     display: block;
 }
 
-/*
-.pagination {
-    display: table;
-    margin: 20px auto;
-}
-
-.pagination li {
-    display: block;
-    position: relative;
-    float: left;
-    list-style: none;
-}
-
-.pagination li:first-child,
-.pagination li:last-child,
-.pagination li:nth-child(2),
-.pagination li:nth-last-child(2) {
-    margin: 0 10px;
-}
-
-.pagination li a, .pagination li span {
-    display: block;
-    position: relative;
-    float: left;
-    padding: 5px;
+.filters a {
     text-decoration: none;
-}*/
+    padding: 5px;
+    line-height: 1;
+}

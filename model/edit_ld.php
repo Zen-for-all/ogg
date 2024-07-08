@@ -33,4 +33,4 @@ if (mysqli_num_rows($checkExistingRecord) > 0) {
         WHERE `id` = '$id'");
 }
 
-header("location:/?page=journal");
+header("location:/?page=ld&id=" . $id);

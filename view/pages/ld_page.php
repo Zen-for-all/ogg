@@ -1,9 +1,9 @@
 <div class="container">
   <?php
-  $idLd = $_GET['id'];
+  $ldValue = $_GET['id'];
 
   // get all info about ld
-  $ld = new Ld($idLd);
+  $ld = new Ld($ldValue);
 
   // get all info about location
   if ($ld->location != false) {
@@ -108,6 +108,24 @@
   }
   ?>
 
-  <br>
-  <a href="javascript:history.back()"><- Назад</a>
+  <div class="block_all edit_ld_form hide mt-5">
+    <h2>Редактировать запись:</h2>
+
+    <?php include 'view/parts/ld_add.php'; ?>
+
+  </div>
+
+  <!-- button for edit ld -->
+  <div class="edit_ld_btn show btn mt-5 mb-3">
+    <span class="show">Редактировать</span>
+    <span class="hide">Отменить</span>
+  </div>
+
+  <!-- button for delete ld -->
+  <div class="delete_ld show mb-5">
+    <form action="../../model/delete_ld.php" method="post">
+      <input type="hidden" name="delete" value="<?=$ldValue?>">
+      <input type="submit" value="Удалить" class="btn btn-danger">
+    </form>
+  </div>
 </div>

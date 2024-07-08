@@ -9,11 +9,18 @@ if ($ldValue == false) {
   <div class="row">
     <div class="col-6 col-md-4 mb-4">
       <p>Дата</p>
+
       <?php
-      $timestamp = strtotime($ldDate);
-      $formattedDate = date("Y-m-d", $timestamp);
+      if ($ldDate != false) {
+        $dateTime = DateTime::createFromFormat('d.m.y', $ldDate);
+        $timestamp = $dateTime->getTimestamp();date("Y-m-d", $timestamp);
+        $datePublic =  date("Y-m-d", $timestamp);
+      } else {
+        $datePublic = date("Y-m-d");
+      }
       ?>
-      <input type="date" class="form-control" name="date" value="<?php if ($ldDate != false) { echo $formattedDate; } else { echo date("Y-m-d"); } ?>">
+
+      <input type="date" class="form-control" name="date" value="<?=$datePublic?>">
     </div>
 
     <div class="col-6 col-md-4 mb-4">

@@ -7,25 +7,52 @@
 <h2>ОСы</h2>
 <br>
 
-<div class="block_all">
-  <h3>Сортировка:</h3>
-  <a href="/?page=journal&sort=date">Дата +-</a><br>
-  <a href="/?page=journal&sort=date&reverse=1">Дата -+</a><br>
-  <a href="/?page=journal&sort=time">Время +-</a><br>
-  <a href="/?page=journal&sort=time&reverse=1">Время -+</a><br>
-  <a href="/?page=journal&sort=duration">Длительность +-</a><br>
-  <a href="/?page=journal&sort=duration&reverse=1">Длительность -+</a><br>
-  <a href="/?page=journal&sort=location">Локации +-</a><br>
-  <a href="/?page=journal&sort=location&reverse=1">Локации -+</a><br>
-  <a href="/?page=journal&sort=quality">Качество +-</a><br>
-  <a href="/?page=journal&sort=quality&reverse=1">Качество -+</a><br>
-  <a href="/?page=journal&sort=interest">Интересность +-</a><br>
-  <a href="/?page=journal&sort=interest&reverse=1">Интересность -+</a><br>
-  <a href="/?page=journal&sort=method">Метод входа +-</a><br>
-  <a href="/?page=journal&sort=method&reverse=1">Метод входа -+</a><br>
-  <br>
-  <hr>
-  <br>
+<div class="container-fluid gx-0">
+  <h3 class="mb-2">Сортировка:</h3>
+
+  <div class="filters row mb-5">
+    <div class="col-auto">
+      <div class="rl">По дате:</div>
+      <a class="db rl" href="/?page=journal&sort=date">+</a>
+      <a class="db rl" href="/?page=journal&sort=date&reverse=1">-</a>
+    </div>
+
+    <div class="col-auto">
+      <div class="rl">По времени:</div>
+      <a class="db rl" href="/?page=journal&sort=time">+</a>
+      <a class="db rl" href="/?page=journal&sort=time&reverse=1">-</a>
+    </div>
+
+    <div class="col-auto">
+      <div class="rl">По длительности:</div>
+      <a class="db rl" href="/?page=journal&sort=duration">+</a>
+      <a class="db rl" href="/?page=journal&sort=duration&reverse=1">-</a>
+    </div>
+
+    <div class="col-auto">
+      <div class="rl">По качеству:</div>
+      <a class="db rl" href="/?page=journal&sort=quality">+</a>
+      <a class="db rl" href="/?page=journal&sort=quality&reverse=1">-</a>
+    </div>
+
+    <div class="col-auto">
+      <div class="rl">По интересности:</div>
+      <a class="db rl" href="/?page=journal&sort=interest">+</a>
+      <a class="db rl" href="/?page=journal&sort=interest&reverse=1">-</a>
+    </div>
+
+    <div class="col-auto">
+      <div class="rl">По локации:</div>
+      <a class="db rl" href="/?page=journal&sort=location">+</a>
+      <a class="db rl" href="/?page=journal&sort=location&reverse=1">-</a>
+    </div>
+
+    <div class="col-auto">
+      <div class="rl">По входу:</div>
+      <a class="db rl" href="/?page=journal&sort=method">+</a>
+      <a class="db rl" href="/?page=journal&sort=method&reverse=1">-</a>
+    </div>
+  </div>
 
   <?php
   if ($user->ldlist != null) {
@@ -205,28 +232,6 @@
           ?>
 
         </div>
-
-        <div class="block_all edit_ld_form hide">
-          <h2>Редактировать запись:</h2>
-
-          <?php include 'ld_add.php'; ?>
-
-        </div>
-
-        <!-- button for edit ld -->
-        <div class="edit_ld_btn show btn me-3">
-          <span class="show">Редактировать</span>
-          <span class="hide">Отменить</span>
-        </div>
-
-        <!-- button for delete ld -->
-        <div class="delete_ld show">
-          <form action="../../model/delete_ld.php" method="post">
-            <input type="hidden" name="delete" value="<?=$ldValue?>">
-            <input type="submit" value="Удалить" class="btn btn-danger">
-          </form>
-        </div>
-        <div class="clear"></div>
       </div>
       <div class="pT20"></div>
 
