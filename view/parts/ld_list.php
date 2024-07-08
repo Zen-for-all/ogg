@@ -54,192 +54,195 @@
     </div>
   </div>
 
-  <?php
-  if ($user->ldlist != null) {
-    // get ld id's array
-    $ldArray = explode(" ", trim($user->ldlist));
+  <div class="row">
 
-    // Get all the information for the provided IDs
-    $allInfoArray = getAllInfo($ldArray);
+    <?php
+    if ($user->ldlist != null) {
+      // get ld id's array
+      $ldArray = explode(" ", trim($user->ldlist));
 
-    // Initialize an array to hold Ld objects
-    $ldObjects = [];
-    // Create Ld objects and fill them with the fetched information
-    foreach ($ldArray as $id) {
-      $ld = new Ld($id);
-      // Fill the Ld object with the corresponding data
-      $ld->getInfo($allInfoArray[$id]);
-      // Add the Ld object to the array
-      $ldObjects[] = $ld;
-    }
+      // Get all the information for the provided IDs
+      $allInfoArray = getAllInfo($ldArray);
 
-    // Sort the array of Ld objects by attribute
-    if (isset($_GET['sort']) && $_GET['sort'] === 'time') {
-      sortLdObjects($ldObjects, 'time');
-    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'duration') {
-      sortLdObjects($ldObjects, 'duration');
-    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'location') {
-      sortLdObjects($ldObjects, 'location');
-    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'quality') {
-      sortLdObjects($ldObjects, 'quality');
-    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'interest') {
-      sortLdObjects($ldObjects, 'interest');
-    } elseif (isset($_GET['sort']) && $_GET['sort'] === 'method') {
-      sortLdObjects($ldObjects, 'method');
-    } else {
-      sortLdObjects($ldObjects, 'date');
-    }
+      // Initialize an array to hold Ld objects
+      $ldObjects = [];
+      // Create Ld objects and fill them with the fetched information
+      foreach ($ldArray as $id) {
+        $ld = new Ld($id);
+        // Fill the Ld object with the corresponding data
+        $ld->getInfo($allInfoArray[$id]);
+        // Add the Ld object to the array
+        $ldObjects[] = $ld;
+      }
 
-    // Map the sorted array of Ld objects to an array of their IDs
-    $ldArray = array_map(function($ld) {
-      return $ld->id;
-    }, $ldObjects);
+      // Sort the array of Ld objects by attribute
+      if (isset($_GET['sort']) && $_GET['sort'] === 'time') {
+        sortLdObjects($ldObjects, 'time');
+      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'duration') {
+        sortLdObjects($ldObjects, 'duration');
+      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'location') {
+        sortLdObjects($ldObjects, 'location');
+      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'quality') {
+        sortLdObjects($ldObjects, 'quality');
+      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'interest') {
+        sortLdObjects($ldObjects, 'interest');
+      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'method') {
+        sortLdObjects($ldObjects, 'method');
+      } else {
+        sortLdObjects($ldObjects, 'date');
+      }
 
-    $ldArray = array_reverse($ldArray);
+      // Map the sorted array of Ld objects to an array of their IDs
+      $ldArray = array_map(function($ld) {
+        return $ld->id;
+      }, $ldObjects);
 
-    // sort reverse
-    if (isset($_GET['reverse']) && $_GET['reverse'] === '1') {
       $ldArray = array_reverse($ldArray);
-    }
 
-    // get current ld list
-    $pages = ceil(count($ldArray) / $ld_on_page);
-    if (isset($_GET['p'])) {
-      $current_page = $_GET['p'];
-    } else {
-      $current_page = 1;
-    }
-
-    if (!isset($_GET['p']) || $_GET['p'] === 1) {
-      $ldArray = array_slice($ldArray, 0, $ld_on_page);
-    } else {
-      $start_ld = $current_page * $ld_on_page - $ld_on_page;
-      $ldArray = array_slice($ldArray, $start_ld, $ld_on_page);
-    }
-
-    // print current ld list
-    foreach ($ldArray as $ldValue) {
-      // get all info about ld
-      $ld = new Ld($ldValue);
-
-      // get all info about location
-      if ($ld->location != false) {
-        $location = new Location($ld->location);
-        $locationId = $location->id;
-        $locationTitle = $location->title;
-      } else {
-        $locationTitle = false;
+      // sort reverse
+      if (isset($_GET['reverse']) && $_GET['reverse'] === '1') {
+        $ldArray = array_reverse($ldArray);
       }
 
-      $ldDate = $ld->date;
-
-      if ($ld->time != 0) {
-        $ldTime = $ld->time;
+      // get current ld list
+      $pages = ceil(count($ldArray) / $ld_on_page);
+      if (isset($_GET['p'])) {
+        $current_page = $_GET['p'];
       } else {
-        $ldTime = false;
+        $current_page = 1;
       }
 
-      if ($ld->duration != 0) {
-        $ldDuration = $ld->duration;
+      if (!isset($_GET['p']) || $_GET['p'] === 1) {
+        $ldArray = array_slice($ldArray, 0, $ld_on_page);
       } else {
-        $ldDuration = false;
+        $start_ld = $current_page * $ld_on_page - $ld_on_page;
+        $ldArray = array_slice($ldArray, $start_ld, $ld_on_page);
       }
 
-      if ($ld->quality != 0) {
-        $ldQuality = $ld->quality;
-      } else {
-        $ldQuality = false;
-      }
+      // print current ld list
+      foreach ($ldArray as $ldValue) {
+        // get all info about ld
+        $ld = new Ld($ldValue);
 
-      if ($ld->interest != 0) {
-        $ldInterest = $ld->interest;
-      } else {
-        $ldInterest = false;
-      }
+        // get all info about location
+        if ($ld->location != false) {
+          $location = new Location($ld->location);
+          $locationId = $location->id;
+          $locationTitle = $location->title;
+        } else {
+          $locationTitle = false;
+        }
 
-      if ($ld->method != 0) {
-        $ldMethod = $enterMethod[$ld->method];
-      } else {
-        $ldMethod = false;
-      }
+        $ldDate = $ld->date;
 
-      if ($ld->text != 0) {
-        $ldText = $ld->text;
-      } else {
-        $ldText = false;
-      }
+        if ($ld->time != 0) {
+          $ldTime = $ld->time;
+        } else {
+          $ldTime = false;
+        }
 
-      if ($ld->notice != 0) {
-        $ldNotice = $ld->notice;
-      } else {
-        $ldNotice = false;
-      }
-      ?>
+        if ($ld->duration != 0) {
+          $ldDuration = $ld->duration;
+        } else {
+          $ldDuration = false;
+        }
 
-      <div class="block_all ld_item">
-        <div class="block_all ld_info show">
-          <a href="/?page=ld&id=<?=$ld->id?>">
+        if ($ld->quality != 0) {
+          $ldQuality = $ld->quality;
+        } else {
+          $ldQuality = false;
+        }
+
+        if ($ld->interest != 0) {
+          $ldInterest = $ld->interest;
+        } else {
+          $ldInterest = false;
+        }
+
+        if ($ld->method != 0) {
+          $ldMethod = $enterMethod[$ld->method];
+        } else {
+          $ldMethod = false;
+        }
+
+        if ($ld->text != 0) {
+          $ldText = $ld->text;
+        } else {
+          $ldText = false;
+        }
+
+        if ($ld->notice != 0) {
+          $ldNotice = $ld->notice;
+        } else {
+          $ldNotice = false;
+        }
+        ?>
+
+        <div class="col-xl-4 col-md-6 mb-5">
+          <div class="card px-3 py-3 h100">
+            <a href="/?page=ld&id=<?=$ld->id?>">
+              <?php
+              // print info about ld
+              echo $ldDate;
+
+              if ($ldTime != false) {
+                echo ' (' . $ldTime . ')';
+              }
+              ?>
+            </a>
+            <br>
+
             <?php
-            // print info about ld
-            echo $ldDate;
+            if ($ldDuration != false) {
+              echo 'Длительность: ' . $ldDuration;
+              echo '<br>';
+            }
 
-            if ($ldTime != false) {
-              echo ' (' . $ldTime . ')';
+            if ($locationTitle != false) {
+              echo 'Локация: ' . $locationTitle;
+              echo '<br>';
+            }
+
+            if ($ldQuality != false) {
+              echo 'Качество: ' . $ldQuality;
+              echo '<br>';
+            }
+
+            if ($ldInterest != false) {
+              echo 'Интерес: ' . $ldInterest;
+              echo '<br>';
+            }
+
+            if ($ldMethod != false) {
+              echo 'Метод входа: ' . $ldMethod;
+              echo '<br>';
+            }
+
+            if ($ldText != false) {
+              echo '<br>';
+              echo 'Описание:<br>';
+              echo excerpt($ldText, 300);
+              echo '<br>';
+            }
+
+            if ($ldNotice != false) {
+              echo '<br>';
+              echo 'Заметки:<br>';
+              echo excerpt($ldNotice, 200);
+              echo '<br>';
             }
             ?>
-          </a>
-          <br>
 
-          <?php
-          if ($ldDuration != false) {
-            echo 'Длительность: ' . $ldDuration;
-            echo '<br>';
-          }
-
-          if ($locationTitle != false) {
-            echo 'Локация: ' . $locationTitle;
-            echo '<br>';
-          }
-
-          if ($ldQuality != false) {
-            echo 'Качество: ' . $ldQuality;
-            echo '<br>';
-          }
-
-          if ($ldInterest != false) {
-            echo 'Интерес: ' . $ldInterest;
-            echo '<br>';
-          }
-
-          if ($ldMethod != false) {
-            echo 'Метод входа: ' . $ldMethod;
-            echo '<br>';
-          }
-
-          if ($ldText != false) {
-            echo '<br>';
-            echo 'Описание:<br>';
-            echo excerpt($ldText, 300);
-            echo '<br>';
-          }
-
-          if ($ldNotice != false) {
-            echo '<br>';
-            echo 'Заметки:<br>';
-            echo excerpt($ldNotice, 200);
-            echo '<br>';
-          }
-          ?>
-
+          </div>
         </div>
-      </div>
-      <div class="pT20"></div>
 
-      <?php
+        <?php
+      }
+
+      unset($ldValue);
     }
+    ?>
 
-    unset($ldValue);
-  }
-  ?>
+  </div>
 
 </div>

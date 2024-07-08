@@ -12,4 +12,4 @@ $enterMethod = [
 ];
 
 // post on list page
-$ld_on_page = 10;
+$ld_on_page = 12;
