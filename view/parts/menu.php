@@ -6,7 +6,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="/">Главная</a>
         <a class="nav-link" href="/?page=journal">Дневник</a>
         <a class="nav-link" href="/?page=location">Локации</a>
         <a class="nav-link" href="/?page=settings">Настройки</a>

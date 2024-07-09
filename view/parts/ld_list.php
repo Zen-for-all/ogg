@@ -4,8 +4,7 @@
  */
 ?>
 
-<h2>ОСы</h2>
-<br>
+<h2 class="pb-5"><?=$title?></h2>
 
 <div class="container-fluid gx-0">
   <h3 class="mb-2">Сортировка:</h3>

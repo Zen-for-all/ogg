@@ -1,38 +1,23 @@
-/*==================== ZFReset ====================*/
-/*
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, q, small, strong,b, dl, dt, dd, ol, ul, li, form, label, legend, article, aside, canvas, figure, footer, header, hgroup, menu, nav, section, audio, video{margin: 0; padding: 0; font-size: 100%;} article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display: block; position: relative; padding: 0; list-style: none;} audio, canvas, iframe, img, svg, video{vertical-align: middle;} textarea{resize: vertical;} *{outline: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;} a img{border: none;} img{max-width: 100%; height: auto;} strong, b{font-weight: bold;}
-*/
-
-/*==================== ZFHelp ====================*/
-/*.tar{text-align: right;}
-.tal{text-align: left;}
-.tac{text-align: center;}*/
 .rl{
     position: relative;
     float: left;
 }
+
 .rr{
     position: relative;
     float: right;
 }
-/*=================== ZFDoom ===================*/
-.dn, .db_tab, .db_mob, .db_mini{display: none;}
+
 .db {display: block;}
+
 .clear{clear: both;}
-.pT5{padding-top: 5px;}
-.pT10{padding-top: 10px;}
-.pT15{padding-top: 15px;}
-.pT20{padding-top: 20px;}
-.pT30{padding-top: 30px;}
-.pT40{padding-top: 40px;}
-.pT50{padding-top: 50px;}
-.pT60{padding-top: 60px;}
-.pT70{padding-top: 70px;}
-.pT80{padding-top: 80px;}
-.pT90{padding-top: 90px;}
-.pT100{padding-top: 100px;}
+
 a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay-close, .header, button:before, .slick-arrow{
     transition: all 0.4s;
+}
+
+html {
+    background: #F8F9FA;
 }
 
 .hide {
@@ -51,4 +36,16 @@ a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay
 
 .h100 {
     height: 100% !important;
+}
+
+.edit_location_btn span:nth-child(1),
+.edit_location_btn_active .edit_location_btn span:nth-child(2),
+.edit_location_btn_active .edit_location_form {
+    display: block;
+}
+
+.edit_location_btn span:nth-child(2),
+.edit_location_btn_active .edit_location_btn span:nth-child(1),
+.edit_location_form {
+    display: none;
 }

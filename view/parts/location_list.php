@@ -1,7 +1,6 @@
-<h2>Локации</h2>
-<br>
+<h2 class="pb-5"><?=$title?></h2>
 
-<div class="block_all">
+<div class="row">
 
   <?php
   // get locations id's array
@@ -16,39 +15,37 @@
       ?>
 
       <!--print info about location-->
-      <div class="block_all location_item">
-        <div class="block_all location_info show">
-          <p><?= $locationTitle ?></p>
-          <?php if ($locationText != false) { ?>
-            <br>
-            <p>Описание:</p>
-            <p><?= $locationText ?></p>
-          <?php } ?>
+      <div class="location_item col-xl-6 mb-5">
+        <div class="card px-3 py-3 h100">
+          <div class="location_info show">
+            <h4 class="mb-3"><?= $locationTitle ?></h4>
+            <?php if ($locationText != false) { ?>
+              <span><b>Описание:</b></span>
+              <p><?= $locationText ?></p>
+            <?php } ?>
+          </div>
+
+          <div class="row gx-0">
+            <div class="edit_location_form mt-3">
+              <h4 class="mb-3">Редактировать локацию:</h4>
+              <?php include 'location_add.php'; ?>
+            </div>
+
+            <!-- button for edit ld -->
+            <div class="col-auto edit_location_btn show btn mt-2 mb-3 me-3">
+              <span>Редактировать</span>
+              <span>Отменить</span>
+            </div>
+
+            <!-- button for delete location -->
+            <div class="col-auto delete_location mt-2 show">
+              <form action="../../model/delete_location.php" method="post">
+                <input type="hidden" name="delete" value="<?=$locationValue?>">
+                <input type="submit" value="Удалить" class="btn btn-danger">
+              </form>
+            </div>
+          </div>
         </div>
-
-        <div class="block_all edit_location_form hide">
-          <h2>Редактировать локацию:</h2>
-
-          <?php include 'location_add.php'; ?>
-
-        </div>
-
-        <div class="clear pT20"></div>
-
-        <!-- button for edit ld -->
-        <div class="btn edit_location_btn">
-          <span class="show">Редактировать</span>
-          <span class="hide">Отменить</span>
-        </div>
-
-        <!-- button for delete location -->
-        <div class="delete_location show">
-          <form action="../../model/delete_location.php" method="post">
-            <input type="hidden" name="delete" value="<?=$locationValue?>">
-            <input type="submit" value="Удалить" class="btn">
-          </form>
-        </div>
-        <div class="clear"></div>
       </div>
 
       <?php

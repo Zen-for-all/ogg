@@ -2,8 +2,7 @@
   <?php include 'view/parts/ld_list.php'; ?>
   <?php include 'view/parts/pagination.php'; ?>
 
-  <div class="btn btn-success btn_show mt-4">Добавить запись</div>
-  <div class="clear"></div>
+  <div class="btn btn-outline-success btn_show mt-3 me-3">Добавить запись</div>
 
   <div class="block_all mb-5 block_hide hide">
     <h2 class="mt-5">Добавить запись:</h2>
@@ -17,5 +16,5 @@
     </div>
   </div>
 
-  <a class="btn btn-danger mt-3" href="/?page=ld_delete">Удалить все записи</a>
+  <a class="btn btn-outline-danger mt-3" href="/?page=ld_delete">Удалить все записи</a>
 </section>

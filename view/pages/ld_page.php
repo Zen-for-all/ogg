@@ -108,7 +108,7 @@
   }
   ?>
 
-  <div class="block_all edit_ld_form hide mt-5">
+  <div class="edit_ld_form hide mt-5">
     <h2>Редактировать запись:</h2>
 
     <?php include 'view/parts/ld_add.php'; ?>

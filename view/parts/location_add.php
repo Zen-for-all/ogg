@@ -7,14 +7,12 @@ if ($locationValue == false) {
 }
 ?>
   <p>Заголовок</p>
-  <input type="text" name="title" value="<?php if ($locationTitle != false) { echo $locationTitle; } ?>">
-  <br>
+  <input type="text" class="form-control mb-4" name="title" value="<?php if ($locationTitle != false) { echo $locationTitle; } ?>">
 
   <p>Описание</p>
-  <textarea name="text"><?php if ($locationText != false) { echo $locationText; } ?></textarea>
-  <br>
+  <textarea class="form-control mb-4" name="text"><?php if ($locationText != false) { echo $locationText; } ?></textarea>
 
-  <input type="submit">
+  <input class="btn btn-success me-3 mb-4" type="submit">
 
   <?php unset($locationTitle, $locationText); ?>
 </form>

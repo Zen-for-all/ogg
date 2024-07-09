@@ -19,23 +19,18 @@ $(document).ready(function(){
 
   /* show/hide blocks & buttons in edit_location section */
   $('.edit_location_btn').click(function(){
-    if (!$(this).hasClass('edit_location_btn_active')) {
-      // restart styles
-      $('.edit_location_btn span:nth-child(1)').addClass('show').removeClass('hide');
-      $('.edit_location_btn span:nth-child(2)').addClass('hide').removeClass('show');
-      $('.location_info').addClass('show').removeClass('hide');
-      $('.edit_location_form').removeClass('show').addClass('hide');
-      $('.delete_location').addClass('show').removeClass('hide');
+    if ($(this).closest('.card').hasClass('edit_location_btn_active')) {
+      $('.card').removeClass('edit_location_btn_active');
+    } else {
+      $('.card').removeClass('edit_location_btn_active');
+      $(this).closest('.card').addClass('edit_location_btn_active');
     }
 
-    $(this).toggleClass('edit_location_btn_active');
-    $(this).find('span').toggleClass('show').toggleClass('hide');
-    $(this).parent().find('.location_info').toggleClass('show').toggleClass('hide');
-    $(this).parent().find('.edit_location_form').toggleClass('show').toggleClass('hide');
-    $(this).parent().find('.delete_location').toggleClass('show').toggleClass('hide');
+    $('.block_hide').removeClass('show').addClass('hide');
   });
 
   $('.btn_show').click(function(){
+    $('.card').removeClass('edit_location_btn_active');
     $(this).parent().find('.block_hide').toggleClass('show').toggleClass('hide');
   });
 });
