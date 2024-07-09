@@ -7,32 +7,34 @@
         <input name="login" type="text" class="form-control mb-4" placeholder="login">
         <input name="password" type="password" class="form-control mb-4" placeholder="password">
         <input name="password" type="text" class="form-control mb-4" placeholder="password">
-        <input name="anonym" id="anonym" class="form-check-input" type="checkbox">
-        <div class="row text-start">
-          <label class="form-check-label" for="anonym">Анонимность</label>
-          <input type="submit" class="btn btn-secondary mb-4" value="Зарегистрироваться">
+
+        <div class="row">
+          <label class="form-check-label mb-3">
+            <input name="anonym" class="form-check-input me-2" type="checkbox">
+            Анонимность
+          </label>
         </div>
+
+        <input type="submit" class="btn btn-secondary mb-4" value="Зарегистрироваться">
+
+        <?php
+        if (isset($_SESSION['regError'])) { // error for registration
+          if ($_SESSION['regError'] == 1) { // user name exist
+            echo '<div class="alert alert-danger" role="alert">Пользователь с таким именем существует</div>';
+          } elseif ($_SESSION['regError'] == 2) { // login very short or long
+            echo '<div class="alert alert-danger" role="alert">Длина имени должна быть от 3 до 15 символов</div>';
+          } elseif ($_SESSION['regError'] == 3) { // empty input
+            echo '<div class="alert alert-danger" role="alert">Заполните все поля</div>';
+          }
+
+          unset($_SESSION['regError']);
+        }
+        ?>
       </form>
     </div>
 
-    <?php
-    if (isset($_SESSION['regError'])) { // error for registration
-        if ($_SESSION['regError'] == 1) { // user name exist
-            echo '<br>Пользователь с таким именем существует<br>';
-        } elseif ($_SESSION['regError'] == 2) { // login very short or long
-            echo '<br>Длина имени должна быть от 3 до 15 символов<br>';
-        } elseif ($_SESSION['regError'] == 3) { // empty input
-            echo '<br>Заполните все поля<br>';
-        }
-    }
-
-    if (isset($_SESSION['regError'])) {
-        unset($_SESSION['regError']);
-    }
-    ?>
-
     <div class="row justify-content-center">
-      <a href="/">Войти</a>
+      <a class="link-success" href="/">Войти</a>
     </div>
   </section>
 </div>

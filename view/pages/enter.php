@@ -7,21 +7,18 @@
         <input name="login" type="text" class="form-control mb-4" placeholder="login">
         <input name="password" type="password" class="form-control mb-4" placeholder="password">
         <input type="submit" class="btn btn-secondary mb-4" value="Войти">
+
+        <?php
+        if (isset($_SESSION['logError']) && $_SESSION['logError'] == 1) {
+          echo '<div class="alert alert-danger" role="alert">Неверный логин или пароль</div>';
+          unset($_SESSION['regError']);
+        }
+        ?>
       </form>
     </div>
 
-    <?php
-    if (isset($_SESSION['logError']) && $_SESSION['logError'] == 1) {
-        echo '<br>Неверный логин или пароль<br>';
-    }
-
-    if (isset($_SESSION['regError'])) {
-        unset($_SESSION['regError']);
-    }
-    ?>
-
     <div class="row justify-content-center">
-      <a href="/?page=signing">Зарегистрироваться</a>
+      <a class="link-success" href="/?page=signing">Зарегистрироваться</a>
     </div>
   </section>
 </div>

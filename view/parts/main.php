@@ -39,7 +39,7 @@ if ($ldArrayObjectsGlobal != false) {
 <section class="container">
   <div class="row">
     <?php if ($user->ldlist != false && $quantityLd > 0) { ?>
-      <div class="col">
+      <div class="col-md-6 mb-5 mb-md-0">
         <h3 class="mb-3">Личная статистика <b></b><?=$user->login?>:</h3>
         <p>Всего ОСов: <?=$quantityLd?></p>
 
@@ -69,7 +69,7 @@ if ($ldArrayObjectsGlobal != false) {
       </div>
     <?php } ?>
 
-    <div class="col">
+    <div class="col-md-6">
       <?php if ($ldArrayObjectsGlobal != false && $userQuantity > 0) { ?>
         <h3 class="mb-3">Общая статистика:</h3>
         <p>Количество участников: <?=$userQuantity?></p>
