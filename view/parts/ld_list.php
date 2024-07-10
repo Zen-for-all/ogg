@@ -177,61 +177,41 @@
         }
         ?>
 
-        <div class="col-xl-4 col-md-6 mb-5">
+        <div class="col-xxl-3 col-lg-4 col-md-6 mb-5">
           <div class="card px-3 py-3 h100">
-            <a href="/?page=ld&id=<?=$ld->id?>">
-              <?php
-              // print info about ld
-              echo $ldDate;
+            <h5 class="mb-3"><?=$ldDate?> (<?=$ldTime?>)</h5>
 
-              if ($ldTime != false) {
-                echo ' (' . $ldTime . ')';
-              }
-              ?>
-            </a>
+            <?php if ($ldDuration != false) { ?>
+              <span>Длительность: <b><?=$ldDuration?></b></span>
+            <? } ?>
+
+            <?php if ($locationTitle != false) { ?>
+              <span>Локация: <b><?=$locationTitle?></b></span>
+            <? } ?>
+
+            <?php if ($ldQuality != false) { ?>
+              <span>Качество: <b><?=$ldQuality?></b></span>
+            <? } ?>
+
+            <?php if ($ldInterest != false) { ?>
+              <span>Интерес: <b><?=$ldInterest?></b></span>
+            <? } ?>
+
+            <?php if ($ldMethod != false) { ?>
+              <span>Метод входа: <b><?=$ldMethod?></b></span>
+            <? } ?>
+
             <br>
 
-            <?php
-            if ($ldDuration != false) {
-              echo 'Длительность: ' . $ldDuration;
-              echo '<br>';
-            }
+            <?php if ($ldText != false) { ?>
+              <span><b>Описание:</b> <?=excerpt($ldText, 300)?></span><br>
+            <? } ?>
 
-            if ($locationTitle != false) {
-              echo 'Локация: ' . $locationTitle;
-              echo '<br>';
-            }
+            <?php if ($ldNotice != false) { ?>
+              <span><b>Заметки:</b> <?=excerpt($ldNotice, 200)?></span>
+            <? } ?>
 
-            if ($ldQuality != false) {
-              echo 'Качество: ' . $ldQuality;
-              echo '<br>';
-            }
-
-            if ($ldInterest != false) {
-              echo 'Интерес: ' . $ldInterest;
-              echo '<br>';
-            }
-
-            if ($ldMethod != false) {
-              echo 'Метод входа: ' . $ldMethod;
-              echo '<br>';
-            }
-
-            if ($ldText != false) {
-              echo '<br>';
-              echo 'Описание:<br>';
-              echo excerpt($ldText, 300);
-              echo '<br>';
-            }
-
-            if ($ldNotice != false) {
-              echo '<br>';
-              echo 'Заметки:<br>';
-              echo excerpt($ldNotice, 200);
-              echo '<br>';
-            }
-            ?>
-
+            <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=ld&id=<?=$ld->id?>">Подробнее</a>
           </div>
         </div>
 

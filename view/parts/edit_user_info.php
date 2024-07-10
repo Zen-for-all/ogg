@@ -1,6 +1,6 @@
-<h2 class="mb-5"><?=$user->login?></h2>
+<h2 class="mb-3"><?=$user->login?></h2>
 
-<p class="mb-3">В проекте с <?=$user->date?></p>
+<p class="mb-5">В проекте с <?=$user->date?></p>
 
 <div class="row mb-3">
   <div class="col-md-6 mb-3">
@@ -22,7 +22,7 @@
     </form>
   </div>
 
-  <div class="col-md-6 mb-3">
+  <div class="col-12 mb-3">
     <h3 class="">Анонимность</h3>
     <form action="../../model/edit_anonim.php" method="post">
       <label>
@@ -40,6 +40,11 @@
 
   <div class="col-md-6">
     <?php include 'view/parts/import_ld.php'; ?>
+  </div>
+
+  <div class="col-md-6">
+    <h3 class="mb-3">Экспортировать дневник в .xlsx файл</h3>
+    <a href="/" class="btn btn-outline-secondary mb-3">Экспорт</a>
   </div>
 </div>
 

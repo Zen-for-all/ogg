@@ -1,4 +1,4 @@
-<nav class="navbar mb-5 navbar-expand-lg bg-body-tertiary">
+<nav class="navbar mb-5 navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container">
     <a class="navbar-brand" href="/">OGG</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
