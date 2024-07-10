@@ -4,6 +4,8 @@ require 'connect.php';
 
 mysqli_set_charset($connect, "utf8mb4");
 
+$user = $_SESSION['userid'];
+
 $array_ld = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["upload_txt"])) {
@@ -40,12 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["upload_txt"])) {
   }
 }
 
-// get all user info from id
-$user = $_SESSION['userid'];
-$result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");
-$resultldlist = mysqli_fetch_assoc($result);
-$ldlist = $resultldlist['ldlist'];
-
 $ldListNew = '';
 $ldListSet = '';
 
@@ -71,10 +67,15 @@ foreach ($array_ld as $ld) {
   // add new ld
   $setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `notice`, `user`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$notice', '$user')");
 
+  // get all user info from id
+  $result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");
+  $resultldlist = mysqli_fetch_assoc($result);
+  $ldlist = $resultldlist['ldlist'];
+
   // get & edit ld list
   $result = mysqli_query($connect, "SELECT `id` FROM `ld` ORDER BY id DESC LIMIT 1;");
   $ldlast = mysqli_fetch_assoc($result);
-  $ldListNew = $ldListNew . ' ' . $ldlast['id'];
+  $ldListNew = $ldlist . ' ' . $ldlast['id'];
 
   // update ld list in user info
   $setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `ldlist` = '$ldListNew' WHERE `id` = '$user'");
