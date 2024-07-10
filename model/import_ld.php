@@ -2,6 +2,8 @@
 session_start();
 require 'connect.php';
 
+mysqli_set_charset($connect, "utf8mb4");
+
 $array_ld = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["upload_txt"])) {
@@ -9,10 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["upload_txt"])) {
   if (isset($_FILES["txt_file"]) && $_FILES["txt_file"]["error"] == UPLOAD_ERR_OK) {
     // Get the content of the file
     $txt_content = file_get_contents($_FILES["txt_file"]["tmp_name"]);
-    $txt_content = mb_convert_encoding($txt_content, 'UTF-8', 'Windows-1251');
 
     // Original string of the text file with tab delimiter
-    $txtString = $txt_content; // Insert your string here
+    $txtString = $txt_content;
 
     // Delimiter, now it's tab
     $delimiter = "\t";
@@ -60,10 +61,10 @@ foreach ($array_ld as $ld) {
 
   $time = $ld[1];
   $duration = $ld[2];
-  $text = trim(htmlentities($ld[3]));
+  $text = trim(htmlspecialchars($ld[3], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
   $quality = $ld[4];
   $interest = $ld[5];
-  $notice = trim(htmlentities($ld[6]));
+  $notice = trim(htmlspecialchars($ld[6], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
   $location = 0;
   $method = 0;
 
@@ -80,4 +81,3 @@ foreach ($array_ld as $ld) {
 }
 
 header("location:/");
-?>
