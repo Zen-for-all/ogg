@@ -39,9 +39,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["upload_txt"])) {
   }
 }
 
+// get all user info from id
+$user = $_SESSION['userid'];
+$result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");
+$resultldlist = mysqli_fetch_assoc($result);
+$ldlist = $resultldlist['ldlist'];
+
+$ldListNew = '';
+$ldListSet = '';
+
 foreach ($array_ld as $ld) {
   // get $_POST params
   $date = DateTime::createFromFormat('d.m.y', $ld[0]);
+
   if ($date !== false) {
     $date = $date->format('d.m.y');
   } else {
@@ -49,31 +59,24 @@ foreach ($array_ld as $ld) {
   }
 
   $time = $ld[1];
-  $duration = 0;
   $duration = $ld[2];
   $text = trim(htmlentities($ld[3]));
   $quality = $ld[4];
   $interest = $ld[5];
   $notice = trim(htmlentities($ld[6]));
-  $user = $_SESSION['userid'];
   $location = 0;
   $method = 0;
 
   // add new ld
   $setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `notice`, `user`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$notice', '$user')");
 
-  // get all user info from id
-  $result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");
-  $resultldlist = mysqli_fetch_assoc($result);
-  $ldlist = $resultldlist['ldlist'];
-
   // get & edit ld list
   $result = mysqli_query($connect, "SELECT `id` FROM `ld` ORDER BY id DESC LIMIT 1;");
   $ldlast = mysqli_fetch_assoc($result);
-  $ldnew = $ldlist . ' ' . $ldlast['id'];
+  $ldListNew = $ldListNew . ' ' . $ldlast['id'];
 
   // update ld list in user info
-  $setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `ldlist` = '$ldnew' WHERE `id` = '$user'");
+  $setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `ldlist` = '$ldListNew' WHERE `id` = '$user'");
 }
 
 header("location:/");

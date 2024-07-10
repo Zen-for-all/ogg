@@ -43,8 +43,7 @@
   </div>
 
   <div class="col-md-6">
-    <h3 class="mb-3">Экспортировать дневник в .xlsx файл</h3>
-    <a href="/" class="btn btn-outline-secondary mb-3">Экспорт</a>
+    <?php include 'view/parts/export_ld.php'; ?>
   </div>
 </div>
 
