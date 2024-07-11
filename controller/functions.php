@@ -273,3 +273,46 @@ function methodPercent($ldArrayObjects) {
 
   return $methodPercent; // Returning the array with method counts and percentages
 }
+
+// print graphics ld for the years
+function printYears($ldArrayObjects) {
+  // Initialize an empty array to hold the count of occurrences for each year.
+  $yearsCount = array();
+
+  // Loop through each object in the array.
+  foreach ($ldArrayObjects as $ldObject) {
+    // Extract the date from the object.
+    $date = $ldObject->date;
+    // Get the last two digits of the year from the date.
+    $year = substr($date, 6, 2);
+    // If the year is already in the array, increment its count.
+    if (isset($yearsCount[$year])) {
+      $yearsCount[$year]++;
+    } else {
+      // If the year is not in the array, add it with a count of 1.
+      $yearsCount[$year] = 1;
+    }
+  }
+
+  // Find the maximum count of occurrences for any year.
+  $maxCount = max($yearsCount);
+
+  // Start outputting the HTML for the year chart.
+  echo '<h5 class="mt-4 mb-4">Распределение количества по годам:</h5>';
+  echo '<div class="year-chart mb-5">';
+  // Loop through each year and its count in the array.
+  foreach ($yearsCount as $year => $count) {
+    // Calculate the height of the bar as a percentage of the maximum count.
+    $height = ($count / $maxCount) * 100;
+    // Calculate the width of each bar based on the number of years.
+    $width = 100 / count($yearsCount);
+    // Output the HTML for each bar with the calculated height and width.
+    echo '<div class="bar" style="height: ' . $height . '%; width: ' . $width . '%">';
+    // Output the year and the count inside each bar.
+    echo '<span class="year">20' . $year . '</span>';
+    echo '<span class="count">' . $count . '</span>';
+    echo '</div>';
+  }
+  // Close the year chart div.
+  echo '</div>';
+}

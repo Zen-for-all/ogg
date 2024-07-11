@@ -24,6 +24,7 @@ if ($ldArrayObjectsGlobal != false) {
     $averageDurationGlobal = 0;
     $averageQualityGlobal = 0;
     $averageInterestGlobal = 0;
+    $lastDateGlobal = getLastLdDate($ldArrayObjectsGlobal);
     $summDurationGlobal = getDuration($ldArrayObjectsGlobal);
     $hoursDurationGlobal = floor($summDurationGlobal / 3600);
     $minutesDurationGlobal = floor(($summDurationGlobal % 3600) / 60);
@@ -33,6 +34,7 @@ if ($ldArrayObjectsGlobal != false) {
     $averageQualityGlobal = getAverageQuality($ldArrayObjectsGlobal);
     $averageInterestGlobal = getAverageInterest($ldArrayObjectsGlobal);
     $maxDurationGlobal = getLongestLd($ldArrayObjectsGlobal);
+    $intervalLastLdGlobal = getIntervalLastLd($lastDateGlobal);
     $methodPercentGlobal = methodPercent($ldArrayObjectsGlobal);
   }
 }
@@ -82,6 +84,11 @@ if ($ldArrayObjectsGlobal != false) {
           }
           echo '</ul>';
         } ?>
+
+        <?php
+        // print graphics ld for the years
+        printYears($ldArrayObjects);
+        ?>
       </div>
     <?php } ?>
 
@@ -95,6 +102,7 @@ if ($ldArrayObjectsGlobal != false) {
         <p>Среднее качество: <b><?=$averageQualityGlobal?></b></p>
         <p>Средняя интересность: <b><?=$averageInterestGlobal?></b></p>
         <p>Самый длинный ОС: <b><?=$maxDurationGlobal?></b> сек</p>
+        <p>Последний был: <b><?=$lastDateGlobal?></b> (<?=$intervalLastLdGlobal?>д назад)</p>
 
         <?php
         if (!empty($methodPercentGlobal)) {
