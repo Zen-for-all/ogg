@@ -243,3 +243,33 @@ function getAllInfo($ldArray) {
   // Return the array with all the information
   return $allInfoArray;
 }
+
+// get ld method percent
+function methodPercent($ldArrayObjects) {
+  global $enterMethod;
+
+  $countLdList = count($ldArrayObjects); // Counting the number of objects in $ldArrayObjects
+
+  // Initialize variables to count occurrences of each method
+  $methodCounts = array_fill_keys($enterMethod, 0);
+
+  // Iterate through each object in $ldArrayObjects and count method occurrences
+  foreach ($ldArrayObjects as $ld) {
+    $method = $ld->method;
+
+    if ($method >= 1 && $method <= 5) { // Check if $method is within valid range
+      $methodCounts[$enterMethod[$method]]++;
+    }
+  }
+
+  // Calculate percentages and filter out methods with count 0
+  $methodPercent = [];
+  foreach ($methodCounts as $methodKey => $count) {
+    if ($count > 0) {
+      $percent = round(($count * 100 / $countLdList), 1);
+      $methodPercent[$methodKey] = [$count, $percent];
+    }
+  }
+
+  return $methodPercent; // Returning the array with method counts and percentages
+}

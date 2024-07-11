@@ -13,6 +13,7 @@ if ($user->ldlist != false) {
   $secondsDuration = $summDuration % 60;
   $intervalLastLd = getIntervalLastLd($lastDate);
   $maxDuration = getLongestLd($ldArrayObjects);
+  $methodPercent = methodPercent($ldArrayObjects);
 }
 
 // global info
@@ -32,6 +33,7 @@ if ($ldArrayObjectsGlobal != false) {
     $averageQualityGlobal = getAverageQuality($ldArrayObjectsGlobal);
     $averageInterestGlobal = getAverageInterest($ldArrayObjectsGlobal);
     $maxDurationGlobal = getLongestLd($ldArrayObjectsGlobal);
+    $methodPercentGlobal = methodPercent($ldArrayObjectsGlobal);
   }
 }
 ?>
@@ -41,45 +43,72 @@ if ($ldArrayObjectsGlobal != false) {
     <?php if ($user->ldlist != false && $quantityLd > 0) { ?>
       <div class="col-md-6 mb-5 mb-md-0">
         <h3 class="mb-3">Личная статистика <b></b><?=$user->login?>:</h3>
-        <p>Всего ОСов: <?=$quantityLd?></p>
+        <p>Всего ОСов: <b><?=$quantityLd?></b></p>
 
         <?php if ($summDuration != 0) { ?>
-          <p>Общая длительность: <?php echo "$hoursDuration ч, $minutesDuration мин, $secondsDuration сек";?></p>
+          <p>Общая длительность: <b><?php echo "$hoursDuration ч, $minutesDuration мин, $secondsDuration сек";?></b></p>
         <?php } ?>
 
         <?php if ($averageDuration != null) { ?>
-          <p>Средняя длительность: <?=$averageDuration?> сек</p>
+          <p>Средняя длительность: <b><?=$averageDuration?></b> сек</p>
         <?php } ?>
 
         <?php if ($averageQuality != null) { ?>
-          <p>Среднее качество: <?=$averageQuality?></p>
+          <p>Среднее качество: <b><?=$averageQuality?></b></p>
         <?php } ?>
 
         <?php if ($averageInterest != null) { ?>
-          <p>Средняя интересность: <?=$averageInterest?></p>
+          <p>Средняя интересность: <b><?=$averageInterest?></b></p>
         <?php } ?>
 
         <?php if ($maxDuration != 0) { ?>
-          <p>Самый длинный ОС: <?=$maxDuration?> сек</p>
+          <p>Самый длинный ОС: <b><?=$maxDuration?></b> сек</p>
         <?php } ?>
 
         <?php if ($quantityLd != 0) { ?>
-          <p>Последний был: <?=$lastDate?> (<?=$intervalLastLd?>д назад)</p>
+          <p>Последний был: <b><?=$lastDate?></b> (<?=$intervalLastLd?>д назад)</p>
         <?php } ?>
+
+        <?php
+        if (!empty($methodPercent)) {
+          echo '<h5 class="mt-4">Распределение по методу:</h5>';
+          echo '<ul>';
+          foreach ($methodPercent as $title => $num) {
+            if ($num != 0) {
+              ?>
+                <li><?=$title?>: <b><?=$num[1]?></b>% (<?=$num[0]?>)</li>
+              <?php
+            }
+          }
+          echo '</ul>';
+        } ?>
       </div>
     <?php } ?>
 
     <div class="col-md-6">
       <?php if ($ldArrayObjectsGlobal != false && $userQuantity > 0) { ?>
-        <h3 class="mb-3">Общая статистика:</h3>
-        <p>Количество участников: <?=$userQuantity?></p>
-        <p>Всего ОСов: <?=$quantityLdGlobal?></p>
+        <h3 class="mb-3">Общая статистика проекта:</h3>
+        <p>Всего ОСов: <b><?=$quantityLdGlobal?></b> (<?=$userQuantity?> участников)</p>
 
-        <p>Общая длительность: <?php echo "$hoursDurationGlobal ч, $minutesDurationGlobal мин, $secondsDurationGlobal сек";?></p>
-        <p>Средняя длительность: <?=$averageDurationGlobal?> сек</p>
-        <p>Среднее качество: <?=$averageQualityGlobal?></p>
-        <p>Средняя интересность: <?=$averageInterestGlobal?></p>
-        <p>Самый длинный ОС: <?=$maxDurationGlobal?> сек</p>
+        <p>Общая длительность: <b><?php echo "$hoursDurationGlobal ч, $minutesDurationGlobal мин, $secondsDurationGlobal сек";?></b></p>
+        <p>Средняя длительность: <b><?=$averageDurationGlobal?></b> сек</p>
+        <p>Среднее качество: <b><?=$averageQualityGlobal?></b></p>
+        <p>Средняя интересность: <b><?=$averageInterestGlobal?></b></p>
+        <p>Самый длинный ОС: <b><?=$maxDurationGlobal?></b> сек</p>
+
+        <?php
+        if (!empty($methodPercentGlobal)) {
+          echo '<h5 class="mt-4">Распределение по методу:</h5>';
+          echo '<ul>';
+          foreach ($methodPercentGlobal as $title => $num) {
+            if ($num != 0) {
+              ?>
+              <li><?=$title?>: <b><?=$num[1]?></b>% (<?=$num[0]?>)</li>
+              <?php
+            }
+          }
+          echo '</ul>';
+        } ?>
       <?php } ?>
     </div>
   </div>
