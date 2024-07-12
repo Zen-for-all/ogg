@@ -115,3 +115,22 @@ html {
 .year-chart-wrap-title.year-chart-wrap-title-show .minus {
     display: inline;
 }
+
+/* Стилизация для веб-браузеров на основе WebKit */
+::-webkit-scrollbar {
+    width: 12px; /* Ширина вертикальной полосы прокрутки */
+    height: 12px; /* Высота горизонтальной полосы прокрутки */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Цвет фона дорожки */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Цвет ползунка */
+    border-radius: 10px; /* Радиус скругления углов ползунка */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Цвет ползунка при наведении */
+}

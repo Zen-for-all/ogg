@@ -320,7 +320,7 @@ function printYears($ldArrayObjects, $param = null) {
       'quality' => 'Среднее качество по годам',
       'interest' => 'Средняя интересность по годам',
     ];
-    $title = $titleMap[$param] ?? 'Распределение количества по годам';
+    $title = $titleMap[$param] ?? 'Количества по годам';
 
     // get rand class
     $rand = rand(1,99999);

@@ -15,7 +15,7 @@
       ?>
 
       <!--print info about location-->
-      <div class="location_item col-xl-6 mb-5">
+      <div class="location_item col-md-6 mb-5">
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
             <h4 class="mb-3"><?= $locationTitle ?></h4>
