@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
       <form action="../../model/signing.php" method="POST" class="col-12 col-md-6 col-lg-4 text-center">
         <input name="login" type="text" class="form-control mb-4" placeholder="login">
-        <input name="password" type="password" class="form-control mb-4" placeholder="password">
+        <input name="email" type="email" class="form-control mb-4" placeholder="email">
         <input name="password" type="text" class="form-control mb-4" placeholder="password">
 
         <div class="row">
