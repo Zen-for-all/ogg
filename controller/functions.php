@@ -322,8 +322,11 @@ function printYears($ldArrayObjects, $param = null) {
     ];
     $title = $titleMap[$param] ?? 'Распределение количества по годам';
 
+    // get rand class
+    $rand = rand(1,99999);
+
     // Start outputting the HTML for the year chart.
-    echo '<h5 class="mt-4 mb-3">' . $title . ':</h5>';
+    echo '<h5 class="year-chart-wrap-title mt-3">' . $title . ' <span class="plus">+</span><span class="minus">-</span></h5>';
     echo '<div class="year-chart-wrap">';
     echo '<div class="year-chart mb-5">';
 

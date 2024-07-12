@@ -33,4 +33,9 @@ $(document).ready(function(){
     $('.card').removeClass('edit_location_btn_active');
     $(this).parent().find('.block_hide').toggleClass('show').toggleClass('hide');
   });
+
+  $('.year-chart-wrap-title').on('click', function() {
+    $(this).toggleClass('year-chart-wrap-title-show');
+    $(this).next('.year-chart-wrap').toggleClass('year-chart-wrap-show');
+  });
 });

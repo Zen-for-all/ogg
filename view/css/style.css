@@ -50,12 +50,31 @@ html {
     display: none;
 }
 
+.year-chart-wrap-title {
+    cursor: pointer;
+}
+
+.year-chart-wrap {
+    padding: 0 10px;
+    border: 1px solid transparent;
+    height: 0;
+    overflow: hidden;
+    transition: all .4s;
+}
+
+.year-chart-wrap.year-chart-wrap-show {
+    height: 200px;
+    margin-top: 20px;
+    padding: 30px 10px 40px 10px;
+    border: 1px solid #f8f9fa;
+}
+
 .year-chart {
     display: flex;
     flex-direction: row-reverse;
     justify-content: stretch;
     align-items: flex-end;
-    height: 200px;
+    height: 100%;
     width: 100%;
 }
 
@@ -87,7 +106,12 @@ html {
     transform: rotate(-90deg);
 }
 
-.year-chart-wrap {
-    padding: 30px 10px 10px 10px;
-    border: 1px solid #f8f9fa;
+.year-chart-wrap-title .minus,
+.year-chart-wrap-title.year-chart-wrap-title-show .plus {
+    display: none;
+}
+
+.year-chart-wrap-title .plus,
+.year-chart-wrap-title.year-chart-wrap-title-show .minus {
+    display: inline;
 }
