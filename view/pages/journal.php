@@ -2,7 +2,7 @@
   <?php include 'view/parts/ld_list.php'; ?>
   <?php include 'view/parts/pagination.php'; ?>
 
-  <div class="btn btn-outline-success btn_show mt-3 me-3">Добавить запись</div>
+  <a href="#add-ld-form" class="btn btn-outline-success btn_show mt-3 me-3" id="add-ld-form">Добавить запись</a>
 
   <div class="block_all mb-5 block_hide hide">
     <h2 class="mt-5">Добавить запись:</h2>
