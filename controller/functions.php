@@ -274,10 +274,10 @@ function methodPercent($ldArrayObjects) {
   return $methodPercent; // Returning the array with method counts and percentages
 }
 
-// print graphics ld for the years
-function printYears($ldArrayObjects) {
-  // Initialize an empty array to hold the count of occurrences for each year.
-  $yearsCount = array();
+// print graphics ld for the: years (null), duration, quality, interest
+function printYears($ldArrayObjects, $param = null) {
+  // Initialize an empty array to hold the count of occurrences for each year or the sum of the param values.
+  $yearsData = array();
 
   // Loop through each object in the array.
   foreach ($ldArrayObjects as $ldObject) {
@@ -285,34 +285,67 @@ function printYears($ldArrayObjects) {
     $date = $ldObject->date;
     // Get the last two digits of the year from the date.
     $year = substr($date, 6, 2);
-    // If the year is already in the array, increment its count.
-    if (isset($yearsCount[$year])) {
-      $yearsCount[$year]++;
-    } else {
-      // If the year is not in the array, add it with a count of 1.
-      $yearsCount[$year] = 1;
+
+    // Initialize year data if not already set
+    if (!isset($yearsData[$year])) {
+      $yearsData[$year] = ['count' => 0, 'sum' => 0];
     }
+
+    // If the param is provided, sum its values for each year.
+    if ($param && property_exists($ldObject, $param)) {
+      $paramValue = intval($ldObject->$param); // Convert param value to integer
+      $yearsData[$year]['sum'] += $paramValue;
+    }
+
+    // Increment the count for the year
+    $yearsData[$year]['count']++;
   }
 
-  // Find the maximum count of occurrences for any year.
-  $maxCount = max($yearsCount);
+  // If param is provided, calculate the average for each year.
+  if ($param) {
+    foreach ($yearsData as $year => &$data) {
+      $data['count'] = $data['sum'] / $data['count'];
+    }
+    unset($data); // Break the reference with the last element
+  }
 
-  // Start outputting the HTML for the year chart.
-  echo '<h5 class="mt-4 mb-4">Распределение количества по годам:</h5>';
-  echo '<div class="year-chart mb-5">';
-  // Loop through each year and its count in the array.
-  foreach ($yearsCount as $year => $count) {
-    // Calculate the height of the bar as a percentage of the maximum count.
-    $height = ($count / $maxCount) * 100;
+  // Only proceed if there are more than one year
+  if (count($yearsData) > 1) {
+    // Find the maximum count of occurrences or average for any year.
+    $maxCount = max(array_column($yearsData, 'count'));
+
+    // Get actual title
+    $titleMap = [
+      'duration' => 'Средняя длительность по годам',
+      'quality' => 'Среднее качество по годам',
+      'interest' => 'Средняя интересность по годам',
+    ];
+    $title = $titleMap[$param] ?? 'Распределение количества по годам';
+
+    // Start outputting the HTML for the year chart.
+    echo '<h5 class="mt-4 mb-3">' . $title . ':</h5>';
+    echo '<div class="year-chart-wrap">';
+    echo '<div class="year-chart mb-5">';
+
     // Calculate the width of each bar based on the number of years.
-    $width = 100 / count($yearsCount);
-    // Output the HTML for each bar with the calculated height and width.
-    echo '<div class="bar" style="height: ' . $height . '%; width: ' . $width . '%">';
-    // Output the year and the count inside each bar.
-    echo '<span class="year">20' . $year . '</span>';
-    echo '<span class="count">' . $count . '</span>';
+    $width = 100 / count($yearsData);
+
+    // Loop through each year and its count in the array.
+    foreach ($yearsData as $year => $data) {
+      // Round the count to the nearest integer.
+      $count = round($data['count']);
+      // Calculate the height of the bar as a percentage of the maximum count.
+      $height = ($count / $maxCount) * 100;
+
+      // Output the HTML for each bar with the calculated height and width.
+      echo '<div class="bar" style="height: ' . $height . '%; width: ' . $width . '%">';
+      // Output the year and the count inside each bar.
+      echo '<span class="year">20' . $year . '</span>';
+      echo '<span class="count">' . $count . '</span>';
+      echo '</div>';
+    }
+    // Close the year chart div.
+    echo '</div>';
     echo '</div>';
   }
-  // Close the year chart div.
-  echo '</div>';
 }

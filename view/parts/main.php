@@ -86,8 +86,18 @@ if ($ldArrayObjectsGlobal != false) {
         } ?>
 
         <?php
-        // print graphics ld for the years
+        /* print graphics ld for the: years (null), duration, quality, interest */
+        // print graphic ld for the years
         printYears($ldArrayObjects);
+
+        // print graphic ld for the duration
+        printYears($ldArrayObjects, 'duration');
+
+        // print graphic ld for the quality
+        printYears($ldArrayObjects, 'quality');
+
+        // print graphic ld for the interest
+        printYears($ldArrayObjects, 'interest');
         ?>
       </div>
     <?php } ?>
