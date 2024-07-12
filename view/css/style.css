@@ -116,21 +116,19 @@ html {
     display: inline;
 }
 
-/* Стилизация для веб-браузеров на основе WebKit */
+
 ::-webkit-scrollbar {
-    width: 12px; /* Ширина вертикальной полосы прокрутки */
-    height: 12px; /* Высота горизонтальной полосы прокрутки */
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Цвет фона дорожки */
+    background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888; /* Цвет ползунка */
-    border-radius: 10px; /* Радиус скругления углов ползунка */
+    background: #888;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Цвет ползунка при наведении */
+    background: #555;
 }
