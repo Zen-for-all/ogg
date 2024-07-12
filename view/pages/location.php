@@ -1,7 +1,7 @@
 <section class="container">
   <?php include 'view/parts/location_list.php'; ?>
 
-  <div class="btn btn-outline-success btn_show mt-3 me-3">Добавить локацию</div>
+  <a href="#add-location-form" class="btn btn-outline-success btn_show mt-3 me-3" id="add-location-form">Добавить локацию</a>
 
   <div class="block_hide col-xl-6 hide">
     <h2 class="mt-5">Добавить локацию:</h2>
