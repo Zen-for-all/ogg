@@ -1,4 +1,6 @@
 <div class="container">
+  <a class="btn btn-light mb-4" href="/?page=journal"><- К дневнику</a>
+
   <?php
   $ldValue = $_GET['id'];
 
@@ -59,54 +61,57 @@
   }
   ?>
 
-  <?=$ldDate;?>
-  <br>
+  <div class="">
+    <?=$ldDate;?>
+    <br>
 
-  <?php if ($ldTime != false) {
-    echo $ldTime;
-  } ?>
-  <br>
+    <?php if ($ldTime != false) {
+      echo $ldTime;
+    } ?>
+    <br>
 
-  <?php
-  if ($ldDuration != false) {
-    echo 'Длительность: ' . $ldDuration;
-    echo '<br>';
-  }
+    <?php
+    if ($ldDuration != false) {
+      echo 'Длительность: ' . $ldDuration;
+      echo '<br>';
+    }
 
-  if ($locationTitle != false) {
-    echo 'Локация: ' . $locationTitle;
-    echo '<br>';
-  }
+    if ($locationTitle != false) {
+      echo 'Локация: ' . $locationTitle;
+      echo '<br>';
+    }
 
-  if ($ldQuality != false) {
-    echo 'Качество: ' . $ldQuality;
-    echo '<br>';
-  }
+    if ($ldQuality != false) {
+      echo 'Качество: ' . $ldQuality;
+      echo '<br>';
+    }
 
-  if ($ldInterest != false) {
-    echo 'Интерес: ' . $ldInterest;
-    echo '<br>';
-  }
+    if ($ldInterest != false) {
+      echo 'Интерес: ' . $ldInterest;
+      echo '<br>';
+    }
 
-  if ($ldMethod != false) {
-    echo 'Метод входа: ' . $ldMethod;
-    echo '<br>';
-  }
+    if ($ldMethod != false) {
+      echo 'Метод входа: ' . $ldMethod;
+      echo '<br>';
+    }
 
-  if ($ldText != false) {
-    echo '<br>';
-    echo 'Описание:<br>';
-    echo $ldText;
-    echo '<br>';
-  }
+    if ($ldText != false) {
+      echo '<br>';
+      echo 'Описание:<br>';
+      echo $ldText;
+      echo '<br>';
+    }
 
-  if ($ldNotice != false) {
-    echo '<br>';
-    echo 'Заметки:<br>';
-    echo $ldNotice;
-    echo '<br>';
-  }
-  ?>
+    if ($ldNotice != false) {
+      echo '<br>';
+      echo 'Заметки:<br>';
+      echo $ldNotice;
+      echo '<br>';
+    }
+    ?>
+
+  </div>
 
   <div class="edit_ld_form hide mt-5">
     <h2>Редактировать запись:</h2>
