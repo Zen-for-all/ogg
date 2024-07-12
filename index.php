@@ -5,6 +5,10 @@ require_once 'model/connect.php';
 require_once 'controller/setting.php';
 require 'controller/functions.php';
 
+if (!isset($_SESSION['userid']) && isset($_COOKIE['userid'])) {
+  $_SESSION['userid'] = $_COOKIE['userid'];
+}
+
 // head
 include 'view/parts/head.php';
 
