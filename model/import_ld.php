@@ -57,12 +57,18 @@ foreach ($array_ld as $ld) {
 
   $time = $ld[1];
   $duration = $ld[2];
-  $text = trim(htmlspecialchars($ld[3], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+  $location = 0; // need fix
   $quality = $ld[4];
   $interest = $ld[5];
-  $notice = trim(htmlspecialchars($ld[6], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
-  $location = 0;
-  $method = 0;
+
+  if ($ld[6] > 0) {
+    $method = $ld[6];
+  } else {
+    $method = 0;
+  }
+
+  $text = trim(htmlspecialchars($ld[7], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+  $notice = trim(htmlspecialchars($ld[8], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 
   // add new ld
   $setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `notice`, `user`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$notice', '$user')");
