@@ -1,6 +1,9 @@
 <h3 class="mb-3">Перенос дневника в Google таблицу</h3>
 
-<a href="/" class="btn btn-outline-secondary mb-4">Экспорт в .tsv файл</a>
+<form method="post" action="../../model/export_ld.php" enctype="multipart/form-data">
+  <label for="fileInput" class="form-label">Получите файл (.tsv):</label><br>
+  <input type="submit" class="btn btn-outline-secondary mb-4" name="upload_txt" value="Экспорт в .tsv файл" />
+</form>
 
 <h6>Для загрузки данных из файла формата .tsv в Google таблицу:</h6>
 
