@@ -130,7 +130,7 @@
   <div class="delete_ld show mb-5">
     <form action="../../model/delete_ld.php" method="post">
       <input type="hidden" name="delete" value="<?=$ldValue?>">
-      <input type="submit" value="Удалить" class="btn btn-danger">
+      <input type="submit" value="Удалить" class="btn btn-outline-danger">
     </form>
   </div>
 </div>

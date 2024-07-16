@@ -12,7 +12,7 @@ if ($locationValue == false) {
   <p>Описание</p>
   <textarea class="form-control mb-4" name="text"><?php if ($locationText != false) { echo $locationText; } ?></textarea>
 
-  <input class="btn btn-success me-3 mb-4" type="submit">
+  <input class="btn btn-outline-success me-3 mb-4" type="submit">
 
   <?php unset($locationTitle, $locationText); ?>
 </form>

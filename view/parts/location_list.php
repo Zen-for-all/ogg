@@ -41,7 +41,7 @@
             <div class="col-auto delete_location mt-2 show">
               <form action="../../model/delete_location.php" method="post">
                 <input type="hidden" name="delete" value="<?=$locationValue?>">
-                <input type="submit" value="Удалить" class="btn btn-danger">
+                <input type="submit" value="Удалить" class="btn btn-outline-danger">
               </form>
             </div>
           </div>

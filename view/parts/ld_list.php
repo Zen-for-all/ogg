@@ -7,46 +7,46 @@
 <h2 class="pb-5"><?=$title?></h2>
 
 <div class="container-fluid gx-0">
-  <h3 class="mb-2">Сортировка:</h3>
+  <h4 class="mb-2">Сортировка:</h4>
 
-  <div class="filters row mb-5">
-    <div class="col-auto">
+  <div class="filters mb-4">
+    <div class="filter border mb-2">
       <div class="rl">По дате:</div>
       <a class="db rl" href="/?page=journal&sort=date">+</a>
       <a class="db rl" href="/?page=journal&sort=date&reverse=1">-</a>
     </div>
 
-    <div class="col-auto">
+    <div class="filter border mb-2">
       <div class="rl">По времени:</div>
       <a class="db rl" href="/?page=journal&sort=time">+</a>
       <a class="db rl" href="/?page=journal&sort=time&reverse=1">-</a>
     </div>
 
-    <div class="col-auto">
+    <div class="filter border mb-2">
       <div class="rl">По длительности:</div>
       <a class="db rl" href="/?page=journal&sort=duration">+</a>
       <a class="db rl" href="/?page=journal&sort=duration&reverse=1">-</a>
     </div>
 
-    <div class="col-auto">
+    <div class="filter border mb-2">
       <div class="rl">По качеству:</div>
       <a class="db rl" href="/?page=journal&sort=quality">+</a>
       <a class="db rl" href="/?page=journal&sort=quality&reverse=1">-</a>
     </div>
 
-    <div class="col-auto">
+    <div class="filter border mb-2">
       <div class="rl">По интересности:</div>
       <a class="db rl" href="/?page=journal&sort=interest">+</a>
       <a class="db rl" href="/?page=journal&sort=interest&reverse=1">-</a>
     </div>
 
-    <div class="col-auto">
+    <div class="filter border mb-2">
       <div class="rl">По локации:</div>
       <a class="db rl" href="/?page=journal&sort=location">+</a>
       <a class="db rl" href="/?page=journal&sort=location&reverse=1">-</a>
     </div>
 
-    <div class="col-auto">
+    <div class="filter border mb-2">
       <div class="rl">По входу:</div>
       <a class="db rl" href="/?page=journal&sort=method">+</a>
       <a class="db rl" href="/?page=journal&sort=method&reverse=1">-</a>
@@ -179,7 +179,7 @@
 
         <div class="col-xxl-3 col-lg-4 col-md-6 mb-5">
           <div class="card px-3 py-3 h100">
-            <h5 class="mb-3"><?=$ldDate?> (<?=$ldTime?>)</h5>
+            <h5 class="mb-3"><?=$ldDate?> <?php if ($ldTime) { echo '(' . $ldTime . ')'; } ?></h5>
 
             <?php if ($ldDuration != false) { ?>
               <span>Длительность: <b><?=$ldDuration?></b></span>

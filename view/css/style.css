@@ -28,14 +28,31 @@ html {
     display: block;
 }
 
-.filters a {
-    text-decoration: none;
-    padding: 5px;
-    line-height: 1;
-}
-
 .h100 {
     height: 100% !important;
+}
+
+/* filters */
+.filters {
+    width: 100%;
+    position: relative;
+    float: left;
+}
+
+.filter {
+    padding: 0 10px;
+    margin-right: 10px;
+    position: relative;
+    float: left;
+    border-radius: 4px;
+}
+
+.filter a {
+    padding: 3px 5px;
+    font-size: 120%;
+    color: #ccc;
+    line-height: 1;
+    text-decoration: none;
 }
 
 .edit_location_btn span:nth-child(1),

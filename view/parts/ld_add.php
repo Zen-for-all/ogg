@@ -98,7 +98,7 @@ if ($ldValue == false) {
     </div>
   </div>
 
-  <input type="submit" class="btn btn-success me-3">
+  <input type="submit" class="btn btn-outline-success me-3">
 
   <?php unset($ldDate, $ldTime, $ldDuration, $locationId, $locationTitle, $ldQuality, $ldInterest, $ldMethod, $ldText, $ldNotice); ?>
 </form>
