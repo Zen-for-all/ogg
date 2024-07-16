@@ -50,6 +50,7 @@ html {
     display: none;
 }
 
+/* print graphics */
 .year-chart-wrap-title {
     cursor: pointer;
 }
@@ -85,7 +86,7 @@ html {
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    background-color: #3498db;
+    background-color: #333;
     border-radius: 5px;
 }
 
@@ -102,7 +103,8 @@ html {
 .year-chart .count {
     margin-bottom: 5px;
     font-size: 80%;
-    color: #fff;
+    color: white;
+    mix-blend-mode: difference;
     transform: rotate(-90deg);
 }
 
@@ -116,7 +118,7 @@ html {
     display: inline;
 }
 
-
+/* scrollbar */
 ::-webkit-scrollbar {
     width: 5px;
 }
