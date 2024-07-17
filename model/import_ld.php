@@ -46,6 +46,12 @@ $ldListNew = '';
 $ldListSet = '';
 
 foreach ($array_ld as $ld) {
+  // Validate input data
+  if (!preg_match('/^\d*\.?\d*$/', $ld[2]) && $ld[2] !== '-' && $ld[2] !== '') continue;
+  if (!preg_match('/^\d*\.?\d*$/', $ld[4]) && $ld[4] !== '-' && $ld[4] !== '') continue;
+  if (!preg_match('/^\d*\.?\d*$/', $ld[5]) && $ld[5] !== '-' && $ld[5] !== '') continue;
+  if (!preg_match('/^\d*\.?\d*$/', $ld[6]) && $ld[6] !== '-' && $ld[6] !== '') continue;
+
   // get $_POST params
   $date = DateTime::createFromFormat('d.m.y', $ld[0]);
 
