@@ -74,6 +74,17 @@ foreach ($array_ld as $ld) {
   }
 
   $text = trim(htmlspecialchars($ld[7], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+
+  // Check for duplicates in the database
+  $duplicateCheckQuery = "SELECT COUNT(*) AS count FROM `ld` WHERE `date` = '$date' AND `time` = '$time' AND `duration` = '$duration' AND `quality` = '$quality' AND `interest` = '$interest' AND `method` = '$method' AND `text` = '$text'";
+  $duplicateCheckResult = mysqli_query($connect, $duplicateCheckQuery);
+  $duplicateCount = mysqli_fetch_assoc($duplicateCheckResult)['count'];
+
+  if ($duplicateCount > 0) {
+    // Skip this record as it's a duplicate
+    continue;
+  }
+
   $notice = trim(htmlspecialchars($ld[8], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
 
   // add new ld
