@@ -1,6 +1,6 @@
 <?php
 // site title
-$siteName = 'Ogg';
+$siteName = 'Lucid dream';
 
 // enter methods
 $enterMethod = [

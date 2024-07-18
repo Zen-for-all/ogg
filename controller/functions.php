@@ -17,8 +17,8 @@ function getLd($ldList) {
   $ldArrayObjects = [];
 
   if ($ldList != false) {
-    $ldArrayId = explode(" ", trim($ldList));
-    foreach ($ldArrayId as $ldId) {
+    $ldArray = json_decode($ldList, true);
+    foreach ($ldArray as $ldId) {
       $ld = new Ld($ldId);
       $ldArrayObjects[] = $ld;
     }
@@ -238,7 +238,7 @@ function getAllInfo($ldArray) {
   $allInfoArray = [];
   // Fetch each row and store it in the array with the ID as the key
   while ($row = mysqli_fetch_assoc($result)) {
-    $allInfoArray[$row['id']] = $row;
+    $allInfoArray[] = $row;
   }
   // Return the array with all the information
   return $allInfoArray;

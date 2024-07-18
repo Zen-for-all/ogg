@@ -1,4 +1,10 @@
 <?php
+/**
+ * @var $user
+ */
+?>
+
+<?php
 // personal info
 if ($user->ldlist != false) {
   $ldArrayObjects =  getLd($user->ldlist);

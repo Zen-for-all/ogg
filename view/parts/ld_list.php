@@ -1,6 +1,8 @@
 <?php
 /**
  * @var $user
+ * @var $title
+ * @var $ld_on_page
  */
 ?>
 
@@ -58,20 +60,18 @@
     <?php
     if ($user->ldlist != null) {
       // get ld id's array
-      $ldArray = explode(" ", trim($user->ldlist));
+      $ldArray = json_decode($user->ldlist, true);
 
       // Get all the information for the provided IDs
       $allInfoArray = getAllInfo($ldArray);
 
       // Initialize an array to hold Ld objects
       $ldObjects = [];
+
       // Create Ld objects and fill them with the fetched information
       foreach ($ldArray as $id) {
-        $ld = new Ld($id);
-        // Fill the Ld object with the corresponding data
-        $ld->getInfo($allInfoArray[$id]);
         // Add the Ld object to the array
-        $ldObjects[] = $ld;
+        $ldObjects[] = new Ld($id);
       }
 
       // Sort the array of Ld objects by attribute

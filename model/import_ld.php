@@ -42,9 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["upload_txt"])) {
   }
 }
 
-$ldListNew = '';
-$ldListSet = '';
-
 foreach ($array_ld as $ld) {
   // Validate input data
   if (!preg_match('/^\d*\.?\d*$/', $ld[2]) && $ld[2] !== '-' && $ld[2] !== '') continue;
@@ -93,12 +90,18 @@ foreach ($array_ld as $ld) {
   // get all user info from id
   $result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");
   $resultldlist = mysqli_fetch_assoc($result);
-  $ldlist = $resultldlist['ldlist'];
+  $ldlist = json_decode($resultldlist['ldlist'], true);
+
+  if (!is_array($ldlist)) {
+    $ldlist = [];
+  }
 
   // get & edit ld list
   $result = mysqli_query($connect, "SELECT `id` FROM `ld` ORDER BY id DESC LIMIT 1;");
   $ldlast = mysqli_fetch_assoc($result);
-  $ldListNew = $ldlist . ' ' . $ldlast['id'];
+  $ldlist[] = $ldlast['id'];
+
+  $ldListNew = json_encode($ldlist);
 
   // update ld list in user info
   $setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `ldlist` = '$ldListNew' WHERE `id` = '$user'");
