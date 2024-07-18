@@ -151,3 +151,24 @@ html {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+/* logo */
+.logo {
+    line-height: 1;
+}
+
+.logo-text {
+    font-size: 130%;
+}
+
+.logo-switch {
+    font-size: 60%;
+}
+
+.logo-link-note {
+    text-decoration: none;
+}
+
+.logo-link-net {
+    text-decoration: none;
+}

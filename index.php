@@ -46,6 +46,10 @@ if (isset($_SESSION['userid'])) {
     // Ld page
     $title = 'ОС';
     require 'view/pages/ld_page.php';
+  } elseif (isset($_GET['page']) && $_GET['page'] === 'net') {
+    // NET page
+    $title = 'NET';
+    require 'view/pages/net/net_page.php';
   } else {
     // main page
     $title = 'Главная';
