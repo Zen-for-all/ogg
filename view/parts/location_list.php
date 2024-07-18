@@ -3,18 +3,18 @@
 <div class="row">
 
   <?php
-  // get locations id's array
+  // Get locations id's array
   if ($user->ldlocations != false) {
-    $locationArray = explode(" ", trim($user->ldlocations));
+    $locationArray = json_decode($user->ldlocations, true);
 
     foreach ($locationArray as $locationValue) {
-      // get all info about location
+      // Get all info about location
       $location = new Location($locationValue);
       $locationTitle = $location->title;
       $locationText = $location->text;
       ?>
 
-      <!--print info about location-->
+      <!-- Print info about location -->
       <div class="location_item col-md-6 mb-5">
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
@@ -31,13 +31,13 @@
               <?php include 'location_add.php'; ?>
             </div>
 
-            <!-- button for edit ld -->
+            <!-- Button for edit location -->
             <div class="col-auto edit_location_btn show btn mt-2 mb-3 me-3">
               <span>Редактировать</span>
               <span>Отменить</span>
             </div>
 
-            <!-- button for delete location -->
+            <!-- Button for delete location -->
             <div class="col-auto delete_location mt-2 show">
               <form action="../../model/delete_location.php" method="post">
                 <input type="hidden" name="delete" value="<?=$locationValue?>">
