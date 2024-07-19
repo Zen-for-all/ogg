@@ -2,18 +2,24 @@
 session_start();
 require 'connect.php';
 
-$user = $_SESSION['userid'];
+// Ensure the user ID is an integer
+$userId = (int)$_SESSION['userid'];
 
-// delete all user locations
-$deleteLdLocations = mysqli_query($connect, "DELETE FROM `location` WHERE `user` = '$user'");
+// Prepare and execute delete queries
+$queries = [
+  "DELETE FROM `location` WHERE `user` = ?",
+  "DELETE FROM `ld` WHERE `user` = ?",
+  "DELETE FROM `user` WHERE `id` = ?"
+];
 
-// delete all user ld
-$deleteLd = mysqli_query($connect, "DELETE FROM `ld` WHERE `user` = '$user'");
+foreach ($queries as $query) {
+  $stmt = $connect->prepare($query);
+  $stmt->bind_param('i', $userId);
+  $stmt->execute();
+}
 
-// delete user
-$deleteLd = mysqli_query($connect, "DELETE FROM `user` WHERE `id` = '$user'");
-
+// Clear session and redirect
 session_unset();
 session_destroy();
-header("location:/");
-?>
+header("Location: /");
+exit();

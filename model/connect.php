@@ -1,7 +1,8 @@
 <?php
+// Establish a database connection
 $connect = mysqli_connect('localhost', 'root', '', 'ogg');
 
-if (!($connect)) {
-  echo 'Problem connection to DB!';
-  exit();
+// Check connection
+if (!$connect) {
+  die('Problem connecting to DB: ' . mysqli_connect_error());
 }

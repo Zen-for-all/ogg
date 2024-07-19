@@ -2,11 +2,19 @@
 session_start();
 require 'connect.php';
 
-// get $_POST params
-$password = trim(htmlentities($_POST['password']));
-$id = $_SESSION['userid'];
+// Sanitize and hash the password
+$password = $_POST['password'] ?? '';
+$hashedPassword = md5(md5(trim($password))); // Note: Consider using more secure hashing methods like bcrypt
 
-// update password
-$updateRecord = mysqli_query($connect, "UPDATE `user` SET `password` = '" . md5(md5($password)) . "' WHERE `id` = '$id'");
+// Ensure the user ID is an integer
+$id = (int)$_SESSION['userid'];
 
-header("location:/?page=settings");
+// Prepare and execute the update query
+$updateQuery = "UPDATE `user` SET `password` = ? WHERE `id` = ?";
+$stmt = $connect->prepare($updateQuery);
+$stmt->bind_param('si', $hashedPassword, $id);
+$stmt->execute();
+
+// Redirect
+header("Location: /?page=settings");
+exit();

@@ -2,11 +2,16 @@
 session_start();
 require 'connect.php';
 
-// get $_POST params
-$email = trim(htmlentities($_POST['email']));
-$id = $_SESSION['userid'];
+// Get and sanitize $_POST params
+$email = mysqli_real_escape_string($connect, trim($_POST['email']));
+$id = intval($_SESSION['userid']); // Ensure $id is an integer
 
-// update email
-$updateRecord = mysqli_query($connect, "UPDATE `user` SET `email` = '$email' WHERE `id` = '$id'");
+// Update email
+$updateQuery = "UPDATE `user` SET `email` = ? WHERE `id` = ?";
+$stmt = $connect->prepare($updateQuery);
+$stmt->bind_param('si', $email, $id);
+$stmt->execute();
 
-header("location:/?page=settings");
+// Redirect
+header("Location: /?page=settings");
+exit();
