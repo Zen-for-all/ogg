@@ -1,8 +1,8 @@
 <?php
 if ($ldValue == false) {
-  echo '<form action="../../model/add_ld.php" method="post">';
+  echo '<form action="model/note/add_ld.php" method="post">';
 } else {
-  echo '<form action="../../model/edit_ld.php" method="post">';
+  echo '<form action="model/note/edit_ld.php" method="post">';
   echo '<input type="hidden" name="id" value="' . $ldValue . '">';
 }
 ?>

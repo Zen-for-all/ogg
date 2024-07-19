@@ -28,7 +28,7 @@
           <div class="row gx-0">
             <div class="edit_location_form mt-3">
               <h4 class="mb-3">Редактировать локацию:</h4>
-              <?php include 'location_add.php'; ?>
+              <?php include 'view/parts/note/location_add.php'; ?>
             </div>
 
             <!-- Button for edit location -->
@@ -39,7 +39,7 @@
 
             <!-- Button for delete location -->
             <div class="col-auto delete_location mt-2 show">
-              <form action="../../model/delete_location.php" method="post">
+              <form action="model/note/delete_location.php" method="post">
                 <input type="hidden" name="delete" value="<?=$locationValue?>">
                 <input type="submit" value="Удалить" class="btn btn-outline-danger">
               </form>

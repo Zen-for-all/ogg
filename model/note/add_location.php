@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'connect.php';
+require '../connect.php';
 
 $title = $_POST['title'];
 $text = $_POST['text'];

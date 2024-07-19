@@ -1,6 +1,6 @@
 <h3 class="mb-3">Импортировать ОСы из .tsv файла</h3>
 
-<form method="post" action="../../model/import_ld.php" enctype="multipart/form-data">
+<form method="post" action="model/note/import_ld.php" enctype="multipart/form-data">
   <label for="fileInput" class="form-label">Выберите файл (.tsv):</label>
   <input type="file" class="form-control" name="txt_file" accept=".tsv" /><br>
   <input type="submit" class="btn btn-outline-secondary mb-4" name="upload_txt" value="Импортировать" />

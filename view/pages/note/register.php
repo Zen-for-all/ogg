@@ -3,7 +3,7 @@
     <h1 class="mb-5"><?php echo $title; ?></h1>
 
     <div class="row justify-content-center">
-      <form action="../../model/signing.php" method="POST" class="col-12 col-md-6 col-lg-4 text-center">
+      <form action="model/signing.php" method="POST" class="col-12 col-md-6 col-lg-4 text-center">
         <input name="login" type="text" class="form-control mb-4" placeholder="login">
         <input name="email" type="email" class="form-control mb-4" placeholder="email">
         <input name="password" type="text" class="form-control mb-4" placeholder="password">

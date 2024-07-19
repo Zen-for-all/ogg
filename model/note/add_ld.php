@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'connect.php';
+require '../connect.php';
 
 // Get $_POST parameters
 $date = date("d.m.y", strtotime($_POST['date']));

@@ -21,31 +21,31 @@ if (isset($_SESSION['userid'])) {
   if (isset($_GET['page']) && $_GET['page'] === 'journal') {
     // journal page
     $title = 'Днвник сновидений';
-    require 'view/pages/journal.php';
+    require 'view/pages/note/journal.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'location') {
     // locations page
     $title = 'Локации';
-    require 'view/pages/location.php';
+    require 'view/pages/note/location.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'settings') {
     // settings page
     $title = 'Настройки';
-    require 'view/pages/settings.php';
+    require 'view/pages/note/settings.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'user_delete') {
     // delete user page
     $title = 'Удаление аккаунта';
-    require 'view/pages/delete_user_page.php';
+    require 'view/pages/note/delete_user_page.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'ld_delete') {
     // delete ld page
     $title = 'Удаление записей';
-    require 'view/pages/delete_ld_page.php';
+    require 'view/pages/note/delete_ld_page.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'location_delete') {
     // delete locations page
     $title = 'Удаление локаций';
-    require 'view/pages/delete_location_page.php';
+    require 'view/pages/note/delete_location_page.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'ld') {
     // Ld page
     $title = 'ОС';
-    require 'view/pages/ld_page.php';
+    require 'view/pages/note/ld_page.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'net') {
     // NET page
     $title = 'NET';
@@ -53,17 +53,17 @@ if (isset($_SESSION['userid'])) {
   } else {
     // main page
     $title = 'Главная';
-    require 'view/parts/main.php';
+    require 'view/pages/note/main.php';
   }
 } else {
   if (isset($_GET['page']) && $_GET['page'] === 'signing') {
     // register page
     $title = 'Регистрация';
-    require 'view/pages/register.php';
+    require 'view/pages/note/register.php';
   } else {
     // enter page
     $title = 'Вход';
-    require 'view/pages/enter.php';
+    require 'view/pages/note/enter.php';
   }
 }
 

@@ -1,8 +1,8 @@
 <?php
 if ($locationValue == false) {
-  echo '<form action="../../model/add_location.php" method="post">';
+  echo '<form action="model/note/add_location.php" method="post">';
 } else {
-  echo '<form action="../../model/edit_location.php" method="post">';
+  echo '<form action="model/note/edit_location.php" method="post">';
   echo '<input type="hidden" name="id" value="' . $locationValue . '">';
 }
 ?>

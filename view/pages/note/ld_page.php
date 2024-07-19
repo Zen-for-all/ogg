@@ -116,7 +116,7 @@
   <div class="edit_ld_form hide mt-5">
     <h2>Редактировать запись:</h2>
 
-    <?php include 'view/parts/ld_add.php'; ?>
+    <?php include 'view/parts/note/ld_add.php'; ?>
 
   </div>
 
@@ -128,7 +128,7 @@
 
   <!-- button for delete ld -->
   <div class="delete_ld show mb-5">
-    <form action="../../model/delete_ld.php" method="post">
+    <form action="model/note/delete_ld.php" method="post">
       <input type="hidden" name="delete" value="<?=$ldValue?>">
       <input type="submit" value="Удалить" class="btn btn-outline-danger">
     </form>

@@ -1,5 +1,5 @@
 <section class="container">
-  <?php include 'view/parts/location_list.php'; ?>
+  <?php include 'view/parts/note/location_list.php'; ?>
 
   <a href="#add-location-form" class="btn btn-outline-success btn_show mt-3 me-3" id="add-location-form">Добавить локацию</a>
 
@@ -8,7 +8,7 @@
     <?php
     unset($locationValue);
     $locationValue = $locationTitle = $locationText = false;
-    include 'view/parts/location_add.php';
+    include 'view/parts/note/location_add.php';
     ?>
   </div>
 

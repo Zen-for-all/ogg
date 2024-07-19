@@ -1,6 +1,6 @@
 <section class="container">
-  <?php include 'view/parts/ld_list.php'; ?>
-  <?php include 'view/parts/pagination.php'; ?>
+  <?php include 'view/parts/note/ld_list.php'; ?>
+  <?php include 'view/parts/note/pagination.php'; ?>
 
   <a href="#add-ld-form" class="btn btn-outline-success btn_show mt-3 me-3" id="add-ld-form">Добавить запись</a>
 
@@ -10,7 +10,7 @@
 
       <?php
       $ldValue = $ldDate = $ldTime = $ldDuration = $locationId = $ldQuality = $ldInterest = $ldText = $ldNotice = false;
-      include 'view/parts/ld_add.php';
+      include 'view/parts/note/ld_add.php';
       ?>
 
     </div>

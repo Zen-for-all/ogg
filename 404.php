@@ -20,7 +20,7 @@ if (isset($_SESSION['userid'])) {
   <?php
 } else {
   $title = 'Вход';
-  require 'view/pages/enter.php';
+  require 'view/pages/note/enter.php';
 }
 
 include 'view/parts/footer.php';
