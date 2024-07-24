@@ -48,8 +48,12 @@ if (isset($_SESSION['userid'])) {
     require 'view/pages/note/ld_page.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'net') {
     // NET page
-    $title = 'NET';
-    require 'view/pages/net/net_page.php';
+    if (isset($_GET['net']) && $_GET['net'] === '1') {
+
+    } else {
+      $title = 'Profile';
+      require 'view/pages/net/net_page.php';
+    }
   } else {
     // main page
     $title = 'Главная';
