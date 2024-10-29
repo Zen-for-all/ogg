@@ -10,6 +10,7 @@ class Ld
   public $interest;
   public $method;
   public $text;
+  public $public_text;
   public $notice;
   public $user;
 
@@ -32,6 +33,7 @@ class Ld
     $this->interest = $allInfo['interest'];
     $this->method = $allInfo['method'];
     $this->text = $allInfo['text'];
+    $this->public_text = $allInfo['public_text'];
     $this->notice = $allInfo['notice'];
     $this->user = $allInfo['user'];
   }

@@ -91,6 +91,12 @@ if ($ldValue == false) {
     <p>Заметки</p>
     <textarea name="notice" class="form-control" rows="3"><?php if ($ldNotice != false) { echo $ldNotice; } ?></textarea>
   </div>
+
+  <div class="col-md-12 mb-4">
+    <p>Публичное описание</p>
+    <textarea name="public_text" class="form-control" rows="6"><?php if ($ldPublicText != false) { echo $ldPublicText; } ?></textarea>
+    <br>
+  </div>
 </div>
 
 <input type="submit" class="btn btn-outline-success me-3">

@@ -12,10 +12,11 @@ $interest = $_POST['interest'];
 $method = $_POST['method'];
 $text = trim(htmlentities($_POST['text']));
 $notice = trim(htmlentities($_POST['notice']));
+$public_text = trim(htmlentities($_POST['public_text']));
 $user = $_SESSION['userid'];
 
 // Add new learning and development entry
-$setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `notice`, `user`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$notice', '$user')");
+$setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `public_text`, `notice`, `user`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$public_text', '$notice', '$user')");
 
 // Get all user info from user ID
 $result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");

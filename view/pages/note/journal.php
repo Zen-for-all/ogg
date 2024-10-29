@@ -9,7 +9,7 @@
     <div class="">
 
       <?php
-      $ldValue = $ldDate = $ldTime = $ldDuration = $locationId = $ldQuality = $ldInterest = $ldText = $ldNotice = false;
+      $ldValue = $ldDate = $ldTime = $ldDuration = $locationId = $ldQuality = $ldInterest = $ldText = $ldNotice = $ldPublicText = false;
       include 'view/parts/note/ld_add.php';
       ?>
 

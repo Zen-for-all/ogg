@@ -59,6 +59,12 @@
   } else {
     $ldNotice = false;
   }
+
+  if ($ld->public_text != 0) {
+      $ldPublicText = $ld->public_text;
+  } else {
+      $ldPublicText = false;
+  }
   ?>
 
   <div class="">
@@ -107,6 +113,13 @@
       echo '<br>';
       echo 'Заметки:<br>';
       echo $ldNotice;
+      echo '<br>';
+    }
+
+    if ($ldPublicText != false) {
+      echo '<br>';
+      echo 'Публичное описание:<br>';
+      echo $ldPublicText;
       echo '<br>';
     }
     ?>

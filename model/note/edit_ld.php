@@ -13,6 +13,7 @@ $interest = $_POST['interest'];
 $method = $_POST['method'];
 $text = trim(htmlentities($_POST['text']));
 $notice = trim(htmlentities($_POST['notice']));
+$public_text = trim(htmlentities($_POST['public_text']));
 $user = $_SESSION['userid'];
 
 // update ld
@@ -29,6 +30,7 @@ if (mysqli_num_rows($checkExistingRecord) > 0) {
         `method` = '$method',
         `text` = '$text',
         `notice` = '$notice',
+        `public_text` = '$public_text',
         `user` = '$user'
         WHERE `id` = '$id'");
 }
