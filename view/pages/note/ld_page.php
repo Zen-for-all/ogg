@@ -68,7 +68,13 @@
 
   $ldPublish = $ld->publish;
 
-  $hashtags = json_decode($ld->hashtags, true);
+
+
+  if (!empty($ld->hashtags)) {
+    $hashtags = json_decode($ld->hashtags, true);
+  } else {
+    $hashtags = false;
+  }
   ?>
 
   <div class="">
@@ -120,7 +126,7 @@
       echo '<br>';
     }
 
-    if (!empty($hashtags)) {
+    if ($hashtags!= false) {
       echo '<br>';
       echo 'Хэштеги:<br>';
       foreach ($hashtags as $hashtag) {
@@ -132,7 +138,7 @@
     if ($ldPublicText != false) {
       echo '<br>';
       echo 'Публичное описание:<br>';
-      echo $ldPublicText;
+      echo html_entity_decode($ldPublicText);
       echo '<br>';
     }
 

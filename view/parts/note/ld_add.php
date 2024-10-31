@@ -126,3 +126,16 @@ if ($ldValue == false) {
 
 <?php unset($ldDate, $ldTime, $ldDuration, $locationId, $locationTitle, $ldQuality, $ldInterest, $ldMethod, $ldText, $ldNotice); ?>
 </form>
+
+<script src="view/js/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea[name="public_text"]',
+    menubar: false,
+    //plugins: 'lists link image table',
+    plugins: 'lists link image',
+    //toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter | bullist numlist',
+    height: 400
+  });
+</script>
