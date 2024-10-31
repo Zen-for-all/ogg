@@ -177,6 +177,12 @@
         }
 
         $ldPublish = $ld->publish;
+
+        if (!empty($ld->hashtags)) {
+          $hashtags = json_decode($ld->hashtags, true);
+        } else {
+          $hashtags = false;
+        }
         ?>
 
         <div class="col-xxl-3 col-lg-4 col-md-6 mb-5">
@@ -209,6 +215,18 @@
 
             <?php if ($ldNotice != false) { ?>
               <span><b>Заметки:</b> <?=excerpt($ldNotice, 200)?></span><br>
+            <? } ?>
+
+            <?php if (!empty($hashtags)) { ?>
+              <span><b>Хэштеги:</b></span>
+              <div>
+                <?php
+                foreach ($hashtags as $hashtag) {
+                  echo '<a href="#">#' . $hashtag . '</a> | ';
+                }
+                echo '<br><br>';
+                ?>
+              </div>
             <? } ?>
 
             <?php if ($ldPublish == 1) { ?>

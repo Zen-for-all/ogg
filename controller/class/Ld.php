@@ -10,6 +10,7 @@ class Ld
   public $interest;
   public $method;
   public $text;
+  public $hashtags;
   public $public_text;
   public $publish;
   public $notice;
@@ -33,6 +34,7 @@ class Ld
     $this->quality = $allInfo['quality'];
     $this->interest = $allInfo['interest'];
     $this->method = $allInfo['method'];
+    $this->hashtags = $allInfo['hashtags'];
     $this->text = $allInfo['text'];
     $this->public_text = $allInfo['public_text'];
     $this->publish = $allInfo['publish'];

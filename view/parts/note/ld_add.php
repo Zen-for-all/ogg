@@ -92,6 +92,22 @@ if ($ldValue == false) {
     <textarea name="notice" class="form-control" rows="3"><?php if ($ldNotice != false) { echo $ldNotice; } ?></textarea>
   </div>
 
+  <div class="col-md-12">
+    <p>Хэштеги</p>
+
+    <div class="row">
+      <?php
+      for ($i = 1; $i <= 4; $i++) {
+        if (isset($hashtags[$i-1])) {
+          echo '<div class="col-md-3 mb-4"><input type="text" class="form-control" name="tag_' . $i . '" value="' . $hashtags[$i-1] . '"></div>';
+        } else {
+          echo '<div class="col-md-3 mb-4"><input type="text" class="form-control" name="tag_' . $i . '"></div>';
+        }
+      }
+      ?>
+    </div>
+  </div>
+
   <div class="col-md-12 mb-4">
     <p>Публичное описание</p>
     <textarea name="public_text" class="form-control" rows="6"><?php if ($ldPublicText != false) { echo $ldPublicText; } ?></textarea>

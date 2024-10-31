@@ -13,7 +13,17 @@ $interest = $_POST['interest'];
 $method = $_POST['method'];
 $text = trim(htmlentities($_POST['text']));
 $notice = trim(htmlentities($_POST['notice']));
+
+$hashtags = array_filter([
+  trim(htmlentities($_POST['tag_1'])),
+  trim(htmlentities($_POST['tag_2'])),
+  trim(htmlentities($_POST['tag_3'])),
+  trim(htmlentities($_POST['tag_4']))
+]);
+$jsonHashtags = json_encode($hashtags);
+
 $public_text = trim(htmlentities($_POST['public_text']));
+
 if (isset($_POST['publish']) && $_POST['publish'] === 'on') {
   $publish = 1;
 } else {
@@ -36,6 +46,7 @@ if (mysqli_num_rows($checkExistingRecord) > 0) {
         `method` = '$method',
         `text` = '$text',
         `notice` = '$notice',
+        `hashtags` = '$jsonHashtags',
         `public_text` = '$public_text',
         `publish` = '$publish',
         `user` = '$user'

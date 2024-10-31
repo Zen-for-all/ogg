@@ -11,13 +11,29 @@ $quality = $_POST['quality'];
 $interest = $_POST['interest'];
 $method = $_POST['method'];
 $text = trim(htmlentities($_POST['text']));
-$publish = trim(htmlentities($_POST['publish']));
+
 $notice = trim(htmlentities($_POST['notice']));
+
+$hashtags = array_filter([
+  trim(htmlentities($_POST['tag_1'])),
+  trim(htmlentities($_POST['tag_2'])),
+  trim(htmlentities($_POST['tag_3'])),
+  trim(htmlentities($_POST['tag_4']))
+]);
+$jsonHashtags = json_encode($hashtags);
+
 $public_text = trim(htmlentities($_POST['public_text']));
+
+if (isset($_POST['publish']) && $_POST['publish'] === 'on') {
+  $publish = 1;
+} else {
+  $publish = 0;
+}
+
 $user = $_SESSION['userid'];
 
 // Add new learning and development entry
-$setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `public_text`, `publish`, `notice`, `user`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$public_text', '$publish', '$notice', '$user')");
+$setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `hashtags`, `public_text`, `publish`, `notice`, `user`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$jsonHashtags', '$public_text', '$publish', '$notice', '$user')");
 
 // Get all user info from user ID
 $result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");

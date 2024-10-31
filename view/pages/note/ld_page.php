@@ -67,6 +67,8 @@
   }
 
   $ldPublish = $ld->publish;
+
+  $hashtags = json_decode($ld->hashtags, true);
   ?>
 
   <div class="">
@@ -115,6 +117,15 @@
       echo '<br>';
       echo 'Заметки:<br>';
       echo $ldNotice;
+      echo '<br>';
+    }
+
+    if (!empty($hashtags)) {
+      echo '<br>';
+      echo 'Хэштеги:<br>';
+      foreach ($hashtags as $hashtag) {
+        echo '<a href="#">#' . $hashtag . '</a> | ';
+      }
       echo '<br>';
     }
 
