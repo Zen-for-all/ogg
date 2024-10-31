@@ -18,9 +18,12 @@ if (isset($_SESSION['userid'])) {
   // header
   include 'view/parts/header.php';
 
-  if (isset($_GET['page']) && $_GET['page'] === 'journal') {
+  if (
+    isset($_GET['page']) && $_GET['page'] === 'journal' ||
+    isset($_GET['search'])
+  ) {
     // journal page
-    $title = 'Днвник сновидений';
+    $title = 'Дневник сновидений';
     require 'view/pages/note/journal.php';
   } elseif (isset($_GET['page']) && $_GET['page'] === 'location') {
     // locations page

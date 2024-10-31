@@ -8,7 +8,15 @@
 
 <?php
 if (isset($_GET['hashtag'])) {
-  $hashtag_link = '&hashtag=' . $_GET['hashtag'];
+  $hashtag_title = $_GET['hashtag'];
+  $hashtag_link = '&hashtag=' . $hashtag_title;
+} else {
+  $hashtag_link = '';
+}
+
+if (isset($_GET['search'])) {
+  $hashtag_title = $_GET['search'];
+  $hashtag_link = '&hashtag=' . $hashtag_title;
 } else {
   $hashtag_link = '';
 }
@@ -16,8 +24,19 @@ if (isset($_GET['hashtag'])) {
 
 <h2 class="pb-5"><?=$title?></h2>
 
-<?php if (isset($_GET['hashtag'])) { ?>
-  <h3>#<?=$_GET['hashtag']?> <a href="/?page=journal">(x)</a></h3><br>
+<div class="row">
+  <div class="col-md-6">
+    <p>Найти по хэштегу</p>
+    <form action="/?page=journal" method="get">
+      <input type="text" class="form-control no_space" name="search" value="<?php if (isset($hashtag_title)) { echo $hashtag_title; } ?>">
+      <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
+    </form>
+  </div>
+</div>
+<br><br>
+
+<?php if (isset($hashtag_title)) { ?>
+  <h3>#<?=$hashtag_title?> <a href="/?page=journal">(x)</a></h3><br>
 <?php } ?>
 
 <div class="container-fluid gx-0">
@@ -83,11 +102,11 @@ if (isset($_GET['hashtag'])) {
       // Create Ld objects and fill them with the fetched information
       foreach ($ldArray as $id) {
         // Add the Ld object to the array
-        if (isset($_GET['hashtag'])) {
+        if (isset($hashtag_title)) {
           $ld = new Ld($id);
           if ($ld->hashtags != false) {
             $hashtags = json_decode($ld->hashtags, true);
-            $hashtag = $_GET['hashtag'];
+            $hashtag = $hashtag_title;
             if (in_array($hashtag, $hashtags)) {
               $ldObjects[] = new Ld($id);
             }
