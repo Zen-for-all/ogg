@@ -130,7 +130,7 @@
       echo '<br>';
       echo 'Хэштеги:<br>';
       foreach ($hashtags as $hashtag) {
-        echo '<a href="#">#' . $hashtag . '</a> | ';
+        echo '<a href="/?page=journal&hashtag=' . $hashtag . '">#' . $hashtag . '</a> | ';
       }
       echo '<br>';
     }

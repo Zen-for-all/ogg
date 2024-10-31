@@ -20,7 +20,7 @@ $hashtags = array_filter([
   trim(htmlentities($_POST['tag_3'])),
   trim(htmlentities($_POST['tag_4']))
 ]);
-$jsonHashtags = json_encode($hashtags);
+$jsonHashtags = json_encode($hashtags, JSON_UNESCAPED_UNICODE);
 
 $public_text = trim(htmlentities($_POST['public_text']));
 

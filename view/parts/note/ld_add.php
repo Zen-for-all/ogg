@@ -99,9 +99,9 @@ if ($ldValue == false) {
       <?php
       for ($i = 1; $i <= 4; $i++) {
         if (isset($hashtags[$i-1])) {
-          echo '<div class="col-md-3 mb-4"><input type="text" class="form-control" name="tag_' . $i . '" value="' . $hashtags[$i-1] . '"></div>';
+          echo '<div class="col-md-3 mb-4"><input type="text" class="form-control no_space" name="tag_' . $i . '" value="' . $hashtags[$i-1] . '"></div>';
         } else {
-          echo '<div class="col-md-3 mb-4"><input type="text" class="form-control" name="tag_' . $i . '"></div>';
+          echo '<div class="col-md-3 mb-4"><input type="text" class="form-control no_space" name="tag_' . $i . '"></div>';
         }
       }
       ?>
@@ -129,6 +129,7 @@ if ($ldValue == false) {
 
 <script src="view/js/tinymce/tinymce.min.js"></script>
 <script>
+  // add tinymce
   tinymce.init({
     selector: 'textarea[name="public_text"]',
     menubar: false,
@@ -137,5 +138,22 @@ if ($ldValue == false) {
     //toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
     toolbar: 'undo redo | bold italic | alignleft aligncenter | bullist numlist',
     height: 400
+  });
+
+  // delete spaces to no_space input
+  document.addEventListener("DOMContentLoaded", function() {
+    const noSpaceInputs = document.querySelectorAll("input.no_space[type='text']");
+    noSpaceInputs.forEach(input => {
+      // Prevent typing spaces
+      input.addEventListener("keypress", function(event) {
+        if (event.key === " ") {
+          event.preventDefault();
+        }
+      });
+      // Remove spaces after any change
+      input.addEventListener("input", function() {
+        input.value = input.value.replace(/\s+/g, ""); // Remove all spaces
+      });
+    });
   });
 </script>

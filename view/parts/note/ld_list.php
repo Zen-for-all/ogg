@@ -6,7 +6,19 @@
  */
 ?>
 
+<?php
+if (isset($_GET['hashtag'])) {
+  $hashtag_link = '&hashtag=' . $_GET['hashtag'];
+} else {
+  $hashtag_link = '';
+}
+?>
+
 <h2 class="pb-5"><?=$title?></h2>
+
+<?php if (isset($_GET['hashtag'])) { ?>
+  <h3>#<?=$_GET['hashtag']?> <a href="/?page=journal">(x)</a></h3><br>
+<?php } ?>
 
 <div class="container-fluid gx-0">
   <h4 class="mb-2">Сортировка:</h4>
@@ -14,44 +26,44 @@
   <div class="filters mb-4">
     <div class="filter border mb-2">
       <div class="rl">По дате:</div>
-      <a class="db rl" href="/?page=journal&sort=date">+</a>
-      <a class="db rl" href="/?page=journal&sort=date&reverse=1">-</a>
+      <a class="db rl" href="/?page=journal&sort=date<?=$hashtag_link?>">+</a>
+      <a class="db rl" href="/?page=journal&sort=date&reverse=1<?=$hashtag_link?>">-</a>
     </div>
 
     <div class="filter border mb-2">
       <div class="rl">По времени:</div>
-      <a class="db rl" href="/?page=journal&sort=time">+</a>
-      <a class="db rl" href="/?page=journal&sort=time&reverse=1">-</a>
+      <a class="db rl" href="/?page=journal&sort=time<?=$hashtag_link?>">+</a>
+      <a class="db rl" href="/?page=journal&sort=time&reverse=1<?=$hashtag_link?>">-</a>
     </div>
 
     <div class="filter border mb-2">
       <div class="rl">По длительности:</div>
-      <a class="db rl" href="/?page=journal&sort=duration">+</a>
-      <a class="db rl" href="/?page=journal&sort=duration&reverse=1">-</a>
+      <a class="db rl" href="/?page=journal&sort=duration<?=$hashtag_link?>">+</a>
+      <a class="db rl" href="/?page=journal&sort=duration&reverse=1<?=$hashtag_link?>">-</a>
     </div>
 
     <div class="filter border mb-2">
       <div class="rl">По качеству:</div>
-      <a class="db rl" href="/?page=journal&sort=quality">+</a>
-      <a class="db rl" href="/?page=journal&sort=quality&reverse=1">-</a>
+      <a class="db rl" href="/?page=journal&sort=quality<?=$hashtag_link?>">+</a>
+      <a class="db rl" href="/?page=journal&sort=quality&reverse=1<?=$hashtag_link?>">-</a>
     </div>
 
     <div class="filter border mb-2">
       <div class="rl">По интересности:</div>
-      <a class="db rl" href="/?page=journal&sort=interest">+</a>
-      <a class="db rl" href="/?page=journal&sort=interest&reverse=1">-</a>
+      <a class="db rl" href="/?page=journal&sort=interest<?=$hashtag_link?>">+</a>
+      <a class="db rl" href="/?page=journal&sort=interest&reverse=1<?=$hashtag_link?>">-</a>
     </div>
 
     <div class="filter border mb-2">
       <div class="rl">По локации:</div>
-      <a class="db rl" href="/?page=journal&sort=location">+</a>
-      <a class="db rl" href="/?page=journal&sort=location&reverse=1">-</a>
+      <a class="db rl" href="/?page=journal&sort=location<?=$hashtag_link?>">+</a>
+      <a class="db rl" href="/?page=journal&sort=location&reverse=1<?=$hashtag_link?>">-</a>
     </div>
 
     <div class="filter border mb-2">
       <div class="rl">По входу:</div>
-      <a class="db rl" href="/?page=journal&sort=method">+</a>
-      <a class="db rl" href="/?page=journal&sort=method&reverse=1">-</a>
+      <a class="db rl" href="/?page=journal&sort=method<?=$hashtag_link?>">+</a>
+      <a class="db rl" href="/?page=journal&sort=method&reverse=1<?=$hashtag_link?>">-</a>
     </div>
   </div>
 
@@ -71,7 +83,18 @@
       // Create Ld objects and fill them with the fetched information
       foreach ($ldArray as $id) {
         // Add the Ld object to the array
-        $ldObjects[] = new Ld($id);
+        if (isset($_GET['hashtag'])) {
+          $ld = new Ld($id);
+          if ($ld->hashtags != false) {
+            $hashtags = json_decode($ld->hashtags, true);
+            $hashtag = $_GET['hashtag'];
+            if (in_array($hashtag, $hashtags)) {
+              $ldObjects[] = new Ld($id);
+            }
+          }
+        } else {
+          $ldObjects[] = new Ld($id);
+        }
       }
 
       // Sort the array of Ld objects by attribute
@@ -222,7 +245,7 @@
               <div>
                 <?php
                 foreach ($hashtags as $hashtag) {
-                  echo '<a href="#">#' . $hashtag . '</a> | ';
+                  echo '<a href="/?page=journal&hashtag=' . $hashtag . '">#' . $hashtag . '</a> | ';
                 }
                 echo '<br><br>';
                 ?>
