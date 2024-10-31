@@ -175,6 +175,8 @@
         } else {
           $ldNotice = false;
         }
+
+        $ldPublish = $ld->publish;
         ?>
 
         <div class="col-xxl-3 col-lg-4 col-md-6 mb-5">
@@ -198,17 +200,19 @@
             <? } ?>
 
             <?php if ($ldMethod != false) { ?>
-              <span>Метод входа: <b><?=$ldMethod?></b></span>
+              <span>Метод входа: <b><?=$ldMethod?></b></span><br>
             <? } ?>
-
-            <br>
 
             <?php if ($ldText != false) { ?>
               <span><b>Описание:</b> <?=excerpt($ldText, 300)?></span><br>
             <? } ?>
 
             <?php if ($ldNotice != false) { ?>
-              <span><b>Заметки:</b> <?=excerpt($ldNotice, 200)?></span>
+              <span><b>Заметки:</b> <?=excerpt($ldNotice, 200)?></span><br>
+            <? } ?>
+
+            <?php if ($ldPublish == 1) { ?>
+              <span><?='Опубликовано'?></span>
             <? } ?>
 
             <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=ld&id=<?=$ld->id?>">Подробнее</a>

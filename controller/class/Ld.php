@@ -11,6 +11,7 @@ class Ld
   public $method;
   public $text;
   public $public_text;
+  public $publish;
   public $notice;
   public $user;
 
@@ -34,6 +35,7 @@ class Ld
     $this->method = $allInfo['method'];
     $this->text = $allInfo['text'];
     $this->public_text = $allInfo['public_text'];
+    $this->publish = $allInfo['publish'];
     $this->notice = $allInfo['notice'];
     $this->user = $allInfo['user'];
   }

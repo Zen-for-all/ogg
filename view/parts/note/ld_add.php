@@ -97,6 +97,13 @@ if ($ldValue == false) {
     <textarea name="public_text" class="form-control" rows="6"><?php if ($ldPublicText != false) { echo $ldPublicText; } ?></textarea>
     <br>
   </div>
+
+  <div class="col-md-12 mb-4">
+    <p>Публикация</p>
+    <input type="checkbox" id="publish" name="publish" <?php if ($ldPublish == 1) { echo 'checked'; } ?> />
+    <label for="publish">Опубликовать</label>
+    <br>
+  </div>
 </div>
 
 <input type="submit" class="btn btn-outline-success me-3">

@@ -14,6 +14,12 @@ $method = $_POST['method'];
 $text = trim(htmlentities($_POST['text']));
 $notice = trim(htmlentities($_POST['notice']));
 $public_text = trim(htmlentities($_POST['public_text']));
+if (isset($_POST['publish']) && $_POST['publish'] === 'on') {
+  $publish = 1;
+} else {
+  $publish = 0;
+}
+
 $user = $_SESSION['userid'];
 
 // update ld
@@ -31,6 +37,7 @@ if (mysqli_num_rows($checkExistingRecord) > 0) {
         `text` = '$text',
         `notice` = '$notice',
         `public_text` = '$public_text',
+        `publish` = '$publish',
         `user` = '$user'
         WHERE `id` = '$id'");
 }

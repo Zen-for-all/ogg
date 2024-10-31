@@ -61,10 +61,12 @@
   }
 
   if ($ld->public_text != 0) {
-      $ldPublicText = $ld->public_text;
+    $ldPublicText = $ld->public_text;
   } else {
-      $ldPublicText = false;
+    $ldPublicText = false;
   }
+
+  $ldPublish = $ld->publish;
   ?>
 
   <div class="">
@@ -122,6 +124,14 @@
       echo $ldPublicText;
       echo '<br>';
     }
+
+    echo '<br>';
+    if ($ldPublish == 1) {
+      echo 'Опубликовано';
+    } else {
+      echo 'Черновик';
+    }
+    echo '<br>';
     ?>
 
   </div>
