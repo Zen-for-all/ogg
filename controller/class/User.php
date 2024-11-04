@@ -8,6 +8,7 @@ class User
   public $date;
   public $ldlist;
   public $ldlocations;
+  public $grouplist;
   public $anonym;
   public $achieves;
 
@@ -28,6 +29,7 @@ class User
     $this->date = $mainInfo['date'];
     $this->ldlist = $mainInfo['ldlist'];
     $this->ldlocations = $mainInfo['ldlocations'];
+    $this->grouplist = $mainInfo['grouplist'];
     $this->anonym = $mainInfo['anonym'];
     $this->achieves = $mainInfo['achieves'];
   }

@@ -1,5 +1,3 @@
-<section class="container">
-  <h3 class="mb-5">Подтвердите, что желаете удалить свой аккаунт навсегда.</h3>
-  <a class="btn btn-outline-secondary me-3" href='model/delete_user.php'>Подтверждаю</a>
-  <a class="btn btn-outline-secondary" href="javascript:history.back()">Отменить</a>
-</section>
+<h3 class="mb-5">Подтвердите, что желаете удалить свой аккаунт навсегда.</h3>
+<a class="btn btn-outline-secondary me-3" href='model/delete_user.php'>Подтверждаю</a>
+<a class="btn btn-outline-secondary" href="javascript:history.back()">Отменить</a>

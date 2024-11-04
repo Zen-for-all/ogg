@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var $user
+ * @var $title
+ */
+?>
+
 <h2 class="pb-5"><?=$title?></h2>
 
 <div class="row">

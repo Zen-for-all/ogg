@@ -3,6 +3,7 @@ require_once 'setting.php';
 require_once 'class/User.php';
 require_once 'class/Ld.php';
 require_once 'class/Location.php';
+require_once 'class/Group.php';
 
 // Debug function
 function de($str) {
@@ -104,6 +105,19 @@ function getAllLd() {
   }
 
   return $ldListObjects;
+}
+
+// Get all Groups
+function getAllGroups() {
+  global $connect;
+  $result = mysqli_query($connect, "SELECT id FROM `groups`");
+  $groupsObjects = [];
+
+  while ($row = mysqli_fetch_assoc($result)) {
+    $groupsObjects[] = new Group($row['id']);
+  }
+
+  return $groupsObjects;
 }
 
 // Get the number of users

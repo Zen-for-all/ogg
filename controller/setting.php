@@ -13,3 +13,18 @@ $enterMethod = [
 
 // post on list page
 $ld_on_page = 12;
+
+// group mission
+$groupMissions = [
+  1 => 'Общение',
+  2 => 'Практика',
+  3 => 'Живые встречи'
+];
+
+// group chats
+$groupChat = [
+  'telegram',
+  'facebook',
+  'discord',
+  'whatsapp'
+];

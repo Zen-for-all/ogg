@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// head
+include 'view/parts/head.php';
+
 if (isset($_SESSION['userid'])) {
   ?>
 

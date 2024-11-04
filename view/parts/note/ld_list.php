@@ -233,31 +233,31 @@ if (isset($_GET['search'])) {
 
             <?php if ($ldDuration != false) { ?>
               <span>Длительность: <b><?=$ldDuration?></b></span>
-            <? } ?>
+            <?php } ?>
 
             <?php if ($locationTitle != false) { ?>
               <span>Локация: <b><?=$locationTitle?></b></span>
-            <? } ?>
+            <?php } ?>
 
             <?php if ($ldQuality != false) { ?>
               <span>Качество: <b><?=$ldQuality?></b></span>
-            <? } ?>
+            <?php } ?>
 
             <?php if ($ldInterest != false) { ?>
               <span>Интерес: <b><?=$ldInterest?></b></span>
-            <? } ?>
+            <?php } ?>
 
             <?php if ($ldMethod != false) { ?>
               <span>Метод входа: <b><?=$ldMethod?></b></span><br>
-            <? } ?>
+            <?php } ?>
 
             <?php if ($ldText != false) { ?>
               <span><b>Описание:</b> <?=excerpt($ldText, 300)?></span><br>
-            <? } ?>
+            <?php } ?>
 
             <?php if ($ldNotice != false) { ?>
               <span><b>Заметки:</b> <?=excerpt($ldNotice, 200)?></span><br>
-            <? } ?>
+            <?php } ?>
 
             <?php if (!empty($hashtags)) { ?>
               <span><b>Хэштеги:</b></span>
@@ -269,11 +269,11 @@ if (isset($_GET['search'])) {
                 echo '<br><br>';
                 ?>
               </div>
-            <? } ?>
+            <?php } ?>
 
             <?php if ($ldPublish == 1) { ?>
               <span><?='Опубликовано'?></span>
-            <? } ?>
+            <?php } ?>
 
             <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=ld&id=<?=$ld->id?>">Подробнее</a>
           </div>

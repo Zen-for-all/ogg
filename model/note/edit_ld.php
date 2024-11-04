@@ -1,8 +1,15 @@
 <?php
+/**
+ * @var $connect
+ */
+?>
+
+<?php
 session_start();
 require '../connect.php';
 
-// get $_POST params
+$user = $_SESSION['userid'];
+// get $_POST parameters
 $id = $_POST['id'];
 $date = date("d.m.y", strtotime($_POST['date']));
 $time = $_POST['time'];
@@ -29,8 +36,6 @@ if (isset($_POST['publish']) && $_POST['publish'] === 'on') {
 } else {
   $publish = 0;
 }
-
-$user = $_SESSION['userid'];
 
 // update ld
 $checkExistingRecord = mysqli_query($connect, "SELECT * FROM `ld` WHERE `id` = '$id'");

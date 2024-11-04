@@ -70,7 +70,7 @@ foreach ($array_ld as $ld) {
     $method = 0;
   }
 
-  $text = trim(htmlspecialchars($ld[7], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+  $text = isset($ld[7]) ? trim(htmlspecialchars($ld[7], ENT_QUOTES | ENT_HTML5, 'UTF-8')) : '';
 
   // Check for duplicates in the database
   $duplicateCheckQuery = "SELECT COUNT(*) AS count FROM `ld` WHERE `date` = '$date' AND `time` = '$time' AND `duration` = '$duration' AND `quality` = '$quality' AND `interest` = '$interest' AND `method` = '$method' AND `text` = '$text'";
@@ -82,7 +82,7 @@ foreach ($array_ld as $ld) {
     continue;
   }
 
-  $notice = trim(htmlspecialchars($ld[8], ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+  $notice = isset($ld[11]) ? trim(htmlspecialchars($ld[11], ENT_QUOTES | ENT_HTML5, 'UTF-8')) : '';
 
   // add new ld
   $setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `notice`, `user`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$notice', '$user')");

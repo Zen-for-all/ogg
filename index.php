@@ -16,8 +16,8 @@ include 'view/parts/head.php';
 if (isset($_SESSION['userid'])) {
   $user = new User($_SESSION['userid']);
 
-  // header
-  include 'view/parts/header.php';
+  // net or note part
+  $net = false;
 
   // Determine which page to load based on the 'page' parameter
   if (isset($_GET['page'])) {
@@ -29,30 +29,39 @@ if (isset($_SESSION['userid'])) {
       'location',
       'settings',
       'user_delete',
-      'ld_delete',
+      'delete_ld_page',
       'location_delete',
       'ld'
     ];
 
     $valid_pages_net = [
       'net',
-      'groups'
+      'groups',
+      'group'
     ];
 
     if (in_array($page, $valid_pages)) {
-      // Load the corresponding page
+      $net = false;
+      $require_file =  "view/pages/note/{$page}.php";
+    } elseif (in_array($page, $valid_pages_net)) {
+      $net = true;
+      $require_file =  "view/pages/net/{$page}.php";
+    }
+
+    // header
+    include 'view/parts/header.php';
+
+    if (in_array($page, $valid_pages) || in_array($page, $valid_pages_net)) {
       $title = ucfirst($page); // Capitalize the title
-      require "view/pages/note/{$page}.php";
-    } else if (in_array($page, $valid_pages_net)) {
-      // Load the corresponding Net page
-      $title = ucfirst($page); // Capitalize the title
-      require "view/pages/net/{$page}.php";
+      require $require_file;
     } else {
       // If the page doesn't exist, set the status to 404
       header("HTTP/1.0 404 Not Found");
       require '404.php'; // Load 404 page
     }
   } else {
+    // header
+    include 'view/parts/header.php';
     // Load the main page if no specific page is requested
     $title = 'Главная';
     require 'view/pages/note/main.php';

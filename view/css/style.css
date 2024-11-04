@@ -165,10 +165,19 @@ html {
     font-size: 60%;
 }
 
-.logo-link-note {
+.logo-link {
     text-decoration: none;
+    color: #ccc;
 }
 
-.logo-link-net {
-    text-decoration: none;
+.logo-link:hover {
+    color: #0d6efd;
+}
+
+.logo-active.logo-link {
+    color: #0d6efd;
+}
+
+.group-active .card {
+    border: 1px solid darkgreen;
 }

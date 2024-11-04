@@ -116,7 +116,7 @@ if ($ldValue == false) {
 
   <div class="col-md-12 mb-4">
     <p>Публикация</p>
-    <input type="checkbox" id="publish" name="publish" <?php if ($ldPublish == 1) { echo 'checked'; } ?> />
+    <input type="checkbox" id="publish" name="publish" <?php if ($ldValue == true && $ldPublish == 1) { echo 'checked'; } ?> />
     <label for="publish">Опубликовать</label>
     <br>
   </div>

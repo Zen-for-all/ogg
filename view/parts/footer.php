@@ -1,3 +1,5 @@
+  </section>
+
   <?php if (isset($_SESSION['userid'])) { // user exist ?>
     <footer class="container-fluid bg-body-tertiary mt-5">
       <div class="container py-3">
