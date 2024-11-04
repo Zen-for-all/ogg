@@ -18,7 +18,7 @@
     </div>
 
     <div class="row justify-content-center">
-      <a class="link-success" href="/?page=signing">Зарегистрироваться</a>
+      <a class="link-success" href="/signing">Зарегистрироваться</a>
     </div>
   </section>
 </div>

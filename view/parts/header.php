@@ -4,7 +4,7 @@
       <div class="logo-text col gx-0 ms-2 me-1">Lucid</div>
       <div class="logo-switch col ms-0">
         <a href="/" class="logo-link-note row">NOTE</a>
-        <a href="/?page=net" class="logo-link-net row">NET</a>
+        <a href="/net" class="logo-link-net row">NET</a>
       </div>
     </div>
 

@@ -3,7 +3,7 @@ session_start();
 
 require_once 'model/connect.php';
 require_once 'controller/setting.php';
-require 'controller/functions.php';
+require_once 'controller/functions.php';
 
 if (!isset($_SESSION['userid']) && isset($_COOKIE['userid'])) {
   $_SESSION['userid'] = $_COOKIE['userid'];
@@ -12,63 +12,59 @@ if (!isset($_SESSION['userid']) && isset($_COOKIE['userid'])) {
 // head
 include 'view/parts/head.php';
 
+// Check if user is logged in
 if (isset($_SESSION['userid'])) {
   $user = new User($_SESSION['userid']);
 
   // header
   include 'view/parts/header.php';
 
-  if (
-    isset($_GET['page']) && $_GET['page'] === 'journal' ||
-    isset($_GET['search'])
-  ) {
-    // journal page
-    $title = 'Дневник сновидений';
-    require 'view/pages/note/journal.php';
-  } elseif (isset($_GET['page']) && $_GET['page'] === 'location') {
-    // locations page
-    $title = 'Локации';
-    require 'view/pages/note/location.php';
-  } elseif (isset($_GET['page']) && $_GET['page'] === 'settings') {
-    // settings page
-    $title = 'Настройки';
-    require 'view/pages/note/settings.php';
-  } elseif (isset($_GET['page']) && $_GET['page'] === 'user_delete') {
-    // delete user page
-    $title = 'Удаление аккаунта';
-    require 'view/pages/note/delete_user_page.php';
-  } elseif (isset($_GET['page']) && $_GET['page'] === 'ld_delete') {
-    // delete ld page
-    $title = 'Удаление записей';
-    require 'view/pages/note/delete_ld_page.php';
-  } elseif (isset($_GET['page']) && $_GET['page'] === 'location_delete') {
-    // delete locations page
-    $title = 'Удаление локаций';
-    require 'view/pages/note/delete_location_page.php';
-  } elseif (isset($_GET['page']) && $_GET['page'] === 'ld') {
-    // Ld page
-    $title = 'ОС';
-    require 'view/pages/note/ld_page.php';
-  } elseif (isset($_GET['page']) && $_GET['page'] === 'net') {
-    // NET page
-    if (isset($_GET['net']) && $_GET['net'] === '1') {
+  // Determine which page to load based on the 'page' parameter
+  if (isset($_GET['page'])) {
+    $page = $_GET['page'];
 
+    // List of valid pages
+    $valid_pages = [
+      'journal',
+      'location',
+      'settings',
+      'user_delete',
+      'ld_delete',
+      'location_delete',
+      'ld'
+    ];
+
+    $valid_pages_net = [
+      'net',
+      'groups'
+    ];
+
+    if (in_array($page, $valid_pages)) {
+      // Load the corresponding page
+      $title = ucfirst($page); // Capitalize the title
+      require "view/pages/note/{$page}.php";
+    } else if (in_array($page, $valid_pages_net)) {
+      // Load the corresponding Net page
+      $title = ucfirst($page); // Capitalize the title
+      require "view/pages/net/{$page}.php";
     } else {
-      $title = 'Profile';
-      require 'view/pages/net/net_page.php';
+      // If the page doesn't exist, set the status to 404
+      header("HTTP/1.0 404 Not Found");
+      require '404.php'; // Load 404 page
     }
   } else {
-    // main page
+    // Load the main page if no specific page is requested
     $title = 'Главная';
     require 'view/pages/note/main.php';
   }
 } else {
+  // User is not logged in, check for login or registration
   if (isset($_GET['page']) && $_GET['page'] === 'signing') {
-    // register page
+    // Register page
     $title = 'Регистрация';
     require 'view/pages/note/register.php';
   } else {
-    // enter page
+    // Login page
     $title = 'Вход';
     require 'view/pages/note/enter.php';
   }
