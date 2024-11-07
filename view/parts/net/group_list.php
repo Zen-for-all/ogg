@@ -4,6 +4,7 @@
  * @var $title
  * @var $groupMissions
  * @var $groupChat
+ * @var $groupOnPage
  */
 ?>
 
@@ -14,6 +15,22 @@
   <?php
   // Get groups
   $groupArray = getAllGroups();
+
+  // get current group list
+  $pages = ceil(count($groupArray) / $groupOnPage);
+  if (isset($_GET['p'])) {
+    $current_page = $_GET['p'];
+  } else {
+    $current_page = 1;
+  }
+
+  if (!isset($_GET['p']) || $_GET['p'] === 1) {
+    $groupArray = array_slice($groupArray, 0, $groupOnPage);
+  } else {
+    $start_group = $current_page * $groupOnPage - $groupOnPage;
+    $groupArray = array_slice($groupArray, $start_group, $groupOnPage);
+  }
+
   if (!empty($groupArray)) {
     foreach ($groupArray as $group) {
       $groupTitle = $group->title;

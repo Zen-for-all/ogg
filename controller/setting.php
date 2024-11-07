@@ -18,7 +18,7 @@ $ldOnPage = 12;
 $locationOnPage = 10;
 
 // post on groups page
-$groupOnPage = 2;
+$groupOnPage = 10;
 
 // group mission
 $groupMissions = [
