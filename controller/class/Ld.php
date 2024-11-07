@@ -19,26 +19,22 @@ class Ld
   function __construct(int $id)
   {
     $this->id = $id;
-    $this->getInfo();
+    $this->loadInfo();
   }
 
-  public function getInfo()
+  private function loadInfo()
   {
     global $connect;
-    $result = mysqli_query($connect, "SELECT * FROM `ld` WHERE `id` = {$this->id}");
-    $allInfo = mysqli_fetch_assoc($result);
-    $this->date = $allInfo['date'];
-    $this->time = $allInfo['time'];
-    $this->duration = $allInfo['duration'];
-    $this->location = $allInfo['location'];
-    $this->quality = $allInfo['quality'];
-    $this->interest = $allInfo['interest'];
-    $this->method = $allInfo['method'];
-    $this->hashtags = $allInfo['hashtags'];
-    $this->text = $allInfo['text'];
-    $this->public_text = $allInfo['public_text'];
-    $this->publish = $allInfo['publish'];
-    $this->notice = $allInfo['notice'];
-    $this->user = $allInfo['user'];
+    $query = "SELECT `date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, 
+                         `text`, `hashtags`, `public_text`, `publish`, `notice`, `user`
+                  FROM `ld` 
+                  WHERE `id` = {$this->id}";
+    $result = mysqli_query($connect, $query);
+
+    if ($result && $info = mysqli_fetch_assoc($result)) {
+      foreach ($info as $key => $value) {
+        $this->{$key} = $value;
+      }
+    }
   }
 }

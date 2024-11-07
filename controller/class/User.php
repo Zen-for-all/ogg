@@ -15,22 +15,22 @@ class User
   function __construct(int $id)
   {
     $this->id = $id;
-    $this->getInfo();
+    $this->loadInfo();
   }
 
-  public function getInfo()
+  private function loadInfo()
   {
     global $connect;
-    $result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = {$this->id}");
-    $mainInfo = mysqli_fetch_assoc($result);
-    $this->login = $mainInfo['login'];
-    $this->password = $mainInfo['password'];
-    $this->email = $mainInfo['email'];
-    $this->date = $mainInfo['date'];
-    $this->ldlist = $mainInfo['ldlist'];
-    $this->ldlocations = $mainInfo['ldlocations'];
-    $this->grouplist = $mainInfo['grouplist'];
-    $this->anonym = $mainInfo['anonym'];
-    $this->achieves = $mainInfo['achieves'];
+    $query = "SELECT `login`, `password`, `email`, `date`, `ldlist`, `ldlocations`, 
+                         `grouplist`, `anonym`, `achieves`
+                  FROM `user` 
+                  WHERE `id` = {$this->id}";
+    $result = mysqli_query($connect, $query);
+
+    if ($result && $info = mysqli_fetch_assoc($result)) {
+      foreach ($info as $key => $value) {
+        $this->{$key} = $value;
+      }
+    }
   }
 }

@@ -6,16 +6,16 @@ require_once 'controller/setting.php';
 require_once 'controller/functions.php';
 
 // User ID from $_COOKIE to $_SESSION
-if (!isset($_SESSION['userid']) && isset($_COOKIE['userid'])) {
-  $_SESSION['userid'] = $_COOKIE['userid'];
+if (!isset($_SESSION['userId']) && isset($_COOKIE['userId'])) {
+  $_SESSION['userId'] = $_COOKIE['userId'];
 }
 
 // Load head
 include 'view/parts/head.php';
 
 // Check if user is logged in
-if (isset($_SESSION['userid'])) {
-  $user = new User($_SESSION['userid']);
+if (isset($_SESSION['userId'])) {
+  $user = new User($_SESSION['userId']);
   $net = false; // Default page type
 
   // Determine which page to load

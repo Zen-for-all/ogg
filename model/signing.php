@@ -67,7 +67,7 @@ if (!$login || !$email || !$password) {
   $newUser = $result->fetch_assoc();
 
   if ($newUser) {
-    $_SESSION['userid'] = $newUser['id'];
+    $_SESSION['userId'] = $newUser['id'];
   } else {
     die('User retrieval failed.');
   }

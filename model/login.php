@@ -17,8 +17,8 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if ($user) {
-  $_SESSION['userid'] = $user['id'];
-  setcookie("userid", $user['id'], time() + (86400 * 30), "/"); // Set cookie for 30 days
+  $_SESSION['userId'] = $user['id'];
+  setcookie("userId", $user['id'], time() + (86400 * 30), "/"); // Set cookie for 30 days
 } else {
   $_SESSION['logError'] = 1;
 }

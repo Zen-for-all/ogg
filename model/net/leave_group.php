@@ -20,12 +20,12 @@ if (count($userIdArray) < 2) {
   $deletegroup = mysqli_query($connect, "DELETE FROM `groups` WHERE `id` = '$groupId'");
 } else {
   $userIdArray = array_diff($userIdArray, [$userId]);
-  $jsonUserIdArray = json_encode($userIdArray);
+  $jsonuserIdArray = json_encode($userIdArray);
 }
 
 // update Group
 $updateGroup = mysqli_query($connect, "UPDATE `groups` SET
-      `users` = '$jsonUserIdArray'
+      `users` = '$jsonuserIdArray'
       WHERE `id` = '$groupId'");
 
 // update User

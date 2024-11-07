@@ -4,7 +4,7 @@ require '../connect.php';
 
 mysqli_set_charset($connect, "utf8mb4");
 
-$user = $_SESSION['userid'];
+$user = $_SESSION['userId'];
 
 $array_ld = [];
 

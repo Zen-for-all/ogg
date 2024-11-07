@@ -6,7 +6,7 @@ require '../connect.php';
 $id = $_POST['id'];
 $title = trim(htmlentities($_POST['title']));
 $text = trim(htmlentities($_POST['text']));
-$user = $_SESSION['userid'];
+$user = $_SESSION['userId'];
 
 // update location
 $checkExistingRecord = mysqli_query($connect, "SELECT * FROM `location` WHERE `id` = '$id'");

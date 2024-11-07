@@ -2,7 +2,7 @@
 session_start();
 require '../connect.php';
 
-$user = $_SESSION['userid'];
+$user = $_SESSION['userId'];
 
 $deleteLd = mysqli_query($connect, "DELETE FROM `location` WHERE `user` = '$user'");
 

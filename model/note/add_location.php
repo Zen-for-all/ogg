@@ -4,7 +4,7 @@ require '../connect.php';
 
 $title = $_POST['title'];
 $text = $_POST['text'];
-$user = $_SESSION['userid'];
+$user = $_SESSION['userId'];
 
 if ($title == '') {
   // If the title is empty, do nothing

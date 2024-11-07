@@ -4,7 +4,7 @@ session_start();
 // head
 include 'view/parts/head.php';
 
-if (isset($_SESSION['userid'])) {
+if (isset($_SESSION['userId'])) {
   ?>
 
   <section class="block">

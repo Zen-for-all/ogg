@@ -8,7 +8,7 @@
 session_start();
 require '../connect.php';
 
-$user = $_SESSION['userid'];
+$user = $_SESSION['userId'];
 // get $_POST parameters
 $id = $_POST['id'];
 $date = date("d.m.y", strtotime($_POST['date']));

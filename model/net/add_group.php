@@ -11,7 +11,7 @@ session_start();
 require '../connect.php';
 require '../../controller/setting.php';
 
-$user = $_SESSION['userid'];
+$user = $_SESSION['userId'];
 $title = $_POST['title'];
 $text = $_POST['text'];
 

@@ -16,11 +16,11 @@ $groupId = $_POST['group_id'];
 $group = new Group($groupId);
 $userIdArray = json_decode($group->users, true);
 $userIdArray[] = $userId;
-$jsonUserIdArray = json_encode($userIdArray);
+$jsonuserIdArray = json_encode($userIdArray);
 
 // update Group
 $updateGroup = mysqli_query($connect, "UPDATE `groups` SET
-      `users` = '$jsonUserIdArray'
+      `users` = '$jsonuserIdArray'
       WHERE `id` = '$groupId'");
 
 // update User

@@ -49,7 +49,7 @@
       ?>
 
       <!-- Print info about group -->
-      <div class="location_item col-md-6 mb-5 <?php if(in_array($_SESSION['userid'], $userIdArray)) { echo ' group-active'; } ?>">
+      <div class="location_item col-md-6 mb-5 <?php if(in_array($_SESSION['userId'], $userIdArray)) { echo ' group-active'; } ?>">
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
             <h4 class="mb-3"><?= $groupTitle ?></h4>

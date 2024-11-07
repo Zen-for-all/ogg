@@ -82,12 +82,12 @@ $chats = json_decode($group->chats, true);
   </p>
 </div>
 
-<?php if(!(in_array($_SESSION['userid'], $userIdArray))) { ?>
+<?php if(!(in_array($_SESSION['userId'], $userIdArray))) { ?>
   <!-- button to join the group -->
   <div class="delete_ld show mb-5">
     <form action="model/net/join_group.php" method="post">
       <input type="hidden" name="group_id" value="<?=$group->id?>">
-      <input type="hidden" name="user_id" value="<?=$_SESSION['userid']?>">
+      <input type="hidden" name="user_id" value="<?=$_SESSION['userId']?>">
       <input type="submit" value="Присоедениться" class="btn btn-outline-success">
     </form>
   </div>
@@ -96,13 +96,13 @@ $chats = json_decode($group->chats, true);
   <div class="delete_ld show mb-5">
     <form action="model/net/leave_group.php" method="post">
       <input type="hidden" name="group_id" value="<?=$group->id?>">
-      <input type="hidden" name="user_id" value="<?=$_SESSION['userid']?>">
+      <input type="hidden" name="user_id" value="<?=$_SESSION['userId']?>">
       <input type="submit" value="Покинуть группу" class="btn btn-outline-danger">
     </form>
   </div>
 <?php } ?>
 
-<?php if($admin->id === $_SESSION['userid']) { ?>
+<?php if($admin->id === $_SESSION['userId']) { ?>
   <div class="edit_ld_form hide mt-5">
     <h2>Редактировать группу:</h2>
     <?php include 'view/parts/net/group_add.php'; ?>

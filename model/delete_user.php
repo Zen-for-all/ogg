@@ -3,7 +3,7 @@ session_start();
 require 'connect.php';
 
 // Ensure the user ID is an integer
-$userId = (int)$_SESSION['userid'];
+$userId = (int)$_SESSION['userId'];
 
 // Prepare and execute delete queries
 $queries = [

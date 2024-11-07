@@ -7,7 +7,7 @@ $password = $_POST['password'] ?? '';
 $hashedPassword = md5(md5(trim($password))); // Note: Consider using more secure hashing methods like bcrypt
 
 // Ensure the user ID is an integer
-$id = (int)$_SESSION['userid'];
+$id = (int)$_SESSION['userId'];
 
 // Prepare and execute the update query
 $updateQuery = "UPDATE `user` SET `password` = ? WHERE `id` = ?";

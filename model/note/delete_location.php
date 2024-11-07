@@ -2,7 +2,7 @@
 session_start();
 require '../connect.php';
 
-$user = $_SESSION['userid'];
+$user = $_SESSION['userId'];
 $locationId = $_POST['delete'];
 
 // Delete location from location table

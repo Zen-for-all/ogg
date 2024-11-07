@@ -13,20 +13,20 @@ class Group
 
   function __construct(int $id) {
     $this->id = $id;
-    $this->getInfo();
+    $this->loadInfo();
   }
 
-  public function getInfo() {
+  private function loadInfo() {
     global $connect;
-    $result = mysqli_query($connect, "SELECT * FROM `groups` WHERE `id` = {$this->id}");
-    $allInfo = mysqli_fetch_assoc($result);
-    $this->title = $allInfo['title'];
-    $this->text = $allInfo['text'];
-    $this->mission = $allInfo['mission'];
-    $this->admin = $allInfo['admin'];
-    $this->users = $allInfo['users'];
-    $this->chats = $allInfo['chats'];
-    $this->date = $allInfo['date'];
-    $this->private = $allInfo['private'];
+    $query = "SELECT `title`, `text`, `mission`, `admin`, `users`, `chats`, `date`, `private` 
+                  FROM `groups` 
+                  WHERE `id` = {$this->id}";
+    $result = mysqli_query($connect, $query);
+
+    if ($result && $info = mysqli_fetch_assoc($result)) {
+      foreach ($info as $key => $value) {
+        $this->{$key} = $value;
+      }
+    }
   }
 }

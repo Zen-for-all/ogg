@@ -9,16 +9,19 @@ class Location
   function __construct(int $id)
   {
     $this->id = $id;
-    $this->getInfo();
+    $this->loadInfo();
   }
 
-  public function getInfo()
+  private function loadInfo()
   {
     global $connect;
-    $result = mysqli_query($connect, "SELECT * FROM `location` WHERE `id` = {$this->id}");
-    $allInfo = mysqli_fetch_assoc($result);
-    $this->title = $allInfo['title'];
-    $this->text = $allInfo['text'];
-    $this->user = $allInfo['user'];
+    $query = "SELECT `title`, `text`, `user` FROM `location` WHERE `id` = {$this->id}";
+    $result = mysqli_query($connect, $query);
+
+    if ($result && $info = mysqli_fetch_assoc($result)) {
+      foreach ($info as $key => $value) {
+        $this->{$key} = $value;
+      }
+    }
   }
 }

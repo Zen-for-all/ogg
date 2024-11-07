@@ -4,7 +4,7 @@ require 'connect.php';
 
 // Get and sanitize $_POST params
 $email = mysqli_real_escape_string($connect, trim($_POST['email']));
-$id = intval($_SESSION['userid']); // Ensure $id is an integer
+$id = intval($_SESSION['userId']); // Ensure $id is an integer
 
 // Update email
 $updateQuery = "UPDATE `user` SET `email` = ? WHERE `id` = ?";

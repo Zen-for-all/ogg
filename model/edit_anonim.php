@@ -6,7 +6,7 @@ require 'connect.php';
 $anonym = isset($_POST['anonym']) && $_POST['anonym'] === 'anonym' ? 1 : 0;
 
 // Ensure the user ID is an integer
-$id = (int)$_SESSION['userid'];
+$id = (int)$_SESSION['userId'];
 
 // Prepare and execute the update query
 $updateQuery = "UPDATE `user` SET `anonym` = ? WHERE `id` = ?";
