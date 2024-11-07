@@ -28,7 +28,7 @@ if (isset($_GET['search'])) {
 <div class="row">
   <div class="col-md-6">
     <p>Найти по хэштегу</p>
-    <form action="/?page=journal" method="get">
+    <form action="/journal" method="get">
       <input type="text" class="form-control no_space" name="search" value="<?php if (isset($hashtag_title)) { echo $hashtag_title; } ?>">
       <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
     </form>
@@ -37,7 +37,7 @@ if (isset($_GET['search'])) {
 <br><br>
 
 <?php if (isset($hashtag_title)) { ?>
-  <h3>#<?=$hashtag_title?> <a href="/?page=journal">(x)</a></h3><br>
+  <h3>#<?=$hashtag_title?> <a href="/journal">(x)</a></h3><br>
 <?php } ?>
 
 <div class="container-fluid gx-0">
