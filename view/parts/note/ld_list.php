@@ -2,7 +2,7 @@
 /**
  * @var $user
  * @var $title
- * @var $ld_on_page
+ * @var $ldOnPage
  * @var $enterMethod
  */
 ?>
@@ -147,7 +147,7 @@ if (isset($_GET['search'])) {
       }
 
       // get current ld list
-      $pages = ceil(count($ldArray) / $ld_on_page);
+      $pages = ceil(count($ldArray) / $ldOnPage);
       if (isset($_GET['p'])) {
         $current_page = $_GET['p'];
       } else {
@@ -155,10 +155,10 @@ if (isset($_GET['search'])) {
       }
 
       if (!isset($_GET['p']) || $_GET['p'] === 1) {
-        $ldArray = array_slice($ldArray, 0, $ld_on_page);
+        $ldArray = array_slice($ldArray, 0, $ldOnPage);
       } else {
-        $start_ld = $current_page * $ld_on_page - $ld_on_page;
-        $ldArray = array_slice($ldArray, $start_ld, $ld_on_page);
+        $start_ld = $current_page * $ldOnPage - $ldOnPage;
+        $ldArray = array_slice($ldArray, $start_ld, $ldOnPage);
       }
 
       // print current ld list

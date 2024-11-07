@@ -2,6 +2,7 @@
 /**
  * @var $user
  * @var $title
+ * @var $locationOnPage
  */
 ?>
 
@@ -13,6 +14,21 @@
   // Get locations id's array
   if ($user->ldlocations != false) {
     $locationArray = json_decode($user->ldlocations, true);
+
+    // get current location list
+    $pages = ceil(count($locationArray) / $locationOnPage);
+    if (isset($_GET['p'])) {
+      $current_page = $_GET['p'];
+    } else {
+      $current_page = 1;
+    }
+
+    if (!isset($_GET['p']) || $_GET['p'] === 1) {
+      $locationArray = array_slice($locationArray, 0, $locationOnPage);
+    } else {
+      $start_location = $current_page * $locationOnPage - $locationOnPage;
+      $locationArray = array_slice($locationArray, $start_location, $locationOnPage);
+    }
 
     foreach ($locationArray as $locationValue) {
       // Get all info about location

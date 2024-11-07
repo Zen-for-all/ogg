@@ -11,8 +11,14 @@ $enterMethod = [
   5 => 'Внешнее воздействие'
 ];
 
-// post on list page
-$ld_on_page = 4;
+// post on ld list page
+$ldOnPage = 12;
+
+// post on locations page
+$locationOnPage = 10;
+
+// post on groups page
+$groupOnPage = 2;
 
 // group mission
 $groupMissions = [

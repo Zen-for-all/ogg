@@ -1,4 +1,5 @@
 <?php include 'view/parts/note/location_list.php'; ?>
+<?php include 'view/parts/note/pagination.php'; ?>
 
 <a href="#add-location-form" class="btn btn-outline-success btn_show mt-3 me-3" id="add-location-form">Добавить локацию</a>
 
