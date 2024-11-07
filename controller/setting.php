@@ -12,7 +12,7 @@ $enterMethod = [
 ];
 
 // post on list page
-$ld_on_page = 12;
+$ld_on_page = 4;
 
 // group mission
 $groupMissions = [

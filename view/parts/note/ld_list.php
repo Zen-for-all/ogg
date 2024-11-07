@@ -3,6 +3,7 @@
  * @var $user
  * @var $title
  * @var $ld_on_page
+ * @var $enterMethod
  */
 ?>
 

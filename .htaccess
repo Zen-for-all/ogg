@@ -4,7 +4,7 @@ RewriteBase /
 # Redirect requests for non-existent files or directories to index.php with 'page' parameter
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
+RewriteRule ^([^?]*)$ index.php?page=$1 [L,QSA]
 
 # Custom error page for 404 errors, if the 'page' parameter doesn't match existing routes
 RewriteCond %{REQUEST_FILENAME} !-f
