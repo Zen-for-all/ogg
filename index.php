@@ -5,79 +5,57 @@ require_once 'model/connect.php';
 require_once 'controller/setting.php';
 require_once 'controller/functions.php';
 
+// User ID from $_COOKIE to $_SESSION
 if (!isset($_SESSION['userid']) && isset($_COOKIE['userid'])) {
   $_SESSION['userid'] = $_COOKIE['userid'];
 }
 
-// head
+// Load head
 include 'view/parts/head.php';
 
 // Check if user is logged in
 if (isset($_SESSION['userid'])) {
   $user = new User($_SESSION['userid']);
+  $net = false; // Default page type
 
-  // net or note part
-  $net = false;
+  // Determine which page to load
+  $page = $_GET['page'] ?? 'main'; // Set default page if not provided
 
-  // Determine which page to load based on the 'page' parameter
-  if (isset($_GET['page'])) {
-    $page = $_GET['page'];
+  // Define valid page lists
+  $valid_pages = [
+    'main', 'journal', 'location', 'settings', 'user_delete',
+    'delete_ld_page', 'location_delete', 'ld'
+  ];
+  $valid_pages_net = ['net', 'groups', 'group'];
 
-    // List of valid pages
-    $valid_pages = [
-      'journal',
-      'location',
-      'settings',
-      'user_delete',
-      'delete_ld_page',
-      'location_delete',
-      'ld'
-    ];
-
-    $valid_pages_net = [
-      'net',
-      'groups',
-      'group'
-    ];
-
-    if (in_array($page, $valid_pages)) {
-      $net = false;
-      $require_file =  "view/pages/note/{$page}.php";
-    } elseif (in_array($page, $valid_pages_net)) {
-      $net = true;
-      $require_file =  "view/pages/net/{$page}.php";
-    }
-
-    // header
-    include 'view/parts/header.php';
-
-    if (in_array($page, $valid_pages) || in_array($page, $valid_pages_net)) {
-      $title = ucfirst($page); // Capitalize the title
-      require $require_file;
-    } else {
-      // If the page doesn't exist, set the status to 404
-      header("HTTP/1.0 404 Not Found");
-      require '404.php'; // Load 404 page
-    }
+  // Check if requested page is valid
+  if (in_array($page, $valid_pages)) {
+    $require_file = $page === 'main' ? 'view/pages/note/main.php' : "view/pages/note/{$page}.php";
+  } elseif (in_array($page, $valid_pages_net)) {
+    $net = true;
+    $require_file = "view/pages/net/{$page}.php";
   } else {
-    // header
-    include 'view/parts/header.php';
-    // Load the main page if no specific page is requested
-    $title = 'Главная';
-    require 'view/pages/note/main.php';
+    // Invalid page - set 404 status
+    header("HTTP/1.0 404 Not Found");
+    require '404.php';
+    exit;
   }
+
+  // Load header
+  include 'view/parts/header.php';
+
+  // Load page content
+  $title = ucfirst($page === 'main' ? 'Главная' : $page);
+  require $require_file;
+
 } else {
-  // User is not logged in, check for login or registration
-  if (isset($_GET['page']) && $_GET['page'] === 'signing') {
-    // Register page
-    $title = 'Регистрация';
-    require 'view/pages/note/register.php';
-  } else {
-    // Login page
-    $title = 'Вход';
-    require 'view/pages/note/enter.php';
-  }
+  // Handle registration and login pages
+  $page = $_GET['page'] ?? 'enter';
+  $title = $page === 'signing' ? 'Регистрация' : 'Вход';
+
+  $require_file = $page === 'signing' ? 'view/pages/note/register.php' : 'view/pages/note/enter.php';
+  require $require_file;
 }
 
-// footer
+// Load footer
 include 'view/parts/footer.php';
