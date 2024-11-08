@@ -1,25 +1,33 @@
-.rl{
+/* Layout utility classes */
+.rl {
     position: relative;
     float: left;
 }
 
-.rr{
+.rr {
     position: relative;
     float: right;
 }
 
-.db {display: block;}
+.db {
+    display: block;
+}
 
-.clear{clear: both;}
+.clear {
+    clear: both;
+}
 
-a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay-close, .header, button:before, .slick-arrow{
+/* Global transition for interactive elements */
+a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay-close, .header, button:before, .slick-arrow {
     transition: all 0.4s;
 }
 
+/* Global styles */
 html {
     background: #F8F9FA;
 }
 
+/* Display toggle classes */
 .hide {
     display: none;
 }
@@ -32,7 +40,7 @@ html {
     height: 100% !important;
 }
 
-/* filters */
+/* Filters section */
 .filters {
     width: 100%;
     position: relative;
@@ -55,6 +63,7 @@ html {
     text-decoration: none;
 }
 
+/* Location button states */
 .edit_location_btn span:nth-child(1),
 .edit_location_btn_active .edit_location_btn span:nth-child(2),
 .edit_location_btn_active .edit_location_form {
@@ -67,7 +76,7 @@ html {
     display: none;
 }
 
-/* print graphics */
+/* Chart graphics */
 .year-chart-wrap-title {
     cursor: pointer;
 }
@@ -135,7 +144,7 @@ html {
     display: inline;
 }
 
-/* scrollbar */
+/* Custom scrollbar styles */
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -152,7 +161,7 @@ html {
     background: #555;
 }
 
-/* logo */
+/* Logo styles */
 .logo {
     line-height: 1;
 }
@@ -178,6 +187,7 @@ html {
     color: #0d6efd;
 }
 
+/* Active group styles */
 .group-active .card {
     border: 1px solid darkgreen;
 }

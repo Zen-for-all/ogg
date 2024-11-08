@@ -1,8 +1,8 @@
 <?php
-// site title
+// Site title
 $siteName = 'Lucid dream';
 
-// enter methods
+// Methods of entry (defined in an associative array for clarity)
 $enterMethod = [
   1 => 'Спонтанное осознание',
   2 => 'Вход на засыпании',
@@ -11,26 +11,26 @@ $enterMethod = [
   5 => 'Внешнее воздействие'
 ];
 
-// post on ld list page
+// Number of posts to display on the LD list page
 $ldOnPage = 12;
 
-// post on locations page
+// Number of posts to display on the locations page
 $locationOnPage = 10;
 
-// post on groups page
+// Number of posts to display on the groups page
 $groupOnPage = 10;
 
-// group mission
+// Group missions (organized into an array for easier future management)
 $groupMissions = [
-  1 => 'Общение',
-  2 => 'Практика',
-  3 => 'Живые встречи'
+  1 => 'Общение',   // Communication
+  2 => 'Практика',  // Practice
+  3 => 'Живые встречи' // Live meetings
 ];
 
-// group chats
+// Available group chat platforms
 $groupChat = [
-  'telegram',
-  'facebook',
-  'discord',
-  'whatsapp'
+  'telegram',  // Telegram
+  'facebook',  // Facebook
+  'discord',   // Discord
+  'whatsapp'   // WhatsApp
 ];
