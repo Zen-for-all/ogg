@@ -23,16 +23,17 @@ if (isset($_SESSION['userId'])) {
 
   // Define valid page lists
   $valid_pages = [
-    'main', 'journal', 'location', 'settings', 'user_delete',
-    'ld_delete', 'location_delete', 'ld'
+    'main' => 'Главная', 'journal' => 'Журнал', 'location' => 'Локации', 'settings' => 'Настройки', 'user_delete' => 'Удалить пользователя', 'ld_delete' => 'Удалить запись', 'location_delete' => 'Удалить локацию', 'ld' => 'Локации'
   ];
-  $valid_pages_net = ['net', 'groups', 'group'];
+  $valid_pages_net = ['net' => 'Сеть', 'groups' => 'Группы', 'group' => 'Группа'];
 
   // Check if requested page is valid
-  if (in_array($page, $valid_pages)) {
+  if (array_key_exists($page, $valid_pages)) {
+    $title = $valid_pages[$page]; // Set the title for valid pages
     $require_file = $page === 'main' ? 'view/pages/note/main.php' : "view/pages/note/{$page}.php";
-  } elseif (in_array($page, $valid_pages_net)) {
+  } elseif (array_key_exists($page, $valid_pages_net)) {
     $net = true;
+    $title = $valid_pages_net[$page]; // Set the title for valid net pages
     $require_file = "view/pages/net/{$page}.php";
   } else {
     // Invalid page - set 404 status
@@ -45,7 +46,6 @@ if (isset($_SESSION['userId'])) {
   include 'view/parts/header.php';
 
   // Load page content
-  $title = ucfirst($page === 'main' ? 'Главная' : $page);
   require $require_file;
 
 } else {
