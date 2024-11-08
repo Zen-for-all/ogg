@@ -1,6 +1,7 @@
 </section>
 
-<?php if (isset($_SESSION['userId'])): ?> <!-- Checking if the user is logged in -->
+<!-- Checking if the user is logged in -->
+<?php if (isset($_SESSION['userId'])): ?>
   <footer class="container-fluid bg-body-tertiary mt-5">
     <div class="container py-3">
       <div class="row">
@@ -8,12 +9,12 @@
           <a class="btn btn-outline-secondary" href="controller/logout.php">Выйти</a>
         </div>
         <div class="col">
-          <a class="btn btn-outline-danger" href="/?page=user_delete">Удалить акаунт</a>
+          <a class="btn btn-outline-danger" href="/user_delete">Удалить акаунт</a>
         </div>
       </div>
     </div>
   </footer>
-<?php endif; ?> <!-- End of user login check -->
+<?php endif; ?>
 
 <!-- JS scripts -->
 <script defer src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>

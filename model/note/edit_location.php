@@ -1,22 +1,35 @@
 <?php
+/**
+ * @var object $connect The database connection object used to interact with the database.
+ */
+?>
+
+<?php
 session_start();
 require '../connect.php';
 
-// get $_POST params
-$id = $_POST['id'];
-$title = trim(htmlentities($_POST['title']));
-$text = trim(htmlentities($_POST['text']));
-$user = $_SESSION['userId'];
+// Get and sanitize input parameters from the POST request
+$id = isset($_POST['id']) ? $_POST['id'] : ''; // Location ID
+$title = isset($_POST['title']) ? trim(htmlentities($_POST['title'])) : ''; // Title of the location
+$text = isset($_POST['text']) ? trim(htmlentities($_POST['text'])) : ''; // Text content of the location
+$user = isset($_SESSION['userId']) ? $_SESSION['userId'] : ''; // User ID from the session
 
-// update location
-$checkExistingRecord = mysqli_query($connect, "SELECT * FROM `location` WHERE `id` = '$id'");
+// Check if the record with the given ID exists in the location table
+$query = "SELECT * FROM `location` WHERE `id` = '$id'";
+$checkExistingRecord = mysqli_query($connect, $query);
 
-if (mysqli_num_rows($checkExistingRecord) > 0) {
-  $updateRecord = mysqli_query($connect, "UPDATE `location` SET
+if ($checkExistingRecord && mysqli_num_rows($checkExistingRecord) > 0) {
+  // Update the location record if it exists
+  $updateQuery = "UPDATE `location` SET
         `title` = '$title',
         `text` = '$text',
         `user` = '$user'
-        WHERE `id` = '$id'");
+        WHERE `id` = '$id'";
+
+  // Execute the update query
+  mysqli_query($connect, $updateQuery);
 }
 
-header("location:/?page=location");
+// Redirect to the location page after updating the record
+header("location:/location");
+exit();

@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $connect
+ * @var object $connect The database connection object used to interact with the database.
  */
 ?>
 
@@ -9,36 +9,39 @@ session_start();
 require '../connect.php';
 require '../../controller/class/Group.php';
 
+// Sanitize and cast input values
 $userId = (int) $_POST['user_id'];
 $groupId = $_POST['group_id'];
 
-// get all info about group
+// Initialize Group object and get existing users
 $group = new Group($groupId);
-$userIdArray = json_decode($group->users, true);
-$userIdArray[] = $userId;
-$jsonuserIdArray = json_encode($userIdArray);
+$userIdArray = json_decode($group->users, true);  // Decode group users list from JSON
+$userIdArray[] = $userId;  // Add the new user ID to the group users list
+$jsonUserIdArray = json_encode($userIdArray);  // Re-encode users list to JSON
 
-// update Group
-$updateGroup = mysqli_query($connect, "UPDATE `groups` SET
-      `users` = '$jsonuserIdArray'
-      WHERE `id` = '$groupId'");
+// Update the Group's user list in the database
+$updateGroupQuery = "UPDATE `groups` SET `users` = '$jsonUserIdArray' WHERE `id` = '$groupId'";
+mysqli_query($connect, $updateGroupQuery);
 
-// update User
-// get only the 'grouplist' column for the specified user ID
+// Update User's group list
+// Get current user's group list
 $result = mysqli_query($connect, "SELECT `grouplist` FROM `user` WHERE `id` = '$userId'");
 $userData = mysqli_fetch_assoc($result);
 
-// initialize group list, decode JSON if exists, or start with empty array
+// Initialize user's group list, decode from JSON or start with an empty array
 $groupList = json_decode($userData['grouplist'] ?? '[]', true);
 
-// add new group ID if not already in the list
+// Add the new group ID if it's not already in the list
 if (!in_array($groupId, $groupList)) {
   $groupList[] = $groupId;
 }
 
-$groupNewJson = json_encode($groupList); // encode updated group list to JSON
+$groupNewJson = json_encode($groupList);  // Encode updated group list to JSON
 
-// update group list in user info
-$setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `grouplist` = '$groupNewJson' WHERE `id` = '$userId'");
+// Update the user's group list in the database
+$setNewGroupInUserQuery = "UPDATE `user` SET `grouplist` = '$groupNewJson' WHERE `id` = '$userId'";
+mysqli_query($connect, $setNewGroupInUserQuery);
 
-header("location:/?page=group&id=" . $groupId);
+// Redirect to the group page
+header("Location: /?page=group&id=" . $groupId);
+exit();
