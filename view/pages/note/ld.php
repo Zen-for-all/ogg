@@ -4,7 +4,7 @@
  */
 ?>
 
-<a class="btn btn-light mb-4" href="/?page=journal"><- К дневнику</a>
+<a class="btn btn-light mb-4" href="/journal"><- К дневнику</a>
 
 <?php
 $ldValue = $_GET['id'];

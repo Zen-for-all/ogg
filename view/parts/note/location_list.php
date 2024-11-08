@@ -1,37 +1,30 @@
 <?php
 /**
- * @var $user
- * @var $title
- * @var $locationOnPage
+ * @var object $user The user object, which contains user data such as locations.
+ * @var string $title The title to be displayed on the page (usually a heading).
+ * @var int $locationOnPage The number of locations to be displayed per page.
  */
 ?>
 
-<h2 class="pb-5"><?=$title?></h2>
+<h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
 
 <div class="row">
 
   <?php
-  // Get locations id's array
-  if ($user->ldlocations != false) {
+  // Check if the user has locations assigned
+  if (!empty($user->ldlocations)) {
     $locationArray = json_decode($user->ldlocations, true);
 
-    // get current location list
+    // Get current page and calculate the number of pages
     $pages = ceil(count($locationArray) / $locationOnPage);
-    if (isset($_GET['p'])) {
-      $current_page = $_GET['p'];
-    } else {
-      $current_page = 1;
-    }
+    $current_page = isset($_GET['p']) ? (int)$_GET['p'] : 1;
 
-    if (!isset($_GET['p']) || $_GET['p'] === 1) {
-      $locationArray = array_slice($locationArray, 0, $locationOnPage);
-    } else {
-      $start_location = $current_page * $locationOnPage - $locationOnPage;
-      $locationArray = array_slice($locationArray, $start_location, $locationOnPage);
-    }
+    // Slice the array based on the current page
+    $start_location = ($current_page - 1) * $locationOnPage;
+    $locationArray = array_slice($locationArray, $start_location, $locationOnPage);
 
     foreach ($locationArray as $locationValue) {
-      // Get all info about location
+      // Get all info about the location
       $location = new Location($locationValue);
       $locationTitle = $location->title;
       $locationText = $location->text;
@@ -41,10 +34,10 @@
       <div class="location_item col-md-6 mb-5">
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
-            <h4 class="mb-3"><?= $locationTitle ?></h4>
-            <?php if ($locationText != false) { ?>
+            <h4 class="mb-3"><?= htmlspecialchars($locationTitle) ?></h4>
+            <?php if (!empty($locationText)) { ?>
               <span><b>Описание:</b></span>
-              <p><?= $locationText ?></p>
+              <p><?= nl2br(htmlspecialchars($locationText)) ?></p>
             <?php } ?>
           </div>
 
@@ -63,7 +56,7 @@
             <!-- Button for delete location -->
             <div class="col-auto delete_location mt-2 show">
               <form action="model/note/delete_location.php" method="post">
-                <input type="hidden" name="delete" value="<?=$locationValue?>">
+                <input type="hidden" name="delete" value="<?= htmlspecialchars($locationValue) ?>">
                 <input type="submit" value="Удалить" class="btn btn-outline-danger">
               </form>
             </div>

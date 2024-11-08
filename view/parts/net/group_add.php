@@ -1,57 +1,55 @@
 <?php
 /**
- * @var $groupMissions
- * @var $groupChat
- * @var $groupValue
- * @var $groupTitle
- * @var $groupText
- * @var $MissionIdArray
- * @var $chats
+ * @var array $groupMissions List of available group missions.
+ * @var array $groupChat List of available chat types for the group.
+ * @var mixed $groupValue The group ID if editing, false if creating a new group.
+ * @var string $groupTitle The title of the group.
+ * @var string $groupText The description of the group.
+ * @var array $MissionIdArray List of selected missions for the group.
+ * @var array $chats List of current chat values associated with the group.
  */
 ?>
 
-<?php
-if ($groupValue == false) {
-  echo '<form action="model/net/add_group.php" method="post" id="add-group-form">';
-} else {
-  echo '<form action="model/net/edit_group.php" method="post" id="add-group-form">';
-  echo '<input type="hidden" name="id" value="' . $groupValue . '">';
-}
-?>
+<form action="<?php echo isset($groupValue) && $groupValue === false ? 'model/net/add_group.php' : 'model/net/edit_group.php'; ?>" method="post" id="add-group-form">
+  <?php if (isset($groupValue) && $groupValue !== false): ?>
+    <input type="hidden" name="id" value="<?php echo $groupValue; ?>">
+  <?php endif; ?>
+
   <div class="row">
+    <!-- Group Title -->
     <div class="col-12 col-md-6">
       <p>Название группы</p>
-      <input type="text" class="form-control mb-4" name="title" value="<?php if ($groupTitle != false) { echo $groupTitle; } ?>">
+      <input type="text" class="form-control mb-4" name="title" value="<?php echo $groupTitle ?: ''; ?>">
     </div>
+
+    <!-- Group Description -->
     <div class="col-12">
       <p>Описание группы</p>
-      <textarea class="form-control mb-4" name="text"><?php if ($groupText != false) { echo $groupText; } ?></textarea>
+      <textarea class="form-control mb-4" name="text"><?php echo $groupText ?: ''; ?></textarea>
     </div>
+
+    <!-- Missions Selection -->
     <div class="col-12 col-md-6">
       <p>Назначение группы:</p>
-      <?php foreach ($groupMissions as $key => $mission) { ?>
+      <?php foreach ($groupMissions as $key => $mission): ?>
         <div>
-          <input type="checkbox" id="<?php echo 'mission_' . $key; ?>" name="<?php echo 'mission_' . $key; ?>"
-            <?php
-              if ($groupValue != false) {
-                if (in_array($key, $MissionIdArray)) {
-                  echo 'checked';
-                }
-              }
-            ?>
-          />
-          <label for="<?php echo 'mission_' . $key; ?>"><?php echo $mission; ?></label>
+          <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>"
+            <?php echo (isset($groupValue) && $groupValue !== false && in_array($key, $MissionIdArray)) ? 'checked' : ''; ?> />
+          <label for="mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
         </div>
-      <?php } ?>
+      <?php endforeach; ?>
     </div>
+
+    <!-- Chat Selection -->
     <div class="col-12 col-md-6">
       <p>Место общения:</p>
-      <?php foreach ($groupChat as $key => $chat) { ?>
+      <?php foreach ($groupChat as $chat): ?>
         <div>
           <label for="<?php echo $chat; ?>"><?php echo $chat; ?></label>
-          <input name="<?php echo $chat; ?>" id="<?php echo $chat; ?>" type="text" placeholder="<?php echo $chat; ?>" value="<?php if ($groupValue != false) { echo  $chats[$chat]; } ?>">
+          <input name="<?php echo $chat; ?>" id="<?php echo $chat; ?>" type="text" placeholder="<?php echo $chat; ?>"
+                 value="<?php echo (isset($groupValue) && $groupValue !== false) ? $chats[$chat] : ''; ?>">
         </div>
-      <?php } ?>
+      <?php endforeach; ?>
     </div>
   </div>
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $net
+ * @var bool $net Indicates if the "NET" link should be active.
  */
 ?>
 
@@ -9,8 +9,10 @@
     <div class="logo navbar-brand me-5 row">
       <div class="logo-text col gx-0 ms-2 me-1">LUCID</div>
       <div class="logo-switch col ms-0">
-        <a href="/" class="logo-link row<?php if ($net === false) { echo ' logo-active'; } ?>">NOTE</a>
-        <a href="/net" class="logo-link row<?php if ($net === true) { echo ' logo-active'; } ?>">NET</a>
+        <!-- "NOTE" link will have the 'logo-active' class if $net is false -->
+        <a href="/" class="logo-link row<?php echo !$net ? ' logo-active' : ''; ?>">NOTE</a>
+        <!-- "NET" link will have the 'logo-active' class if $net is true -->
+        <a href="/net" class="logo-link row<?php echo $net ? ' logo-active' : ''; ?>">NET</a>
       </div>
     </div>
 

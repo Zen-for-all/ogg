@@ -1,90 +1,65 @@
 <?php
 /**
- * @var $user
- * @var $title
- * @var $ldOnPage
- * @var $enterMethod
+ * @var object $user The current user object, containing information about the logged-in user.
+ * @var string $title The title displayed on the page, representing the main heading.
+ * @var int $ldOnPage The number of LD (learning data) items to display per page for pagination.
+ * @var array $enterMethod An array mapping method IDs to entry methods, used for displaying entry method names.
  */
 ?>
 
 <?php
-if (isset($_GET['hashtag'])) {
+// Check if either 'hashtag' or 'search' is set and assign their values
+if (!empty($_GET['hashtag'])) {
   $hashtag_title = $_GET['hashtag'];
-  $hashtag_link = '&hashtag=' . $hashtag_title;
-} else {
-  $hashtag_link = '';
+} elseif (!empty($_GET['search'])) {
+  $hashtag_title = $_GET['search'];
 }
 
-if (isset($_GET['search'])) {
-  $hashtag_title = $_GET['search'];
-  $hashtag_link = '&hashtag=' . $hashtag_title;
-} else {
-  $hashtag_link = '';
-}
+// Generate hashtag link if hashtag title is set
+$hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) : '';
 ?>
 
-<h2 class="pb-5"><?=$title?></h2>
+<h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
 
 <div class="row">
   <div class="col-md-6">
     <p>Найти по хэштегу</p>
     <form action="/journal" method="get">
-      <input type="text" class="form-control no_space" name="search" value="<?php if (isset($hashtag_title)) { echo $hashtag_title; } ?>">
+      <input type="text" class="form-control no_space" name="search" value="<?= isset($hashtag_title) ? htmlspecialchars($hashtag_title) : '' ?>">
       <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
     </form>
   </div>
 </div>
 <br><br>
 
-<?php if (isset($hashtag_title)) { ?>
-  <h3>#<?=$hashtag_title?> <a href="/journal">(x)</a></h3><br>
+<?php if (!empty($hashtag_title)) { ?>
+  <h3>#<?= htmlspecialchars($hashtag_title) ?> <a href="/journal">(x)</a></h3><br>
 <?php } ?>
 
 <div class="container-fluid gx-0">
   <h4 class="mb-2">Сортировка:</h4>
 
   <div class="filters mb-4">
-    <div class="filter border mb-2">
-      <div class="rl">По дате:</div>
-      <a class="db rl" href="/?page=journal&sort=date<?=$hashtag_link?>">+</a>
-      <a class="db rl" href="/?page=journal&sort=date&reverse=1<?=$hashtag_link?>">-</a>
-    </div>
+    <?php
+    // Array of sorting criteria
+    $criteria = [
+      'date' => 'По дате:',
+      'time' => 'По времени:',
+      'duration' => 'По длительности:',
+      'quality' => 'По качеству:',
+      'interest' => 'По интересности:',
+      'location' => 'По локации:',
+      'method' => 'По входу:'
+    ];
 
-    <div class="filter border mb-2">
-      <div class="rl">По времени:</div>
-      <a class="db rl" href="/?page=journal&sort=time<?=$hashtag_link?>">+</a>
-      <a class="db rl" href="/?page=journal&sort=time&reverse=1<?=$hashtag_link?>">-</a>
-    </div>
-
-    <div class="filter border mb-2">
-      <div class="rl">По длительности:</div>
-      <a class="db rl" href="/?page=journal&sort=duration<?=$hashtag_link?>">+</a>
-      <a class="db rl" href="/?page=journal&sort=duration&reverse=1<?=$hashtag_link?>">-</a>
-    </div>
-
-    <div class="filter border mb-2">
-      <div class="rl">По качеству:</div>
-      <a class="db rl" href="/?page=journal&sort=quality<?=$hashtag_link?>">+</a>
-      <a class="db rl" href="/?page=journal&sort=quality&reverse=1<?=$hashtag_link?>">-</a>
-    </div>
-
-    <div class="filter border mb-2">
-      <div class="rl">По интересности:</div>
-      <a class="db rl" href="/?page=journal&sort=interest<?=$hashtag_link?>">+</a>
-      <a class="db rl" href="/?page=journal&sort=interest&reverse=1<?=$hashtag_link?>">-</a>
-    </div>
-
-    <div class="filter border mb-2">
-      <div class="rl">По локации:</div>
-      <a class="db rl" href="/?page=journal&sort=location<?=$hashtag_link?>">+</a>
-      <a class="db rl" href="/?page=journal&sort=location&reverse=1<?=$hashtag_link?>">-</a>
-    </div>
-
-    <div class="filter border mb-2">
-      <div class="rl">По входу:</div>
-      <a class="db rl" href="/?page=journal&sort=method<?=$hashtag_link?>">+</a>
-      <a class="db rl" href="/?page=journal&sort=method&reverse=1<?=$hashtag_link?>">-</a>
-    </div>
+    // Loop through the criteria and generate filter blocks
+    foreach ($criteria as $key => $label) { ?>
+      <div class="filter border mb-2">
+        <div class="rl"><?= $label ?></div>
+        <a class="db rl" href="/?page=journal&sort=<?= $key ?><?= $hashtag_link ?>">+</a>
+        <a class="db rl" href="/?page=journal&sort=<?= $key ?>&reverse=1<?= $hashtag_link ?>">-</a>
+      </div>
+    <?php } ?>
   </div>
 
   <div class="row">
@@ -117,21 +92,15 @@ if (isset($_GET['search'])) {
         }
       }
 
-      // Sort the array of Ld objects by attribute
-      if (isset($_GET['sort']) && $_GET['sort'] === 'time') {
-        sortLdObjects($ldObjects, 'time');
-      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'duration') {
-        sortLdObjects($ldObjects, 'duration');
-      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'location') {
-        sortLdObjects($ldObjects, 'location');
-      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'quality') {
-        sortLdObjects($ldObjects, 'quality');
-      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'interest') {
-        sortLdObjects($ldObjects, 'interest');
-      } elseif (isset($_GET['sort']) && $_GET['sort'] === 'method') {
-        sortLdObjects($ldObjects, 'method');
+      // Check if 'sort' parameter is set and sort accordingly
+      $sortCriteria = $_GET['sort'] ?? 'date';  // Use a default value of 'date' if no 'sort' parameter is provided
+      $validSortCriteria = ['time', 'duration', 'location', 'quality', 'interest', 'method']; // Define valid sort criteria
+
+      // Sort the array only if the 'sort' parameter is valid
+      if (in_array($sortCriteria, $validSortCriteria)) {
+        sortLdObjects($ldObjects, $sortCriteria);
       } else {
-        sortLdObjects($ldObjects, 'date');
+        sortLdObjects($ldObjects, 'date'); // Default sorting by 'date'
       }
 
       // Map the sorted array of Ld objects to an array of their IDs
@@ -146,117 +115,88 @@ if (isset($_GET['search'])) {
         $ldArray = array_reverse($ldArray);
       }
 
-      // get current ld list
-      $pages = ceil(count($ldArray) / $ldOnPage);
-      if (isset($_GET['p'])) {
-        $current_page = $_GET['p'];
-      } else {
-        $current_page = 1;
-      }
+      // Get current LD list and calculate pagination
+      $current_page = $_GET['p'] ?? 1;  // Default to page 1 if 'p' is not set
+      $pages = ceil(count($ldArray) / $ldOnPage);  // Calculate total pages
 
-      if (!isset($_GET['p']) || $_GET['p'] === 1) {
-        $ldArray = array_slice($ldArray, 0, $ldOnPage);
-      } else {
-        $start_ld = $current_page * $ldOnPage - $ldOnPage;
-        $ldArray = array_slice($ldArray, $start_ld, $ldOnPage);
-      }
+      // Calculate the slice range based on the current page
+      $start_ld = ($current_page - 1) * $ldOnPage;  // Calculate the starting index for the current page
+      $ldArray = array_slice($ldArray, $start_ld, $ldOnPage);  // Get the current page slice of LD objects
+
 
       // print current ld list
       foreach ($ldArray as $ldValue) {
-        // get all info about ld
+        // Get all info about ld
         $ld = new Ld($ldValue);
 
-        // get all info about location
-        if ($ld->location != false) {
+        // Get all info about location
+        $locationTitle = false;
+        if ($ld->location) {
           $location = new Location($ld->location);
           $locationId = $location->id;
           $locationTitle = $location->title;
-        } else {
-          $locationTitle = false;
         }
 
+        // Get ld date
         $ldDate = $ld->date;
 
-        if ($ld->time != 0) {
-          $ldTime = $ld->time;
-        } else {
-          $ldTime = false;
-        }
+        // Get ld time, defaulting to false if not set
+        $ldTime = ($ld->time != 0) ? $ld->time : false;
 
-        if ($ld->duration != 0) {
-          $ldDuration = $ld->duration;
-        } else {
-          $ldDuration = false;
-        }
+        // Get ld duration, defaulting to false if not set
+        $ldDuration = ($ld->duration != 0) ? $ld->duration : false;
 
-        if ($ld->quality != 0) {
-          $ldQuality = $ld->quality;
-        } else {
-          $ldQuality = false;
-        }
+        // Get ld quality, defaulting to false if not set
+        $ldQuality = ($ld->quality != 0) ? $ld->quality : false;
 
-        if ($ld->interest != 0) {
-          $ldInterest = $ld->interest;
-        } else {
-          $ldInterest = false;
-        }
+        // Get ld interest, defaulting to false if not set
+        $ldInterest = ($ld->interest != 0) ? $ld->interest : false;
 
-        if ($ld->method != 0) {
-          $ldMethod = $enterMethod[$ld->method];
-        } else {
-          $ldMethod = false;
-        }
+        // Get ld method, defaulting to false if not set
+        $ldMethod = ($ld->method != 0) ? $enterMethod[$ld->method] : false;
 
-        if ($ld->text != 0) {
-          $ldText = $ld->text;
-        } else {
-          $ldText = false;
-        }
+        // Get ld text, defaulting to false if not set
+        $ldText = ($ld->text != 0) ? $ld->text : false;
 
-        if ($ld->notice != 0) {
-          $ldNotice = $ld->notice;
-        } else {
-          $ldNotice = false;
-        }
+        // Get ld notice, defaulting to false if not set
+        $ldNotice = ($ld->notice != 0) ? $ld->notice : false;
 
+        // Get ld publish value
         $ldPublish = $ld->publish;
 
-        if (!empty($ld->hashtags)) {
-          $hashtags = json_decode($ld->hashtags, true);
-        } else {
-          $hashtags = false;
-        }
+        // Get hashtags, defaulting to false if not set
+        $hashtags = !empty($ld->hashtags) ? json_decode($ld->hashtags, true) : false;
         ?>
 
         <div class="col-xxl-3 col-lg-4 col-md-6 mb-5">
           <div class="card px-3 py-3 h100">
             <h5 class="mb-3"><?=$ldDate?> <?php if ($ldTime) { echo '(' . $ldTime . ')'; } ?></h5>
 
-            <?php if ($ldDuration != false) { ?>
+            <?php if ($ldDuration) { ?>
               <span>Длительность: <b><?=$ldDuration?></b></span>
             <?php } ?>
 
-            <?php if ($locationTitle != false) { ?>
+            <?php if ($locationTitle) { ?>
               <span>Локация: <b><?=$locationTitle?></b></span>
             <?php } ?>
 
-            <?php if ($ldQuality != false) { ?>
+            <?php if ($ldQuality) { ?>
               <span>Качество: <b><?=$ldQuality?></b></span>
             <?php } ?>
 
-            <?php if ($ldInterest != false) { ?>
+            <?php if ($ldInterest) { ?>
               <span>Интерес: <b><?=$ldInterest?></b></span>
             <?php } ?>
 
-            <?php if ($ldMethod != false) { ?>
+            <?php if ($ldMethod) { ?>
               <span>Метод входа: <b><?=$ldMethod?></b></span><br>
             <?php } ?>
 
-            <?php if ($ldText != false) { ?>
+            <?php if ($ldText) { ?>
               <span><b>Описание:</b> <?=excerpt($ldText, 300)?></span><br>
             <?php } ?>
 
-            <?php if ($ldNotice != false) { ?>
+            <?php if ($ldNotice) { ?>
               <span><b>Заметки:</b> <?=excerpt($ldNotice, 200)?></span><br>
             <?php } ?>
 
@@ -288,5 +228,4 @@ if (isset($_GET['search'])) {
     ?>
 
   </div>
-
 </div>

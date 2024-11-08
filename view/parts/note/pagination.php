@@ -1,4 +1,10 @@
 <?php
+/**
+ * @var int $current_page The current page number being displayed in the pagination.
+ */
+?>
+
+<?php
 // Get the current URL
 $currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $urlComponents = parse_url($currentURL);
@@ -6,24 +12,18 @@ $urlComponents = parse_url($currentURL);
 // Build the base URL without the 'p' parameter
 $updatedURL = $urlComponents['scheme'] . '://' . $urlComponents['host'] . $urlComponents['path'];
 
-// If there is a query string, parse it
+// Check if there is a query string
 if (isset($urlComponents['query'])) {
+  // Parse the query string into an associative array
   $queryParams = [];
   parse_str($urlComponents['query'], $queryParams);
 
-  // Remove 'p' parameter if it exists
+  // Remove the 'p' parameter if it exists
   unset($queryParams['p']);
 
-  // Rebuild the query string without 'p'
+  // Rebuild the query string and append it to the base URL
   $updatedQuery = http_build_query($queryParams);
-
-  // Append the rebuilt query string to the base URL
-  if (!empty($updatedQuery)) {
-    $updatedURL .= '?' . $updatedQuery;
-  }
-} else {
-  // If there is no query string, keep the base URL as is
-  $updatedURL = $urlComponents['scheme'] . '://' . $urlComponents['host'] . $urlComponents['path'];
+  $updatedURL .= !empty($updatedQuery) ? '?' . $updatedQuery : '';
 }
 ?>
 
@@ -37,14 +37,12 @@ if (isset($urlComponents['query'])) {
 
       <!-- Loop to generate page numbers -->
       <?php for ($i = 1; $i <= $pages; $i++) { ?>
-        <?php if ($i == $current_page || $i == 1 || $i == $pages || $i == ($current_page - 1) || $i == ($current_page + 1)) { ?>
-          <?php if ($i == $current_page) { ?>
-            <!-- Current page (disabled link) -->
-            <li class="page-item disabled"><a class="page-link"><?php echo $i; ?></a></li>
-          <?php } else { ?>
-            <!-- Link to a different page -->
-            <li class="page-item"><a class="page-link" href="<?php echo $updatedURL . (strpos($updatedURL, '?') === false ? '?' : '&') . 'p=' . $i; ?>"><?php echo $i; ?></a></li>
-          <?php } ?>
+        <?php if (in_array($i, [$current_page, 1, $pages, $current_page - 1, $current_page + 1])) { ?>
+          <li class="page-item<?php echo $i == $current_page ? ' disabled' : ''; ?>">
+            <a class="page-link" href="<?php echo $updatedURL . (strpos($updatedURL, '?') === false ? '?' : '&') . 'p=' . $i; ?>">
+              <?php echo $i; ?>
+            </a>
+          </li>
         <?php } ?>
       <?php } ?>
 

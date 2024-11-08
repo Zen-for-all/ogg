@@ -3,10 +3,9 @@
  * @var $groupMissions
  * @var $groupChat
  */
-
-// Back button
 ?>
-<a class="btn btn-light mb-4" href="/?page=groups"><- К списку групп</a>
+
+<a class="btn btn-light mb-4" href="/groups"><- К списку групп</a>
 
 <?php
 $groupId = $_GET['id'];
@@ -24,8 +23,8 @@ $userCount = count($userIdArray);
 $groupUsersArray = array_map(fn($id) => new User($id), $userIdArray);
 
 // Fetch missions
-$missionIds = json_decode($group->mission, true);
-$groupMissionArray = array_map(fn($id) => $groupMissions[$id] ?? null, $missionIds);
+$MissionIdArray = json_decode($group->mission, true);
+$groupMissionArray = array_map(fn($id) => $groupMissions[$id] ?? null, $MissionIdArray);
 
 // Fetch chats
 $chats = json_decode($group->chats, true);
@@ -88,7 +87,10 @@ $chats = json_decode($group->chats, true);
 <?php if ($admin->id === $_SESSION['userId']): ?>
   <div class="edit_ld_form hide mt-5">
     <h2>Редактировать группу:</h2>
-    <?php include 'view/parts/net/group_add.php'; ?>
+    <?php
+    $groupValue = $group->id;
+    include 'view/parts/net/group_add.php';
+    ?>
   </div>
 
   <!-- Edit and delete buttons for admin -->
