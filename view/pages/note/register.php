@@ -1,39 +1,47 @@
 <div class="d-flex align-items-center justify-content-center vh-100">
   <section class="container text-center">
+    <!-- Page title -->
     <h1 class="mb-5"><?php echo $title; ?></h1>
 
-    <div class="row justify-content-center">
-      <form action="model/signing.php" method="POST" class="col-12 col-md-6 col-lg-4 text-center">
-        <input name="login" type="text" class="form-control mb-4" placeholder="login">
-        <input name="email" type="email" class="form-control mb-4" placeholder="email">
-        <input name="password" type="text" class="form-control mb-4" placeholder="password">
+    <!-- Form for registration -->
+    <form action="model/signing.php" method="POST" class="col-12 col-md-6 col-lg-4 mx-auto">
+      <!-- Login input -->
+      <input name="login" type="text" class="form-control mb-4" placeholder="login" required>
+      <!-- Email input -->
+      <input name="email" type="email" class="form-control mb-4" placeholder="email" required>
+      <!-- Password input -->
+      <input name="password" type="password" class="form-control mb-4" placeholder="password" required>
 
-        <div class="row">
-          <label class="form-check-label mb-3">
-            <input name="anonym" class="form-check-input me-2" type="checkbox">
-            Анонимность
-          </label>
-        </div>
+      <!-- Anonymity checkbox -->
+      <div class="form-check mb-3 text-start">
+        <input name="anonym" class="form-check-input" type="checkbox">
+        <label class="form-check-label">Анонимность</label>
+      </div>
 
-        <input type="submit" class="btn btn-secondary mb-4" value="Зарегистрироваться">
+      <!-- Submit button -->
+      <input type="submit" class="btn btn-secondary mb-4" value="Зарегистрироваться">
 
-        <?php
-        if (isset($_SESSION['regError'])) { // error for registration
-          if ($_SESSION['regError'] == 1) { // user name exist
-            echo '<div class="alert alert-danger" role="alert">Пользователь с таким именем существует</div>';
-          } elseif ($_SESSION['regError'] == 2) { // login very short or long
-            echo '<div class="alert alert-danger" role="alert">Длина имени должна быть от 3 до 15 символов</div>';
-          } elseif ($_SESSION['regError'] == 3) { // empty input
-            echo '<div class="alert alert-danger" role="alert">Заполните все поля</div>';
-          }
-
-          unset($_SESSION['regError']);
+      <!-- Display registration errors -->
+      <?php
+      if (isset($_SESSION['regError'])) {
+        // Define error messages
+        $errorMessages = [
+          1 => 'Пользователь с таким именем существует',
+          2 => 'Длина имени должна быть от 3 до 15 символов',
+          3 => 'Заполните все поля'
+        ];
+        // Display error message if exists
+        if (array_key_exists($_SESSION['regError'], $errorMessages)) {
+          echo '<div class="alert alert-danger" role="alert">' . $errorMessages[$_SESSION['regError']] . '</div>';
         }
-        ?>
-      </form>
-    </div>
+        // Unset error session after display
+        unset($_SESSION['regError']);
+      }
+      ?>
+    </form>
 
-    <div class="row justify-content-center">
+    <!-- Link to login page -->
+    <div class="mt-3">
       <a class="link-success" href="/">Войти</a>
     </div>
   </section>

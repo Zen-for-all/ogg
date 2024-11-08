@@ -3,38 +3,31 @@
  * @var $groupMissions
  * @var $groupChat
  */
-?>
 
+// Back button
+?>
 <a class="btn btn-light mb-4" href="/?page=groups"><- К списку групп</a>
 
 <?php
-$groupValue = $_GET['id'];
+$groupId = $_GET['id'];
 
-// get all info about group
-$group = new Group($_GET['id']);
-
+// Retrieve group data
+$group = new Group($groupId);
 $groupTitle = $group->title;
 $groupText = $group->text;
 $admin = new User($group->admin);
 $groupDate = $group->date;
 
-// add Users
-$groupUsersArray = [];
+// Fetch users in the group
 $userIdArray = json_decode($group->users, true);
 $userCount = count($userIdArray);
-foreach ($userIdArray as $id) {
-  $groupUsersArray[] = new User($id);
-}
+$groupUsersArray = array_map(fn($id) => new User($id), $userIdArray);
 
-// add Missions
-$groupMissionArray = [];
-$MissionIdArray = json_decode($group->mission, true);
-foreach ($MissionIdArray as $id) {
-  $groupMissionArray[] = $groupMissions[$id];
-}
+// Fetch missions
+$missionIds = json_decode($group->mission, true);
+$groupMissionArray = array_map(fn($id) => $groupMissions[$id] ?? null, $missionIds);
 
-// add Chats
-$groupChatArray = [];
+// Fetch chats
 $chats = json_decode($group->chats, true);
 ?>
 
@@ -42,48 +35,38 @@ $chats = json_decode($group->chats, true);
   <h1><?=$groupTitle;?></h1>
 
   <p>
-  <?php foreach ($groupMissionArray as $mission) { ?>
-    <?php echo $mission . ' | '; ?>
-  <?php } ?>
+    <?= implode(' | ', array_filter($groupMissionArray)) ?>
   </p>
 
   <p>
-  <?php if ($groupText != false) {
-    echo $groupText;
-  } ?>
+    <?= $groupText ?: '' ?>
   </p>
 
   <p><b>Общение:</b></p>
   <p>
-  <?php
-  foreach ($chats as $title => $link) {
-    if ($link != false) {
-    ?>
-      <span><?=$title?>: <?=$link?></span> |
-    <?php
-    }
-  }
-  ?>
+    <?php foreach ($chats as $title => $link): ?>
+      <?php if ($link): ?>
+        <span><?=$title?>: <?=$link?></span> |
+      <?php endif; ?>
+    <?php endforeach; ?>
   </p>
 
   <p>Админ: <a href="#<?=$admin->id?>"><?=$admin->login?></a></p>
 
   <p><b>Участники (<?=$userCount?>):</b></p>
   <p>
-    <?php foreach ($groupUsersArray as $user) { ?>
+    <?php foreach ($groupUsersArray as $user): ?>
       <a href="#<?=$user->id?>"><?=$user->login?></a> |
-    <?php } ?>
+    <?php endforeach; ?>
   </p>
 
   <p>
-  <?php if ($groupDate != false) {
-    echo 'Дата создания: ' . $groupDate;
-  } ?>
+    <?= $groupDate ? 'Дата создания: ' . $groupDate : '' ?>
   </p>
 </div>
 
-<?php if(!(in_array($_SESSION['userId'], $userIdArray))) { ?>
-  <!-- button to join the group -->
+<?php if (!in_array($_SESSION['userId'], $userIdArray)): ?>
+  <!-- Join group button -->
   <div class="delete_ld show mb-5">
     <form action="model/net/join_group.php" method="post">
       <input type="hidden" name="group_id" value="<?=$group->id?>">
@@ -91,8 +74,8 @@ $chats = json_decode($group->chats, true);
       <input type="submit" value="Присоедениться" class="btn btn-outline-success">
     </form>
   </div>
-<?php } else { ?>
-  <!-- button to leave the group -->
+<?php else: ?>
+  <!-- Leave group button -->
   <div class="delete_ld show mb-5">
     <form action="model/net/leave_group.php" method="post">
       <input type="hidden" name="group_id" value="<?=$group->id?>">
@@ -100,25 +83,24 @@ $chats = json_decode($group->chats, true);
       <input type="submit" value="Покинуть группу" class="btn btn-outline-danger">
     </form>
   </div>
-<?php } ?>
+<?php endif; ?>
 
-<?php if($admin->id === $_SESSION['userId']) { ?>
+<?php if ($admin->id === $_SESSION['userId']): ?>
   <div class="edit_ld_form hide mt-5">
     <h2>Редактировать группу:</h2>
     <?php include 'view/parts/net/group_add.php'; ?>
   </div>
 
-  <!-- button for edit ld -->
+  <!-- Edit and delete buttons for admin -->
   <div class="edit_ld_btn show btn mt-5 mb-3">
     <span class="show">Редактировать группу</span>
     <span class="hide">Отменить</span>
   </div>
 
-  <!-- button for delete ld -->
   <div class="delete_ld show mb-5">
     <form action="model/net/delete_group.php" method="post">
       <input type="hidden" name="delete" value="<?=$group->id?>">
       <input type="submit" value="Удалить группу" class="btn btn-outline-danger">
     </form>
   </div>
-<?php } ?>
+<?php endif; ?>

@@ -4,18 +4,21 @@
  */
 ?>
 
-<h2 class="mb-3"><?=$user->login?></h2>
+<h2 class="mb-3"><?= htmlspecialchars($user->login) ?></h2> <!-- Output user login -->
 
-<p class="mb-5">В проекте с <?=$user->date?></p>
+<p class="mb-5">В проекте с <?= htmlspecialchars($user->date) ?></p> <!-- Display user registration date -->
 
 <div class="row mb-3">
+  <!-- Including user information editing section -->
   <?php include 'view/parts/note/edit_user_info.php'; ?>
 
   <div class="col-md-6">
+    <!-- Including import functionality -->
     <?php include 'view/parts/note/import_ld.php'; ?>
   </div>
 
   <div class="col-md-6">
+    <!-- Including export functionality -->
     <?php include 'view/parts/note/export_ld.php'; ?>
   </div>
 </div>

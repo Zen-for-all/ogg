@@ -24,7 +24,7 @@ if (isset($_SESSION['userId'])) {
   // Define valid page lists
   $valid_pages = [
     'main', 'journal', 'location', 'settings', 'user_delete',
-    'delete_ld_page', 'location_delete', 'ld'
+    'ld_delete', 'location_delete', 'ld'
   ];
   $valid_pages_net = ['net', 'groups', 'group'];
 
