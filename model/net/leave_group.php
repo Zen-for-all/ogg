@@ -10,7 +10,7 @@ require '../connect.php';
 require '../../controller/class/Group.php';
 
 // Sanitize and retrieve POST data
-$userId = $_POST['user_id'];
+$userId = (int)$_SESSION['userId'];
 $groupId = $_POST['group_id'];
 
 // Create a new instance of the Group class to get group data
@@ -53,7 +53,7 @@ $groupNewJson = json_encode($groupList);
 $setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `grouplist` = '$groupNewJson' WHERE `id` = '$userId'");
 
 // Redirect based on whether the group still has users
-if (count($userIdArray) < 2) {
+if (count($userIdArray) < 1) {
   // If the group is empty, redirect to the groups list page
   header("location:/groups");
 } else {

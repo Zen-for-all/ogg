@@ -69,7 +69,6 @@ $chats = json_decode($group->chats, true);
   <div class="delete_ld show mb-5">
     <form action="model/net/join_group.php" method="post">
       <input type="hidden" name="group_id" value="<?=$group->id?>">
-      <input type="hidden" name="user_id" value="<?=$_SESSION['userId']?>">
       <input type="submit" value="Присоедениться" class="btn btn-outline-success">
     </form>
   </div>
@@ -78,7 +77,6 @@ $chats = json_decode($group->chats, true);
   <div class="delete_ld show mb-5">
     <form action="model/net/leave_group.php" method="post">
       <input type="hidden" name="group_id" value="<?=$group->id?>">
-      <input type="hidden" name="user_id" value="<?=$_SESSION['userId']?>">
       <input type="submit" value="Покинуть группу" class="btn btn-outline-danger">
     </form>
   </div>
