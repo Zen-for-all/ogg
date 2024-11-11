@@ -94,15 +94,10 @@ $chats = json_decode($group->chats, true);
   </div>
 
   <!-- Edit and delete buttons for admin -->
-  <div class="edit_ld_btn show btn mt-5 mb-3">
+  <div class="edit_ld_btn show btn mt-5 mb-3 me-3">
     <span class="show">Редактировать группу</span>
     <span class="hide">Отменить</span>
   </div>
 
-  <div class="delete_ld show mb-5">
-    <form action="model/net/delete_group.php" method="post">
-      <input type="hidden" name="delete" value="<?=$group->id?>">
-      <input type="submit" value="Удалить группу" class="btn btn-outline-danger">
-    </form>
-  </div>
+  <a href="/group_delete?group_id=<?=$groupValue?>" class="btn btn-outline-danger mt-5 mb-3">Удалить группу</a>
 <?php endif; ?>

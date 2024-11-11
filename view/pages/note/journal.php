@@ -16,4 +16,4 @@ include 'view/parts/note/pagination.php';
   </div>
 </div>
 
-<a class="btn btn-outline-danger mt-3" href="/?page=ld_delete">Удалить все записи</a>
+<a class="btn btn-outline-danger mt-3" href="/ld_delete">Удалить все записи</a>

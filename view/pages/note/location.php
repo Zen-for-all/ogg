@@ -17,4 +17,4 @@ $locationValue = $locationTitle = $locationText = false;
 </div>
 
 <!-- Button to delete all locations -->
-<a class="btn btn-outline-danger mt-3" href="/?page=location_delete">Удалить все локации</a>
+<a class="btn btn-outline-danger mt-3" href="/location_delete">Удалить все локации</a>
