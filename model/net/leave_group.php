@@ -10,7 +10,7 @@ require '../connect.php';
 require '../../controller/class/Group.php';
 
 // Sanitize and retrieve POST data
-$userId = (int)$_SESSION['userId'];
+$userId = $_SESSION['userId'];
 $groupId = $_POST['group_id'];
 
 // Create a new instance of the Group class to get group data
@@ -19,8 +19,8 @@ $group = new Group($groupId);
 // Decode the 'users' JSON field from the group to get an array of user IDs
 $userIdArray = json_decode($group->users, true);
 
-// If the group has fewer than 2 users, delete the group
-if (count($userIdArray) < 2) {
+// If the group has only 1 user, delete the group
+if (count($userIdArray) === 1) {
   $deletegroup = mysqli_query($connect, "DELETE FROM `groups` WHERE `id` = '$groupId'");
 } else {
   // Remove the current user from the group if there are multiple users
@@ -52,13 +52,6 @@ $groupNewJson = json_encode($groupList);
 // Update the user's group list in the database
 $setNewLdInUser = mysqli_query($connect, "UPDATE `user` SET `grouplist` = '$groupNewJson' WHERE `id` = '$userId'");
 
-// Redirect based on whether the group still has users
-if (count($userIdArray) < 1) {
-  // If the group is empty, redirect to the groups list page
-  header("location:/groups");
-} else {
-  // If the group still has users, redirect to the group's page
-  header("location:/?page=group&id=" . $groupId);
-}
+header("location:/?page=group&id=" . $groupId);
 
 exit();

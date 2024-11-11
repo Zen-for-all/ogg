@@ -73,15 +73,19 @@ $chats = json_decode($group->chats, true);
     </form>
   </div>
 <?php else: ?>
-  <!-- Leave group button -->
-  <div class="delete_ld show mb-5">
-    <form action="model/net/leave_group.php" method="post">
-      <input type="hidden" name="group_id" value="<?=$group->id?>">
-      <input type="submit" value="Покинуть группу" class="btn btn-outline-danger">
-    </form>
-  </div>
+  <!-- If NOT admin -->
+  <?php if ($admin->id !== $_SESSION['userId']): ?>
+    <!-- Leave group button -->
+    <div class="delete_ld show mb-5">
+      <form action="model/net/leave_group.php" method="post">
+        <input type="hidden" name="group_id" value="<?=$group->id?>">
+        <input type="submit" value="Покинуть группу" class="btn btn-outline-danger">
+      </form>
+    </div>
+  <?php endif; ?>
 <?php endif; ?>
 
+<!-- If admin -->
 <?php if ($admin->id === $_SESSION['userId']): ?>
   <div class="edit_ld_form hide mt-5">
     <h2>Редактировать группу:</h2>

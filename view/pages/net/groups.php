@@ -5,7 +5,7 @@ include 'view/parts/note/pagination.php';
 
 <a href="#add-group-form" class="btn btn-outline-success btn_show mt-3 me-3">Создать группу</a>
 
-<div class="block_hide col-xl-6 hide">
+<div class="block_hide hide">
   <h2 class="mt-5">Создание группы:</h2>
   <?php
   // Initialize variables for group creation

@@ -28,7 +28,6 @@
   if (!empty($groupArray)) {
     foreach ($groupArray as $group) {
       $groupTitle = htmlspecialchars($group->title);  // Escaping for security
-      $groupText = htmlspecialchars($group->text);    // Escaping for security
 
       // Parse missions
       $groupMissionArray = [];
@@ -47,9 +46,6 @@
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
             <h4 class="mb-3"><?= $groupTitle ?></h4>
-            <?php if ($groupText) { ?>
-              <p><?= $groupText ?></p>
-            <?php } ?>
 
             <?php if (!empty($groupMissionArray)) { ?>
               <span><b>Цели:</b></span>

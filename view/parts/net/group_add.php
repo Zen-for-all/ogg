@@ -23,7 +23,7 @@
     </div>
 
     <!-- Group Description -->
-    <div class="col-12">
+    <div class="col-12 mb-3">
       <p>Описание группы</p>
       <textarea class="form-control mb-4" name="text"><?php echo $groupText ?: ''; ?></textarea>
     </div>
@@ -56,3 +56,16 @@
   <br>
   <input class="btn btn-outline-success me-3 mb-4" type="submit">
 </form>
+
+<!-- TinyMCE Script Initialization -->
+<script src="view/js/tinymce/tinymce.min.js"></script>
+<script>
+  // Initialize TinyMCE for the public text field
+  tinymce.init({
+    selector: 'textarea[name="text"]',
+    menubar: false,
+    plugins: 'lists link image',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter | bullist numlist',
+    height: 400
+  });
+</script>

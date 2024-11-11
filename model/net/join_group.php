@@ -10,7 +10,7 @@ require '../connect.php';
 require '../../controller/class/Group.php';
 
 // Sanitize and cast input values
-$userId = (int)$_SESSION['userId'];
+$userId = $_SESSION['userId'];
 $groupId = $_POST['group_id'];
 
 // Initialize Group object and get existing users
