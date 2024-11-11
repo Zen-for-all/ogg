@@ -10,7 +10,7 @@ require '../connect.php';
 require '../../controller/class/Group.php';
 
 // Create a Group object using the 'delete' parameter from the POST request
-$group = new Group($_POST['delete']);
+$group = new Group($_SESSION['group_id']);
 $users = json_decode($group->users, true); // Decode the JSON string into an array of user IDs
 
 // Delete the group from the 'groups' table based on the group ID

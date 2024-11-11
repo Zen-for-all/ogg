@@ -93,11 +93,13 @@ $chats = json_decode($group->chats, true);
     ?>
   </div>
 
-  <!-- Edit and delete buttons for admin -->
+  <!-- Edit button for admin -->
   <div class="edit_ld_btn show btn mt-5 mb-3 me-3">
     <span class="show">Редактировать группу</span>
     <span class="hide">Отменить</span>
   </div>
 
-  <a href="/group_delete?group_id=<?=$groupValue?>" class="btn btn-outline-danger mt-5 mb-3">Удалить группу</a>
+  <!-- Delete button for admin -->
+  <?php $_SESSION['group_id'] = $group->id; ?>
+  <a href="/group_delete" class="btn btn-outline-danger mt-5 mb-3">Удалить группу</a>
 <?php endif; ?>

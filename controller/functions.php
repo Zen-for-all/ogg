@@ -126,6 +126,7 @@ function sortLdObjects(&$ldObjects, $parameter) {
   });
 }
 
+//
 function compareTime($a, $b) {
   $timeA = DateTime::createFromFormat('H:i', $a->time);
   $timeB = DateTime::createFromFormat('H:i', $b->time);
@@ -213,4 +214,16 @@ function printYears($ldArrayObjects, $param = null) {
         echo '</div>';
     }
 }
+
+// Print confirmation page
+function printConfirmationPage($title, $modelFile) {
+  echo '
+  <h3 class="mb-5">' . $title . '</h3>
+<div class="d-flex">
+  <a class="btn btn-outline-secondary me-3" href="' . $modelFile . '">Подтверждаю</a>
+  <a class="btn btn-outline-secondary" href="javascript:history.back()">Отменить</a>
+</div>
+  ';
+}
+
 ?>
