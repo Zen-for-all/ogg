@@ -28,6 +28,8 @@
   if (!empty($groupArray)) {
     foreach ($groupArray as $group) {
       $groupTitle = htmlspecialchars($group->title);  // Escaping for security
+      $groupAdminId = $group->admin;
+      $admin = new User($groupAdminId);
 
       // Parse missions
       $groupMissionArray = [];
@@ -55,6 +57,8 @@
             <?php } ?>
 
             <p>Участников: <?= $userCount ?></p>
+
+            <p>Админ: <a href="/?user=<?= $groupAdminId ?>"><?= $admin->login ?></a></p>
 
             <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=group&id=<?= $group->id ?>">Подробнее</a>
           </div>

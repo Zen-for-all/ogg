@@ -50,12 +50,12 @@ $chats = json_decode($group->chats, true);
     <?php endforeach; ?>
   </p>
 
-  <p>Админ: <a href="#<?=$admin->id?>"><?=$admin->login?></a></p>
+  <p>Админ: <a href="/?user=<?=$admin->id?>"><?=$admin->login?></a></p>
 
   <p><b>Участники (<?=$userCount?>):</b></p>
   <p>
     <?php foreach ($groupUsersArray as $user): ?>
-      <a href="#<?=$user->id?>"><?=$user->login?></a> |
+      <a href="/?user=<?=$user->id?>"><?=$user->login?></a> |
     <?php endforeach; ?>
   </p>
 
