@@ -10,7 +10,6 @@ class User
   public $ldlocations;
   public $grouplist;
   public $anonym;
-  public $achieves;
 
   function __construct(int $id)
   {
@@ -22,7 +21,7 @@ class User
   {
     global $connect;
     $query = "SELECT `login`, `password`, `email`, `date`, `ldlist`, `ldlocations`, 
-                         `grouplist`, `anonym`, `achieves`
+                         `grouplist`, `anonym`
                   FROM `user` 
                   WHERE `id` = {$this->id}";
     $result = mysqli_query($connect, $query);

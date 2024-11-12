@@ -22,15 +22,15 @@ $groupOnPage = 10;
 
 // Group missions (organized into an array for easier future management)
 $groupMissions = [
-  1 => 'Общение',   // Communication
-  2 => 'Практика',  // Practice
-  3 => 'Живые встречи' // Live meetings
+  1 => 'Общение',
+  2 => 'Практика',
+  3 => 'Живые встречи'
 ];
 
 // Available group chat platforms
 $groupChat = [
-  'telegram',  // Telegram
-  'facebook',  // Facebook
-  'discord',   // Discord
-  'whatsapp'   // WhatsApp
+  'telegram',
+  'facebook',
+  'discord',
+  'whatsapp'
 ];

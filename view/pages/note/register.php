@@ -14,8 +14,10 @@
 
       <!-- Anonymity checkbox -->
       <div class="form-check mb-3 text-start">
-        <input name="anonym" class="form-check-input" type="checkbox">
-        <label class="form-check-label">Анонимность</label>
+        <label class="form-check-label">
+          <input name="anonym" class="form-check-input" type="checkbox">
+          Анонимность
+        </label>
       </div>
 
       <!-- Submit button -->
