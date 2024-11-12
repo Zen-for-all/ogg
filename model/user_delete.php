@@ -30,7 +30,7 @@ foreach ($queries as $query) {
 }
 
 // Remove the user ID from the user lists in the `groups` table
-$result = $connect->query("SELECT `id`, `users` FROM `groups`");
+$result = $connect->query("SELECT `id`, `users`, `admin` FROM `groups`");
 while ($group = $result->fetch_assoc()) {
   // Decode the list of users for the group
   $users = json_decode($group['users'], true);
@@ -39,12 +39,26 @@ while ($group = $result->fetch_assoc()) {
   if (($key = array_search($userId, $users, true)) !== false) {
     array_splice($users, $key, 1);  // Remove the user ID from the array
 
+    // Check if the user was the admin for this group
+    $newAdminId = null;
+    if ($group['admin'] == $userId) {
+      // If there are still users in the list, assign the first one as the new admin
+      if (!empty($users)) {
+        $newAdminId = $users[0];
+      }
+    }
+
     // Convert the updated user list back to JSON format
     $updatedUsers = json_encode($users);
 
-    // Prepare the query to update the `users` list in the group
-    $stmt = $connect->prepare("UPDATE `groups` SET `users` = ? WHERE `id` = ?");
-    $stmt->bind_param('si', $updatedUsers, $group['id']);
+    // Prepare the query to update the `users` list and admin in the group
+    if ($newAdminId !== null) {
+      $stmt = $connect->prepare("UPDATE `groups` SET `users` = ?, `admin` = ? WHERE `id` = ?");
+      $stmt->bind_param('sii', $updatedUsers, $newAdminId, $group['id']);
+    } else {
+      $stmt = $connect->prepare("UPDATE `groups` SET `users` = ? WHERE `id` = ?");
+      $stmt->bind_param('si', $updatedUsers, $group['id']);
+    }
 
     // Execute the update query
     $stmt->execute();
