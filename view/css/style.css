@@ -195,3 +195,11 @@ label {
 .group-active .card {
     border: 1px solid darkgreen;
 }
+
+
+.avatar {
+    width: 100%;
+    max-width: 300px;
+    height: 400px;
+    background: #ccc;
+}
