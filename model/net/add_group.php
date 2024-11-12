@@ -40,6 +40,9 @@ foreach ($groupChat as $key => $chat) {
 }
 $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array to JSON
 
+//Add City name
+$city = $_POST['group_city'];
+
 // Add current date in d.m.y format
 $datePublic = date("d.m.y");
 
@@ -50,8 +53,8 @@ $private = 0;
 if ($title !== '') {
   // Insert the new group into the database
   $setNewGroup = mysqli_query($connect, "
-    INSERT INTO `groups` (`title`, `text`, `mission`, `admin`, `users`, `chats`, `date`, `private`) 
-    VALUES ('$title', '$text', '$mission', '$user', '$users', '$chats', '$datePublic', '$private')
+    INSERT INTO `groups` (`title`, `text`, `mission`, `admin`, `users`, `chats`, `city`, `date`, `private`) 
+    VALUES ('$title', '$text', '$mission', '$user', '$users', '$chats', '$city', '$datePublic', '$private')
   ");
 
   // Get user info and group list from the database

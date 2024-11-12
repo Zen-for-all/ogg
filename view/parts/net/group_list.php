@@ -15,12 +15,12 @@
     <?php
     $missionListId = [];
     foreach ($groupMissions as $key => $mission):
-      $checked = isset($_POST['mission_' . $key]) && $_POST['mission_' . $key] !== false;
+      $checked = isset($_POST['group_mission_' . $key]) && $_POST['group_mission_' . $key] !== false;
       if ($checked) $missionListId[] = $key;
       ?>
       <div class="rl me-3">
-        <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>" <?php echo $checked ? 'checked' : ''; ?> />
-        <label for="mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
+        <input type="checkbox" id="group_mission_<?php echo $key; ?>" name="group_mission_<?php echo $key; ?>" <?php echo $checked ? 'checked' : ''; ?> />
+        <label for="group_mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
       </div>
     <?php endforeach; ?>
 
@@ -45,20 +45,24 @@
   // Display groups
   if (!empty($groupArray)) {
     foreach ($groupArray as $group) {
-      $groupTitle = htmlspecialchars($group->title);  // Escaping for security
+      $groupTitle = htmlspecialchars($group->title);
+      $groupCity = $group->city;
       $groupAdminId = $group->admin;
       $admin = new User($groupAdminId);
 
       // Parse missions
       $groupMissionArray = [];
-      $MissionIdArray = json_decode($group->mission, true);
-      foreach ($MissionIdArray as $id) {
+      $missionIdArray = json_decode($group->mission, true);
+      foreach ($missionIdArray as $id) {
         $groupMissionArray[] = $groupMissions[$id];
       }
 
       // Parse users
       $userIdArray = json_decode($group->users, true);
       $userCount = count($userIdArray);
+
+      // Get city name
+      $groupCity = $group->city;
       ?>
 
       <!-- Print info about group -->
@@ -68,15 +72,16 @@
             <h4 class="mb-3"><?= $groupTitle ?></h4>
 
             <?php if (!empty($groupMissionArray)) { ?>
-              <span><b>Цели:</b></span>
-              <p>
-                <?= implode(' | ', $groupMissionArray) ?> <!-- Using implode for cleaner code -->
-              </p>
+              <div>Цель: <?= implode(' | ', $groupMissionArray) ?></div>
             <?php } ?>
 
-            <p>Участников: <?= $userCount ?></p>
+            <?php if (!empty($groupCity)) : ?>
+              <div>Город: <?= $groupCity ?></div>
+            <?php endif; ?>
 
-            <p>Админ: <a href="/?user=<?= $groupAdminId ?>"><?= $admin->login ?></a></p>
+            <div>Участников: <?= $userCount ?></div>
+
+            <div>Админ: <a href="/?user=<?= $groupAdminId ?>"><?= $admin->login ?></a></div>
 
             <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=group&id=<?= $group->id ?>">Подробнее</a>
           </div>

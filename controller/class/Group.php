@@ -8,6 +8,7 @@ class Group
   public $admin;
   public $users;
   public $chats;
+  public $city;
   public $date;
   public $private;
 
@@ -18,7 +19,7 @@ class Group
 
   private function loadInfo() {
     global $connect;
-    $query = "SELECT `title`, `text`, `mission`, `admin`, `users`, `chats`, `date`, `private` 
+    $query = "SELECT `title`, `text`, `mission`, `admin`, `users`, `chats`, `city`, `date`, `private` 
                   FROM `groups` 
                   WHERE `id` = {$this->id}";
     $result = mysqli_query($connect, $query);

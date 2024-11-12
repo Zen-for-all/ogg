@@ -36,6 +36,9 @@ foreach ($groupChat as $key => $chat) {
 }
 $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array as JSON
 
+//Add City name
+$city = $_POST['group_city'];
+
 // Check if a record with the given group ID exists
 $checkExistingRecord = mysqli_query($connect, "SELECT * FROM `groups` WHERE `id` = '$id'");
 
@@ -45,7 +48,8 @@ if (mysqli_num_rows($checkExistingRecord) > 0) {
         `title` = '$title',
         `text` = '$text',
         `mission` = '$mission',
-        `chats` = '$chats'
+        `chats` = '$chats',
+        `city` = '$city'
         WHERE `id` = '$id'");
 }
 

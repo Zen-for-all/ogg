@@ -23,45 +23,58 @@ $userCount = count($userIdArray);
 $groupUsersArray = array_map(fn($id) => new User($id), $userIdArray);
 
 // Fetch missions
-$MissionIdArray = json_decode($group->mission, true);
-$groupMissionArray = array_map(fn($id) => $groupMissions[$id] ?? null, $MissionIdArray);
+$missionIdArray = json_decode($group->mission, true);
+$groupMissionArray = array_map(fn($id) => $groupMissions[$id] ?? null, $missionIdArray);
 
 // Fetch chats
 $chats = json_decode($group->chats, true);
+
+// Get city name
+$groupCity = $group->city;
 ?>
 
-<div class="">
+<div class="groupContent">
   <h1><?=$groupTitle;?></h1>
 
-  <p>
-    <?= implode(' | ', array_filter($groupMissionArray)) ?>
-  </p>
+  <?php if (!empty($groupMissionArray)) : ?>
+    <div class="groupMission mb-5"><?= implode(' | ', array_filter($groupMissionArray)) ?></div>
+  <?php endif; ?>
 
-  <p>
-    <?= $groupText ?: '' ?>
-  </p>
+  <?php if (!empty($groupText)) : ?>
+    <div class="groupDescription mb-5">
+      <?= $groupText ?: '' ?>
+    </div>
+  <?php endif; ?>
 
-  <p><b>Общение:</b></p>
-  <p>
-    <?php foreach ($chats as $title => $link): ?>
-      <?php if ($link): ?>
-        <span><?=$title?>: <?=$link?></span> |
-      <?php endif; ?>
-    <?php endforeach; ?>
-  </p>
+  <?php if (array_filter($chats)): ?>
+    <div class="groupChats mb-5">
+      <p><b>Общение:</b></p>
+      <p>
+        <?php foreach ($chats as $title => $link): ?>
+          <?php if ($link): ?>
+            <span><?=$title?>: <?=$link?></span> |
+          <?php endif; ?>
+        <?php endforeach; ?>
+      </p>
+    </div>
+  <?php endif; ?>
 
-  <p>Админ: <a href="/?user=<?=$admin->id?>"><?=$admin->login?></a></p>
+  <?php if (!empty($groupCity)) : ?>
+    <div class="groupCity mb-5">Город: <?= $groupCity ?></div>
+  <?php endif; ?>
 
-  <p><b>Участники (<?=$userCount?>):</b></p>
-  <p>
-    <?php foreach ($groupUsersArray as $user): ?>
-      <a href="/?user=<?=$user->id?>"><?=$user->login?></a> |
-    <?php endforeach; ?>
-  </p>
+  <div class="groupAdmin mb-5">Админ: <a href="/?user=<?=$admin->id?>"><?=$admin->login?></a></div>
 
-  <p>
-    <?= $groupDate ? 'Дата создания: ' . $groupDate : '' ?>
-  </p>
+  <div class="groupUsers mb-5">
+    <p><b>Участники (<?=$userCount?>):</b></p>
+    <p>
+      <?php foreach ($groupUsersArray as $user): ?>
+        <a href="/?user=<?=$user->id?>"><?=$user->login?></a> |
+      <?php endforeach; ?>
+    </p>
+  </div>
+
+  <div class="groupDate"><?= $groupDate ? 'Дата создания: ' . $groupDate : '' ?></div>
 </div>
 
 <?php if (!in_array($_SESSION['userId'], $userIdArray)): ?>

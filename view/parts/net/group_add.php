@@ -5,8 +5,9 @@
  * @var mixed $groupValue The group ID if editing, false if creating a new group.
  * @var string $groupTitle The title of the group.
  * @var string $groupText The description of the group.
- * @var array $MissionIdArray List of selected missions for the group.
+ * @var array $missionIdArray List of selected missions for the group.
  * @var array $chats List of current chat values associated with the group.
+ * @var string $groupCity City group name
  */
 ?>
 
@@ -29,12 +30,12 @@
     </div>
 
     <!-- Missions Selection -->
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-6 mb-3">
       <p>Назначение группы:</p>
       <?php foreach ($groupMissions as $key => $mission): ?>
         <div>
           <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>"
-            <?php echo (isset($groupValue) && $groupValue !== false && in_array($key, $MissionIdArray)) ? 'checked' : ''; ?> />
+            <?php echo (isset($groupValue) && $groupValue !== false && in_array($key, $missionIdArray)) ? 'checked' : ''; ?> />
           <label for="mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
         </div>
       <?php endforeach; ?>
@@ -44,12 +45,21 @@
     <div class="col-12 col-md-6">
       <p>Место общения:</p>
       <?php foreach ($groupChat as $chat): ?>
-        <div>
+        <div class="mb-3">
           <label for="<?php echo $chat; ?>"><?php echo $chat; ?></label>
           <input name="<?php echo $chat; ?>" id="<?php echo $chat; ?>" type="text" placeholder="<?php echo $chat; ?>"
                  value="<?php echo (isset($groupValue) && $groupValue !== false) ? $chats[$chat] : ''; ?>">
         </div>
       <?php endforeach; ?>
+    </div>
+
+    <!-- City name -->
+    <div class="col-12 col-md-6">
+      <div>
+        <label for="group_city">Город </label>
+        <input name="group_city" type="text" placeholder="Название города"
+               value="<?php echo (isset($groupCity) && $groupCity !== false) ? $groupCity : ''; ?>">
+      </div>
     </div>
   </div>
 

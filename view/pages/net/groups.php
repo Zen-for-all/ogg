@@ -9,7 +9,7 @@ include 'view/parts/note/pagination.php';
   <h2 class="mt-5">Создание группы:</h2>
   <?php
   // Initialize variables for group creation
-  $groupValue = $groupTitle = $groupText = $admin = $groupDate = $userCount = $MissionIdArray = $Chats = false;
+  $groupValue = $groupTitle = $groupText = $admin = $groupDate = $userCount = $missionIdArray = $chats = $groupCity = false;
   include 'view/parts/net/group_add.php';
   ?>
 </div>
