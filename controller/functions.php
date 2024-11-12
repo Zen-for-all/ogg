@@ -82,10 +82,18 @@ function getAllLd() {
   return array_map(fn($row) => new Ld($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));
 }
 
-// Get all Groups
+// Get all Groups sorted by the number of users
 function getAllGroups() {
   global $connect;
-  $result = mysqli_query($connect, "SELECT id FROM `groups`");
+
+  // SQL query to get groups ordered by the number of users in descending order
+  $result = mysqli_query($connect, "
+    SELECT id 
+    FROM `groups`
+    ORDER BY JSON_LENGTH(users) DESC
+  ");
+
+  // Map the result to create Group objects
   return array_map(fn($row) => new Group($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));
 }
 
