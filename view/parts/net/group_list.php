@@ -10,11 +10,29 @@
 
 <h2 class="pb-5"><?= htmlspecialchars($title) ?></h2> <!-- Escaping title for security -->
 
-<div class="row">
+<div class="row mb-5">
+  <form action="" method="post">
+    <?php
+    $missionListId = [];
+    foreach ($groupMissions as $key => $mission):
+      $checked = isset($_POST['mission_' . $key]) && $_POST['mission_' . $key] !== false;
+      if ($checked) $missionListId[] = $key;
+      ?>
+      <div class="rl me-3">
+        <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>" <?php echo $checked ? 'checked' : ''; ?> />
+        <label for="mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
+      </div>
+    <?php endforeach; ?>
 
+    <div class="clear"></div>
+    <input type="submit" class="btn btn-outline-secondary mt-3" value="Сортировать по цели">
+  </form>
+</div>
+
+<div class="row">
   <?php
   // Get groups
-  $groupArray = getAllGroups();
+  $groupArray = getAllGroups($missionListId);
 
   // Get current page and calculate the total pages
   $pages = ceil(count($groupArray) / $groupOnPage);
@@ -69,5 +87,4 @@
     }
   }
   ?>
-
 </div>

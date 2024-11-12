@@ -82,16 +82,33 @@ function getAllLd() {
   return array_map(fn($row) => new Ld($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));
 }
 
-// Get all Groups sorted by the number of users
-function getAllGroups() {
+// Get all Groups sorted by the number of users and filtered by mission IDs
+function getAllGroups($missionIds = []) {
   global $connect;
 
-  // SQL query to get groups ordered by the number of users in descending order
-  $result = mysqli_query($connect, "
-    SELECT id 
-    FROM `groups`
-    ORDER BY JSON_LENGTH(users) DESC
-  ");
+  // Check if the array of mission IDs is not empty
+  if (!empty($missionIds)) {
+    // Prepare the JSON format of mission IDs for the SQL query
+    $missionIdsJson = json_encode($missionIds);
+
+    // SQL query to get groups ordered by the number of users, where all mission IDs are present in the "mission" field
+    $query = "
+      SELECT id 
+      FROM `groups`
+      WHERE JSON_CONTAINS(mission, '$missionIdsJson')
+      ORDER BY JSON_LENGTH(users) DESC
+    ";
+  } else {
+    // If missionIds is empty, get all groups without filtering by mission
+    $query = "
+      SELECT id 
+      FROM `groups`
+      ORDER BY JSON_LENGTH(users) DESC
+    ";
+  }
+
+  // Execute the query
+  $result = mysqli_query($connect, $query);
 
   // Map the result to create Group objects
   return array_map(fn($row) => new Group($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));

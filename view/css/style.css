@@ -27,6 +27,10 @@ html {
     background: #F8F9FA;
 }
 
+label {
+    cursor: pointer;
+}
+
 /* Display toggle classes */
 .hide {
     display: none;
