@@ -6,10 +6,10 @@
     <div class="container py-3">
       <div class="row">
         <div class="col">
-          <a class="btn btn-outline-secondary" href="controller/logout.php">Выйти</a>
+          Footer content
         </div>
         <div class="col">
-          <a class="btn btn-outline-danger" href="/user_delete">Удалить акаунт</a>
+         Footer content
         </div>
       </div>
     </div>

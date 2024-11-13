@@ -22,3 +22,12 @@
     <?php include 'view/parts/note/export_ld.php'; ?>
   </div>
 </div>
+
+<div class="row mb-3">
+  <div class="col">
+    <a class="btn btn-outline-secondary" href="controller/logout.php">Выйти</a>
+  </div>
+  <div class="col">
+    <a class="btn btn-outline-danger" href="/user_delete">Удалить акаунт</a>
+  </div>
+</div>
