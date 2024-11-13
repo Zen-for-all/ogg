@@ -199,7 +199,6 @@ label {
 
 .avatar {
     width: 100%;
-    max-width: 300px;
     height: 400px;
     background: #ccc;
 }

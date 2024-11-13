@@ -11,6 +11,17 @@ class User
   public $grouplist;
   public $anonym;
 
+  public $avatar;
+  public $gender;
+  public $age;
+  public $city;
+  public $experience;
+  public $ldcount;
+  public $description;
+  public $mission;
+  public $ideology;
+  public $contact;
+
   function __construct(int $id)
   {
     $this->id = $id;
@@ -20,8 +31,7 @@ class User
   private function loadInfo()
   {
     global $connect;
-    $query = "SELECT `login`, `password`, `email`, `date`, `ldlist`, `ldlocations`, 
-                         `grouplist`, `anonym`
+    $query = "SELECT `login`, `password`, `email`, `date`, `ldlist`, `ldlocations`, `grouplist`, `anonym`, `avatar`, `gender`, `age`, `city`, `experience`, `ldcount`, `description`, `mission`, `ideology`, `contact`
                   FROM `user` 
                   WHERE `id` = {$this->id}";
     $result = mysqli_query($connect, $query);

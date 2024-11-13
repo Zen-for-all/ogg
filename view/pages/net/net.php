@@ -17,14 +17,14 @@ if ($user->ldlist) {
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4 col-12">
       <div class="avatar">
         ava
       </div>
 
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-8 col-12">
       <p>Всего ОСов: <b><?= $quantityLd ?? 0 ?></b></p>
     </div>
   </div>
