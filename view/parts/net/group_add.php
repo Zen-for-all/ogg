@@ -1,6 +1,6 @@
 <?php
 /**
- * @var array $groupMissions List of available group missions.
+ * @var array $missionList List of available group missions.
  * @var array $groupChat List of available chat types for the group.
  * @var mixed $groupValue The group ID if editing, false if creating a new group.
  * @var string $groupTitle The title of the group.
@@ -32,7 +32,7 @@
     <!-- Missions Selection -->
     <div class="col-12 col-md-6 mb-3">
       <p>Назначение группы:</p>
-      <?php foreach ($groupMissions as $key => $mission): ?>
+      <?php foreach ($missionList as $key => $mission): ?>
         <div>
           <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>"
             <?php echo (isset($groupValue) && $groupValue !== false && in_array($key, $missionIdArray)) ? 'checked' : ''; ?> />

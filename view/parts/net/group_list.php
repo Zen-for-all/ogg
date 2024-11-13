@@ -2,7 +2,7 @@
 /**
  * @var object $user The current user object, containing information about the logged-in user.
  * @var string $title The title of the current page or section.
- * @var array $groupMissions List of available group missions that can be assigned to a group.
+ * @var array $missionList List of available group missions that can be assigned to a group.
  * @var array $groupChat List of available chat types or channels associated with the group.
  * @var array $groupOnPage List of groups or information related to the groups displayed on the page.
  */
@@ -14,7 +14,7 @@
   <form action="" method="post">
     <?php
     $missionListId = [];
-    foreach ($groupMissions as $key => $mission):
+    foreach ($missionList as $key => $mission):
       $checked = isset($_POST['group_mission_' . $key]) && $_POST['group_mission_' . $key] !== false;
       if ($checked) $missionListId[] = $key;
       ?>
@@ -54,7 +54,7 @@
       $groupMissionArray = [];
       $missionIdArray = json_decode($group->mission, true);
       foreach ($missionIdArray as $id) {
-        $groupMissionArray[] = $groupMissions[$id];
+        $groupMissionArray[] = $missionList[$id];
       }
 
       // Parse users

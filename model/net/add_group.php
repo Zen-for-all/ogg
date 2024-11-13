@@ -1,7 +1,7 @@
 <?php
 /**
  * @var object $connect The database connection object used to interact with the database.
- * @var array $groupMissions List of available missions for the group.
+ * @var array $missionList List of available missions for the group.
  * @var array $groupChat List of available chat groups for the group.
  */
 ?>
@@ -18,7 +18,7 @@ $text = $_POST['text'] ?? ''; // Default to empty string if text is not set
 
 // Add Missions to an array, only if selected by the user
 $mission_array = [];
-foreach ($groupMissions as $key => $mission) {
+foreach ($missionList as $key => $mission) {
   $mission_value = $_POST['mission_' . $key] ?? null; // Get the mission value or null
   if ($mission_value !== null && $mission_value !== false) {
     $mission_array[] = $key; // Add the mission key if it is selected

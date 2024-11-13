@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $groupMissions
+ * @var $missionList
  * @var $groupChat
  */
 ?>
@@ -24,7 +24,7 @@ $groupUsersArray = array_map(fn($id) => new User($id), $userIdArray);
 
 // Fetch missions
 $missionIdArray = json_decode($group->mission, true);
-$groupMissionArray = array_map(fn($id) => $groupMissions[$id] ?? null, $missionIdArray);
+$groupMissionArray = array_map(fn($id) => $missionList[$id] ?? null, $missionIdArray);
 
 // Fetch chats
 $chats = json_decode($group->chats, true);
@@ -69,7 +69,7 @@ $groupCity = $group->city;
     <p><b>Участники (<?=$userCount?>):</b></p>
     <p>
       <?php foreach ($groupUsersArray as $user): ?>
-        <a href="/?user=<?=$user->id?>"><?=$user->login?></a> |
+        <a href="/?user=<?=$user->id?>"><?= $user->login ?></a> |
       <?php endforeach; ?>
     </p>
   </div>

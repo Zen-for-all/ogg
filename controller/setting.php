@@ -21,7 +21,7 @@ $locationOnPage = 10;
 $groupOnPage = 10;
 
 // Group missions (organized into an array for easier future management)
-$groupMissions = [
+$missionList = [
   1 => 'Общение',
   2 => 'Практика',
   3 => 'Живые встречи'
@@ -33,4 +33,12 @@ $groupChat = [
   'facebook',
   'discord',
   'whatsapp'
+];
+
+// 
+$ideologyList = [
+  1 => 'Осы по ХС',
+  2 => 'Фаза по Радуге',
+  3 => 'Лаберж',
+  4 => 'Тибетская йога сна'
 ];

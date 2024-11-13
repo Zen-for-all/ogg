@@ -44,7 +44,7 @@ if ($ldArrayObjectsGlobal != false) {
 <div class="row">
   <?php if ($user->ldlist != false && $quantityLd > 0) { ?>
     <div class="col-md-6 mb-5 mb-md-0">
-      <h3 class="mb-3">Личная статистика <b><?=$user->login?>:</b></h3>
+      <h3 class="mb-3">Личная статистика <b><?= $user->login ?>:</b></h3>
       <p>Всего ОСов: <b><?=$quantityLd?></b></p>
 
       <?php if ($summDuration != 0) { ?>
