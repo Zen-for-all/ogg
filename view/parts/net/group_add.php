@@ -74,7 +74,7 @@
   tinymce.init({
     selector: 'textarea[name="text"]',
     menubar: false,
-    plugins: 'lists link image',
+    plugins: 'lists',
     toolbar: 'undo redo | bold italic | alignleft aligncenter | bullist numlist',
     height: 400
   });

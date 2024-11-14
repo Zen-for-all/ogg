@@ -4,7 +4,7 @@
  */
 ?>
 
-<div class="col-md-6 mb-3">
+<div class="col-12 col-md-4 mb-3">
   <span><b><?= $user->email ?></b></span>
   <form action="/model/edit_email.php" method="post">
     <label for="email" class="form-label">Изменить email</label>
@@ -13,7 +13,7 @@
   </form>
 </div>
 
-<div class="col-md-6 mb-3">
+<div class="col-12 col-md-4 mb-3">
   <form action="model/edit_password.php" method="post">
     <span>Пользователь <b><?= $user->login ?></b></span><br>
     <label for="password" class="form-label">Изменить пароль</label>
@@ -22,7 +22,7 @@
   </form>
 </div>
 
-<div class="col-12 mb-3">
+<div class="col-12 col-md-4 mb-3">
   <h3>Анонимность</h3>
   <form action="model/edit_anonym.php" method="post">
     <div class=" mb-3">

@@ -159,7 +159,7 @@ if ($ldValue == false) {
   tinymce.init({
     selector: 'textarea[name="public_text"]',
     menubar: false,
-    plugins: 'lists link image',
+    plugins: 'lists',
     toolbar: 'undo redo | bold italic | alignleft aligncenter | bullist numlist',
     height: 400
   });

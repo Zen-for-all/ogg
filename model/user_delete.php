@@ -10,6 +10,23 @@ require 'connect.php';
 
 $userId = (int)$_SESSION['userId'];
 
+// Get the user's avatar URL from the database before deletion
+$query = "SELECT `avatar` FROM `user` WHERE `id` = ?";
+$stmt = $connect->prepare($query);
+$stmt->bind_param('i', $userId);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($avatarUrl);
+$stmt->fetch();
+
+// If the avatar exists, delete the physical avatar file
+if ($avatarUrl) {
+  $avatarFilePath = $_SERVER['DOCUMENT_ROOT'] . '/view/uploads/user_avatars/' . basename($avatarUrl);
+  if (file_exists($avatarFilePath)) {
+    unlink($avatarFilePath); // Delete the avatar file
+  }
+}
+
 // Prepare the queries for deleting the user's data
 $queries = [
   "DELETE FROM `location` WHERE `user` = ?",  // Delete location records for the user

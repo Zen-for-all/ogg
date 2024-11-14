@@ -12,7 +12,7 @@ if ($user->ldlist) {
 $login = $user->login;
 $avatar = $user->avatar;
 $gender = $user->gender;
-$age = $user->age;
+$birth_year = $user->birth_year;
 $city = $user->city;
 $experience = $user->experience;
 $ldcount = $user->ldcount;
@@ -31,7 +31,9 @@ $contact = $user->contact;
   <div class="row">
     <div class="col-md-4 col-12">
       <div class="avatar">
-        <img src="<?= $avatar ?>" alt="ava <?= $login ?>">
+        <?php if (!empty($avatar)): ?>
+          <img src="<?= $avatar ?>" alt="ava <?= $login ?>">
+        <?php endif; ?>
       </div>
     </div>
 
@@ -45,7 +47,7 @@ $contact = $user->contact;
       </div>
 
       <div class="">
-        <p>Возраст: <?= $age ?></p>
+        <p>Возраст: <?= $birth_year ?></p>
       </div>
 
       <div class="">

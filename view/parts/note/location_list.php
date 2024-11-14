@@ -1,6 +1,6 @@
 <?php
 /**
- * @var object $user The user object, which contains user data such as locations.
+ * @var object $user The current user object, containing information about the logged-in user.
  * @var string $title The title to be displayed on the page (usually a heading).
  * @var int $locationOnPage The number of locations to be displayed per page.
  */
