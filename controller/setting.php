@@ -20,6 +20,9 @@ $locationOnPage = 10;
 // Number of posts to display on the groups page
 $groupOnPage = 10;
 
+//
+$userOnPage = 4;
+
 // Group missions (organized into an array for easier future management)
 $missionList = [
   1 => 'Общение',

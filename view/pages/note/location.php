@@ -1,7 +1,7 @@
 <?php
 // Including necessary parts
 include 'view/parts/note/location_list.php';
-include 'view/parts/note/pagination.php';
+include 'view/parts/pagination.php';
 
 // Initializing values for the location add form
 $locationValue = $locationTitle = $locationText = false;

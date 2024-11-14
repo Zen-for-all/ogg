@@ -1,6 +1,6 @@
 <?php
 include 'view/parts/net/group_list.php';
-include 'view/parts/note/pagination.php';
+include 'view/parts/pagination.php';
 ?>
 
 <a href="#add-group-form" class="btn btn-outline-success btn_show mt-3 me-3">Создать группу</a>

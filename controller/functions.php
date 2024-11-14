@@ -251,4 +251,32 @@ function printConfirmationPage($title, $modelFile) {
   ';
 }
 
-?>
+// Get all Users filtered by mission IDs
+function getAllUsers($missionIds = []) {
+  global $connect;
+
+  // Check if the array of mission IDs is not empty
+  if (!empty($missionIds)) {
+    // Prepare the JSON format of mission IDs for the SQL query
+    $missionIdsJson = json_encode($missionIds);
+
+    // SQL query to get users where all mission IDs are present in the "mission" field
+    $query = "
+      SELECT id 
+      FROM `user`
+      WHERE JSON_CONTAINS(mission, '$missionIdsJson')
+    ";
+  } else {
+    // If missionIds is empty, get all users without filtering by mission
+    $query = "
+      SELECT id 
+      FROM `user`
+    ";
+  }
+
+  // Execute the query
+  $result = mysqli_query($connect, $query);
+
+  // Map the result to create User objects
+  return array_map(fn($row) => new User($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));
+}

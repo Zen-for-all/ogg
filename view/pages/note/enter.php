@@ -9,7 +9,7 @@
     <h1 class="mb-5"><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></h1>
 
     <div class="row justify-content-center">
-      <form action="model/login.php" method="POST" class="col-12 col-md-6 col-lg-4 text-center">
+      <form action="model/login.php" method="POST" class="col-md-6 col-lg-4 text-center">
         <input name="login" type="text" class="form-control mb-4" placeholder="login" required>
         <input name="password" type="password" class="form-control mb-4" placeholder="password" required>
         <input type="submit" class="btn btn-secondary mb-4" value="Войти">

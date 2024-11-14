@@ -18,19 +18,19 @@
 
   <div class="row">
     <!-- Group Title -->
-    <div class="col-12 col-md-6">
+    <div class="col-md-6">
       <p>Название группы</p>
       <input type="text" class="form-control mb-4" name="title" value="<?php echo $groupTitle ?: ''; ?>">
     </div>
 
     <!-- Group Description -->
-    <div class="col-12 mb-3">
+    <div class="mb-3">
       <p>Описание группы</p>
       <textarea class="form-control mb-4" name="text"><?php echo $groupText ?: ''; ?></textarea>
     </div>
 
     <!-- Missions Selection -->
-    <div class="col-12 col-md-6 mb-3">
+    <div class="col-md-6 mb-3">
       <p>Назначение группы:</p>
       <?php foreach ($missionList as $key => $mission): ?>
         <div>
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Chat Selection -->
-    <div class="col-12 col-md-6">
+    <div class="col-md-6">
       <p>Место общения:</p>
       <?php foreach ($groupChat as $chat): ?>
         <div class="mb-3">
@@ -54,7 +54,7 @@
     </div>
 
     <!-- City name -->
-    <div class="col-12 col-md-6">
+    <div class="col-md-6">
       <div>
         <label for="group_city">Город </label>
         <input name="group_city" type="text" placeholder="Название города"

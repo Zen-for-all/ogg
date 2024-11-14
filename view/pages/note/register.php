@@ -4,7 +4,7 @@
     <h1 class="mb-5"><?php echo $title; ?></h1>
 
     <!-- Form for registration -->
-    <form action="model/signing.php" method="POST" class="col-12 col-md-6 col-lg-4 mx-auto">
+    <form action="model/signing.php" method="POST" class="col-md-6 col-lg-4 mx-auto">
       <!-- Login input -->
       <input name="login" type="text" class="form-control mb-4" placeholder="login" required>
       <!-- Email input -->

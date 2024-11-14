@@ -8,7 +8,7 @@
  */
 ?>
 
-<h2 class="pb-5"><?= htmlspecialchars($title) ?></h2> <!-- Escaping title for security -->
+<h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
 
 <div class="row mb-5">
   <form action="" method="post">

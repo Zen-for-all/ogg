@@ -20,7 +20,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
 ?>
 
 <div class="row">
-  <div class="col-12 col-md-6 mb-3">
+  <div class="col-md-6 mb-3">
     <?php if (!empty($user->avatar)): ?>
       <div class="row justify-content-start pl-3">
         <div class="avatar-setting">
@@ -40,7 +40,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
     </form>
   </div>
 
-  <div class="col-12 col-md-6 mb-3">
+  <div class="col-md-6 mb-3">
     <div class=""><b>Анонимность</b></div>
     <form action="model/edit_anonym.php" method="post">
       <div class=" mb-3">
@@ -54,7 +54,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </div>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_gender.php" method="post">
     <label for="gender" class="form-label"><b>Ваш пол</b></label>
     <select name="gender" id="gender" class="form-control mb-3">
@@ -66,7 +66,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </form>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_birth_year.php" method="post">
     <label for="birth_year" class="form-label"><b>Год рождения</b></label>
     <input type="number" name="birth_year" id="birth_year" class="form-control mb-3" min="1920" max="<?= date('Y') - 10 ?>" value="<?= $user->birth_year ?>">
@@ -74,7 +74,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </form>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_city.php" method="post">
     <label for="city" class="form-label"><b>Город проживания</b></label>
     <input class="form-control mb-3" type="text" name="city" id="city" value="<?= $user->city ?>">
@@ -82,7 +82,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </form>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_experience.php" method="post">
     <label for="experience" class="form-label"><b>Опыт в Осах (в годах)</b></label>
     <input type="number" name="experience" id="experience" class="form-control mb-3" min="0" max="99" value="<?= $user->experience ?>">
@@ -90,7 +90,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </form>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_ldcount.php" method="post">
     <label for="ldcount" class="form-label"><b>Приблизительное количество Осов</b></label>
     <input type="number" name="ldcount" id="ldcount" class="form-control mb-3" min="0" max="9999" value="<?= $user->ldcount ?>">
@@ -98,7 +98,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </form>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_ideology.php" method="post">
     <label for="ideology" class="form-label"><b>Наиболее близкая концепция природы ОСов</b></label>
     <select name="ideology" id="ideology" class="form-select">
@@ -113,7 +113,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </form>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_description.php" method="post">
     <label for="description" class="form-label"><b>Описание</b></label>
     <textarea name="description" id="description" class="form-control mb-3" rows="4">
@@ -125,7 +125,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </form>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_mission.php" method="post">
     <label for="mission" class="form-label"><b>Цель аккаунта</b></label>
 
@@ -147,7 +147,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   </form>
 </div>
 
-<div class="col-12 col-md-4 mb-3">
+<div class="col-md-4 mb-3">
   <form action="/model/net/edit_contact.php" method="post">
     <div class=""><b>Контакты</b></div>
 

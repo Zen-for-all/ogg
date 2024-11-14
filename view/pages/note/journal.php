@@ -1,6 +1,6 @@
 <?php
 include 'view/parts/note/ld_list.php';
-include 'view/parts/note/pagination.php';
+include 'view/parts/pagination.php';
 ?>
 
 <a href="#add-ld-form" class="btn btn-outline-success btn_show mt-3 me-3" id="add-ld-form">Добавить запись</a>
