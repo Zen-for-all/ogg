@@ -4,14 +4,11 @@
  */
 ?>
 
-<h2 class="mb-3"><?= htmlspecialchars($user->login) ?></h2> <!-- Output user login -->
+<h2 class="mb-3"><?= htmlspecialchars($user->login) ?></h2>
 
-<p class="mb-5">В проекте с <?= htmlspecialchars($user->date) ?></p> <!-- Display user registration date -->
+<a href="/settings">К настройкам дневника</a>
 
-<div class="row mb-3">
-  <!-- Including user information editing section -->
-  <?php include 'view/parts/note/edit_user_info.php'; ?>
-</div>
+<p class="mb-5">В проекте с <?= htmlspecialchars($user->date) ?></p>
 
 <div class="row mb-3">
   <!-- Including user net information editing section -->

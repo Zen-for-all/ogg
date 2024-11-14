@@ -19,5 +19,5 @@ $stmt->bind_param('si', $email, $id); // Bind the parameters: 's' for string (em
 $stmt->execute(); // Execute the prepared statement
 
 // Redirect the user to the settings page after the update
-header("Location: /?page=settings");
+header("Location: /settings");
 exit();

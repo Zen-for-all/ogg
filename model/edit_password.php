@@ -22,5 +22,5 @@ $stmt->bind_param('si', $hashedPassword, $id);  // Bind the hashed password and 
 $stmt->execute();  // Execute the query to update the password
 
 // Redirect the user to the settings page
-header("Location: /?page=settings");
+header("Location: /settings");
 exit();

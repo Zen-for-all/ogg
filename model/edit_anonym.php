@@ -25,5 +25,5 @@ $stmt->bind_param('ii', $anonym, $id);
 $stmt->execute();
 
 // Redirect to the settings page after the update
-header("Location: /?page=settings");
+header("Location: /settings-net");
 exit();

@@ -42,3 +42,10 @@ $ideologyList = [
   3 => 'Лаберж',
   4 => 'Тибетская йога сна'
 ];
+
+//
+$сhatList = [
+  'telegram',
+  'facebook',
+  'whatsapp'
+];
