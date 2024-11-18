@@ -236,3 +236,8 @@ label {
 .w-auto {
     width: auto;
 }
+
+.card .avatar {
+    display: block;
+    height: 260px;
+}

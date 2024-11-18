@@ -103,20 +103,70 @@
           $userMissionArray[] = $missionList[$id];
         }
       }
+
+      if ($user->gender === 'male') {
+        $gender = 'мужской';
+      } elseif ($user->gender === 'female') {
+        $gender = 'женский';
+      } else {
+        $gender = null;
+      }
+
+      if($user->birth_year != false) {
+        $age = date("Y") - $user->birth_year;
+      }
       ?>
 
       <!-- Print info about group -->
       <div class="location_item col-md-3 mb-5">
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
+            <a href="/?page=profile&id=<?= htmlspecialchars($user->id) ?>" class="avatar mb-3">
+              <?php if (!empty($user->avatar)): ?>
+                <img src="<?= $user->avatar ?>" alt="ava <?= $user->login ?>">
+              <?php endif; ?>
+            </a>
+
             <h4 class="mb-3"><?= htmlspecialchars($user->login) ?></h4>
 
             <?php if (!empty($userMissionArray)) { ?>
-              <div>Цель: <?= implode(' | ', $userMissionArray) ?></div>
+              <div>
+                <p>Цель: <?= implode(' | ', $userMissionArray) ?></p>
+              </div>
             <?php } ?>
 
             <?php if (!empty($user->city)) : ?>
-              <div>Город: <?= htmlspecialchars($user->city) ?></div>
+              <div>
+                <p>Город: <?= htmlspecialchars($user->city) ?></p>
+              </div>
+            <?php endif; ?>
+
+            <?php if ($gender != false): ?>
+              <div class="">
+                <p>Пол: <?= $gender ?></p>
+              </div>
+            <?php endif; ?>
+
+            <?php if ($user->birth_year != false): ?>
+              <div class="">
+                <p>Возраст: <?= $age ?></p>
+              </div>
+            <?php endif; ?>
+
+            <?php if ($user->ldcount != false): ?>
+              <div class="">
+                <p>Всего ОСов: <?= $user->ldcount ?></p>
+              </div>
+            <?php elseif (isset($quantityLd) && $quantityLd !== 0): ?>
+              <div class="">
+                <p>Всего ОСов: <?= $quantityLd ?></p>
+              </div>
+            <?php endif; ?>
+
+            <?php if ($user->experience != false): ?>
+              <div class="">
+                <p>Опыт (лет практики): <?= $user->experience ?></p>
+              </div>
             <?php endif; ?>
 
             <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=profile&id=<?= htmlspecialchars($user->id) ?>">Подробнее</a>

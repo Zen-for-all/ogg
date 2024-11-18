@@ -65,6 +65,25 @@ $contacts = json_decode($user->contact, true); // Convert JSON string to an asso
         </div>
       <?php endif; ?>
 
+      <?php if (!empty($userMissions)): ?>
+        <div>
+          <p>Цель аккаунта:
+            <?php
+            // Loop through each mission in the mission list
+            foreach ($missionList as $key => $mission):
+              ?>
+              <?php echo (in_array($key, $userMissions)) ? $mission . ' |' : ''; ?>
+            <?php endforeach; ?>
+          </p>
+        </div>
+      <?php endif; ?>
+
+      <?php if ($user->ideology != false): ?>
+        <div class="">
+          <p>Наиболее близкая концепция природы ОСов: <?= $ideologyList[$user->ideology] ?></p>
+        </div>
+      <?php endif; ?>
+
       <?php if ($user->ldcount != false): ?>
         <div class="">
           <p>Всего ОСов: <?= $user->ldcount ?></p>
@@ -85,25 +104,6 @@ $contacts = json_decode($user->contact, true); // Convert JSON string to an asso
         <div class="">
           <p>О себе:</p>
           <div class=""><?= $user->description ?></div>
-        </div>
-      <?php endif; ?>
-
-      <?php if (!empty($userMissions)): ?>
-        <div>
-          <p>Цель аккаунта:
-            <?php
-            // Loop through each mission in the mission list
-            foreach ($missionList as $key => $mission):
-              ?>
-              <?php echo (in_array($key, $userMissions)) ? $mission . ' |' : ''; ?>
-            <?php endforeach; ?>
-          </p>
-        </div>
-      <?php endif; ?>
-
-      <?php if ($user->ideology != false): ?>
-        <div class="">
-          <p>Наиболее близкая концепция природы ОСов: <?= $ideologyList[$user->ideology] ?></p>
         </div>
       <?php endif; ?>
 
