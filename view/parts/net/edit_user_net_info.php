@@ -94,7 +94,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
   <form action="/model/net/edit_ldcount.php" method="post">
     <label for="ldcount" class="form-label"><b>Приблизительное количество Осов</b></label>
     <input type="number" name="ldcount" id="ldcount" class="form-control mb-3" min="0" max="9999" value="<?= $user->ldcount ?>">
-    <button type="submit" class="btn btn-outline-secondary mb-3"><b>Сохранить</b></button>
+    <button type="submit" class="btn btn-outline-secondary mb-3">Сохранить</button>
   </form>
 </div>
 

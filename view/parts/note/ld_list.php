@@ -168,7 +168,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
         $hashtags = !empty($ld->hashtags) ? json_decode($ld->hashtags, true) : false;
         ?>
 
-        <div class="col-xxl-3 col-lg-4 col-md-6 mb-5">
+        <div class="col-xxl-3 col-lg-3 col-md-6 mb-5">
           <div class="card px-3 py-3 h100">
             <h5 class="mb-3"><?=$ldDate?> <?php if ($ldTime) { echo '(' . $ldTime . ')'; } ?></h5>
 

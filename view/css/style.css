@@ -218,10 +218,11 @@ label {
 .avatar-setting {
     width: 100px !important;
     height: 100px !important;
-    border: 1px solid #ccc;
-    overflow: hidden;
     position: relative;
+    margin-left: 10px;
+    border: 1px solid #ccc;
     border-radius: 0.375rem;
+    overflow: hidden;
 }
 
 .avatar-setting img {

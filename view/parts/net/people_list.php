@@ -118,7 +118,7 @@
       ?>
 
       <!-- Print info about group -->
-      <div class="location_item col-md-3 mb-5">
+      <div class="location_item col-lg-3 col-md-6 mb-5">
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
             <a href="/?page=profile&id=<?= htmlspecialchars($user->id) ?>" class="avatar mb-3">
