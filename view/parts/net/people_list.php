@@ -8,15 +8,39 @@
 
 <h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
 
+<div class="row">
+  <div class="col-md-6">
+    <p>Найти по городу</p>
+    <form action="/people" method="post">
+      <input type="text" class="form-control no_space" name="search"
+             value="<?= isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '' ?>">
+
+      <?php foreach ($missionList as $key => $mission): ?>
+        <?php if (isset($_POST['mission_' . $key])): ?>
+          <input type="hidden" name="mission_<?= $key ?>" value="on">
+        <?php endif; ?>
+      <?php endforeach; ?>
+
+      <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
+    </form>
+  </div>
+</div>
+<br><br>
+
+<?php if (!empty($_POST['search'])) { ?>
+  <h3><?= htmlspecialchars($_POST['search']) ?> <a href="/people">(x)</a></h3><br>
+<?php } ?>
+
 <div class="row mb-5">
-  <form action="" method="post">
+  <form action="/people" method="post">
+    <input type="hidden" name="search" value="<?= isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '' ?>">
+
     <?php
     $missionListId = [];
     foreach ($missionList as $key => $mission):
-      // Check if the mission checkbox is checked
       $checked = isset($_POST['mission_' . $key]) && $_POST['mission_' . $key] !== false;
       if ($checked) {
-        $missionListId[] = (int)$key; // Convert keys to integers
+        $missionListId[] = (int)$key;
       }
       ?>
       <div class="rl me-3">
@@ -40,20 +64,33 @@
   // Get the list of all users
   $userArray = getAllUsers();
 
-  // Filter users by exact match of selected missions
+  // Filter users by selected missions
   if (!empty($missionListId)) {
     $userArray = array_filter($userArray, function ($user) use ($missionListId) {
       $missionIdArray = json_decode($user->mission, true);
 
       if (is_array($missionIdArray)) {
-        // Check if all selected missions are in the user's missions
-        $isMatch = !array_diff($missionListId, $missionIdArray);
-
-        return $isMatch;
+        return !array_diff($missionListId, $missionIdArray);
       }
       return false;
     });
   }
+
+  // Filter users by city if 'search' parameter is provided
+  if (!empty($_POST['search'])) {
+    $city_title = mb_strtolower($_POST['search']);
+    $userArray = array_filter($userArray, function ($user) use ($city_title) {
+      return isset($user->city) && mb_strtolower($user->city) === $city_title;
+    });
+  }
+
+  // Get current page and calculate the total pages
+  $pages = ceil(count($userArray) / $userOnPage);
+  $current_page = isset($_GET['p']) ? (int) $_GET['p'] : 1;
+
+  // Slice the array for the current page
+  $start_group = ($current_page - 1) * $userOnPage;
+  $userArray = array_slice($userArray, $start_group, $userOnPage);
 
   // Display users
   if (!empty($userArray)) {
@@ -63,22 +100,20 @@
       $missionIdArray = json_decode($user->mission, true);
       if ($missionIdArray !== null) {
         foreach ($missionIdArray as $id) {
-          if (isset($missionList[$id])) {
-            $userMissionArray[] = $missionList[$id];
-          }
+          $userMissionArray[] = $missionList[$id];
         }
       }
       ?>
 
-      <!-- Print user info -->
+      <!-- Print info about group -->
       <div class="location_item col-md-3 mb-5">
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
             <h4 class="mb-3"><?= htmlspecialchars($user->login) ?></h4>
 
-            <?php if (!empty($userMissionArray)) : ?>
-              <div>Цель: <?= htmlspecialchars(implode(' | ', $userMissionArray)) ?></div>
-            <?php endif; ?>
+            <?php if (!empty($userMissionArray)) { ?>
+              <div>Цель: <?= implode(' | ', $userMissionArray) ?></div>
+            <?php } ?>
 
             <?php if (!empty($user->city)) : ?>
               <div>Город: <?= htmlspecialchars($user->city) ?></div>
@@ -91,8 +126,6 @@
 
       <?php
     }
-  } else {
-    echo '<p class="text-center">Пользователи не найдены.</p>';
   }
   ?>
 </div>

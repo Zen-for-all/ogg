@@ -14,14 +14,14 @@ $enterMethod = [
 // Number of posts to display on the LD list page
 $ldOnPage = 12;
 
-// Number of posts to display on the locations page
+// Number of locations to display on the locations page
 $locationOnPage = 10;
 
-// Number of posts to display on the groups page
+// Number of groups to display on the groups page
 $groupOnPage = 10;
 
-//
-$userOnPage = 4;
+// Number of users to display on the users page
+$userOnPage = 40;
 
 // Group missions (organized into an array for easier future management)
 $missionList = [
