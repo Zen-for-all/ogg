@@ -130,8 +130,13 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
     <label for="mission" class="form-label"><b>Цель аккаунта</b></label>
 
     <?php
-    // Decode the user's current missions from JSON to an array
-    $userMissions = json_decode($user->mission, true); // Decoding mission JSON into an array
+    // Decode the user's current missions from JSON to an array, handle null or empty values
+    $userMissions = !empty($user->mission) ? json_decode($user->mission, true) : [];
+
+    // Ensure $missionList is an array to prevent errors
+    if (!is_array($missionList)) {
+      $missionList = []; // Default to an empty array if $missionList is null or not an array
+    }
 
     // Loop through each mission in the mission list
     foreach ($missionList as $key => $mission):
