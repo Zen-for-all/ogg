@@ -15,12 +15,12 @@
     <?php
     $missionListId = [];
     foreach ($missionList as $key => $mission):
-      $checked = isset($_POST['group_mission_' . $key]) && $_POST['group_mission_' . $key] !== false;
+      $checked = isset($_POST['mission_' . $key]) && $_POST['mission_' . $key] !== false;
       if ($checked) $missionListId[] = $key;
       ?>
       <div class="rl me-3">
-        <input type="checkbox" id="group_mission_<?php echo $key; ?>" name="group_mission_<?php echo $key; ?>" <?php echo $checked ? 'checked' : ''; ?> />
-        <label for="group_mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
+        <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>" <?php echo $checked ? 'checked' : ''; ?> />
+        <label for="mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
       </div>
     <?php endforeach; ?>
 
