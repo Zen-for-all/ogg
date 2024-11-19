@@ -242,3 +242,20 @@ label {
     display: block;
     height: 260px;
 }
+
+.card-group .location_info {
+    width: 100%;
+}
+
+.card-group .avatar {
+    display: block;
+    max-width: 40%;
+    position: relative;
+    float: left;
+    margin-right: 5%;
+    background: #ccc url("/view/images/avatar_friends.svg") no-repeat center;
+}
+
+.groupContent .avatar {
+    background: #ccc url("/view/images/avatar_friends.svg") no-repeat center;
+}

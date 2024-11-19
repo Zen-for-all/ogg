@@ -2,6 +2,7 @@
 class Group
 {
   public $id;
+  public $avatar;
   public $title;
   public $text;
   public $mission;
@@ -19,7 +20,7 @@ class Group
 
   private function loadInfo() {
     global $connect;
-    $query = "SELECT `title`, `text`, `mission`, `admin`, `users`, `chats`, `city`, `date`, `private` 
+    $query = "SELECT `avatar`, `title`, `text`, `mission`, `admin`, `users`, `chats`, `city`, `date`, `private` 
                   FROM `groups` 
                   WHERE `id` = {$this->id}";
     $result = mysqli_query($connect, $query);

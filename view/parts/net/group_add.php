@@ -3,6 +3,7 @@
  * @var array $missionList List of available group missions.
  * @var array $groupChat List of available chat types for the group.
  * @var mixed $groupValue The group ID if editing, false if creating a new group.
+ * @var string $groupAvatar
  * @var string $groupTitle The title of the group.
  * @var string $groupText The description of the group.
  * @var array $missionIdArray List of selected missions for the group.
@@ -11,7 +12,7 @@
  */
 ?>
 
-<form action="<?php echo isset($groupValue) && $groupValue === false ? 'model/net/add_group.php' : 'model/net/edit_group.php'; ?>" method="post" id="add-group-form">
+<form action="<?php echo isset($groupValue) && $groupValue === false ? 'model/net/add_group.php' : 'model/net/edit_group.php'; ?>" method="post" id="add-group-form" enctype="multipart/form-data">
   <?php if (isset($groupValue) && $groupValue !== false): ?>
     <input type="hidden" name="id" value="<?php echo $groupValue; ?>">
   <?php endif; ?>
@@ -23,8 +24,20 @@
       <input type="text" class="form-control mb-4" name="title" value="<?php echo $groupTitle ?: ''; ?>">
     </div>
 
+    <!-- Group Avatar -->
+    <div class="col-md-6">
+      <?php if (isset($groupAvatar) && $groupAvatar != false): ?>
+        <div class="avatar-setting">
+          <img src="<?= $groupAvatar ?>" alt="avatar">
+        </div>
+      <?php endif; ?>
+
+      <label for="avatar" class="form-label"><b>Загрузить аватарку</b></label>
+      <input class="form-control mb-3" type="file" name="avatar" id="avatar" accept="image/*">
+    </div>
+
     <!-- Group Description -->
-    <div class="mb-3">
+    <div class="col-12 mb-3">
       <p>Описание группы</p>
       <textarea class="form-control mb-4" name="text"><?php echo $groupText ?: ''; ?></textarea>
     </div>

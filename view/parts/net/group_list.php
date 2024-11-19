@@ -45,6 +45,7 @@
   // Display groups
   if (!empty($groupArray)) {
     foreach ($groupArray as $group) {
+      $groupAvatar = $group->avatar;
       $groupTitle = htmlspecialchars($group->title);
       $groupCity = $group->city;
       $groupAdminId = $group->admin;
@@ -66,9 +67,15 @@
       ?>
 
       <!-- Print info about group -->
-      <div class="location_item col-lg-3 col-md-6 mb-5 <?= in_array($_SESSION['userId'], $userIdArray) ? 'group-active' : '' ?>">
-        <div class="card px-3 py-3 h100">
+      <div class="location_item col-lg-6 mb-5 <?= in_array($_SESSION['userId'], $userIdArray) ? 'group-active' : '' ?>">
+        <div class="card card-group px-3 py-3 h100">
           <div class="location_info show">
+            <a href="/?page=group&id=<?= htmlspecialchars($group->id) ?>" class="avatar">
+              <?php if (!empty($groupAvatar)): ?>
+                <img src="<?= $groupAvatar ?>" alt="ava">
+              <?php endif; ?>
+            </a>
+
             <h4 class="mb-3"><?= $groupTitle ?></h4>
 
             <?php if (!empty($groupMissionArray)) { ?>

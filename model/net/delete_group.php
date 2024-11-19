@@ -15,6 +15,14 @@ $userId = (int)$_SESSION['userId'];
 $group = new Group($_SESSION['group_id']);
 
 if ($group->admin == $userId) { // If admin
+  // If the avatar exists, delete the physical avatar file
+  if ($group->avatar) {
+    $avatarFilePath = $_SERVER['DOCUMENT_ROOT'] . '/view/uploads/group_avatars/' . basename($group->avatar);
+    if (file_exists($avatarFilePath)) {
+      unlink($avatarFilePath); // Delete the avatar file
+    }
+  }
+
   $users = json_decode($group->users, true); // Decode the JSON string into an array of user IDs
 
   // Delete the group from the 'groups' table based on the group ID
