@@ -25,11 +25,11 @@ if($user->birth_year != false) {
   $age = date("Y") - $user->birth_year;
 }
 
-// Decode the user's current missions from JSON to an array
-$userMissions = json_decode($user->mission, true); // Decoding mission JSON into an array
+// Decode the user's current missions from JSON to an array or set to an empty array if null
+$userMissions = $user->mission ? json_decode($user->mission, true) : []; // Handle null values gracefully
 
-// Decode the contact JSON string to an array
-$contacts = json_decode($user->contact, true); // Convert JSON string to an associative array
+// Decode the contact JSON string to an array or set to an empty array if null
+$contacts = $user->contact ? json_decode($user->contact, true) : []; // Handle null values gracefully
 ?>
 
 <section class="container">

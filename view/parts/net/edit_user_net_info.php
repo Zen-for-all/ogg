@@ -157,8 +157,8 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
     <div class=""><b>Контакты</b></div>
 
     <?php
-    // Decode the contact JSON string to an array
-    $contacts = json_decode($user->contact, true); // Convert JSON string to an associative array
+    // Decode the contact JSON string to an array or set to an empty array if null
+    $contacts = $user->contact ? json_decode($user->contact, true) : [];
     ?>
 
     <?php foreach ($сhatList as $chat): ?>

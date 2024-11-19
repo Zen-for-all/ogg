@@ -97,7 +97,10 @@
     foreach ($userArray as $user) {
       // Parse missions
       $userMissionArray = [];
-      $missionIdArray = json_decode($user->mission, true);
+
+      // Decode the user's mission JSON to an array or set to an empty array if null
+      $missionIdArray = $user->mission ? json_decode($user->mission, true) : [];
+
       if ($missionIdArray !== null) {
         foreach ($missionIdArray as $id) {
           $userMissionArray[] = $missionList[$id];

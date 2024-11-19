@@ -15,7 +15,7 @@ $enterMethod = [
 $ldOnPage = 12;
 
 // Number of locations to display on the locations page
-$locationOnPage = 10;
+$locationOnPage = 6;
 
 // Number of groups to display on the groups page
 $groupOnPage = 10;
