@@ -74,7 +74,7 @@ $groupCity = $group->city;
         </div>
       <?php endif; ?>
 
-      <div class="groupAdmin mb-5">Админ: <a href="/?user=<?=$admin->id?>"><?=$admin->login?></a></div>
+      <div class="groupAdmin mb-5">Админ: <a href="/?page=profile&id=<?=$admin->id?>"><?=$admin->login?></a></div>
 
       <div class="groupUsers mb-5">
         <p><b>Участники (<?=$userCount?>):</b></p>

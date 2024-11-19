@@ -88,7 +88,7 @@
 
             <div>Участников: <?= $userCount ?></div>
 
-            <div>Админ: <a href="/?user=<?= $groupAdminId ?>"><?= $admin->login ?></a></div>
+            <div>Админ: <a href="/?page=profile&id=<?= $groupAdminId ?>"><?= $admin->login ?></a></div>
 
             <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=group&id=<?= $group->id ?>">Подробнее</a>
           </div>
