@@ -88,7 +88,7 @@ $contacts = json_decode($user->contact, true); // Convert JSON string to an asso
         <div class="">
           <p>Всего ОСов: <?= $user->ldcount ?></p>
         </div>
-      <?php elseif ($quantityLd !== 0): ?>
+      <?php elseif (isset($quantityLd) && $quantityLd !== 0): ?>
         <div class="">
           <p>Всего ОСов: <?= $quantityLd ?></p>
         </div>
