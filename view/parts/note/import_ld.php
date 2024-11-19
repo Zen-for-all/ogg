@@ -3,7 +3,7 @@
 <!-- Form for uploading TSV file -->
 <form method="post" action="model/note/import_ld.php" enctype="multipart/form-data">
   <!-- File input label for selecting TSV file -->
-  <label for="fileInput" class="form-label">Выберите файл (.tsv):</label>
+  <label class="form-label">Выберите файл (.tsv):</label>
   <!-- Input for file selection with .tsv file filter -->
   <input type="file" class="form-control" name="txt_file" accept=".tsv" /><br>
   <!-- Submit button for importing data -->

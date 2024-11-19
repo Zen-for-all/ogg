@@ -17,6 +17,7 @@
       <a class="nav-link <?php echo !isset($_GET['page']) ? 'active' : ''; ?>" href="/">Главная</a>
       <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'journal' ? 'active' : ''; ?>" href="/journal">Дневник</a>
       <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'location' ? 'active' : ''; ?>" href="/location">Локации</a>
+      <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'faq' ? 'active' : ''; ?>" href="/faq">FAQ</a>
       <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'settings' ? 'active' : ''; ?>" href="/settings">Настройки</a>
     <?php endif; ?>
   </div>

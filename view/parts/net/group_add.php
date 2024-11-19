@@ -70,7 +70,7 @@
     <div class="col-md-6">
       <div>
         <label for="group_city">Город </label>
-        <input name="group_city" type="text" placeholder="Название города"
+        <input name="group_city" id="group_city" type="text" placeholder="Название города"
                value="<?php echo (isset($groupCity) && $groupCity !== false) ? $groupCity : ''; ?>">
       </div>
     </div>

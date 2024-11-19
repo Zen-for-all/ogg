@@ -23,7 +23,7 @@ if (isset($_SESSION['userId'])) {
 
   // Define valid page lists
   $valid_pages = [
-    'main' => 'Главная', 'journal' => 'Журнал', 'location' => 'Локации', 'settings' => 'Настройки', 'user_delete' => 'Удалить пользователя', 'ld_delete' => 'Удалить запись', 'location_delete' => 'Удалить локацию', 'ld' => 'Локации'
+    'main' => 'Главная', 'journal' => 'Журнал', 'location' => 'Локации', 'settings' => 'Настройки', 'user_delete' => 'Удалить пользователя', 'ld_delete' => 'Удалить запись', 'location_delete' => 'Удалить локацию', 'ld' => 'Локации', 'faq' => 'FAQ'
   ];
   $valid_pages_net = ['net' => 'Сеть', 'groups' => 'Группы', 'people' => 'Люди', 'group' => 'Группа', 'profile' => 'Профиль', 'group_delete' => 'Удалить группу', 'settings-net' => 'Настройки'];
 

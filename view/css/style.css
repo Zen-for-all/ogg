@@ -259,3 +259,12 @@ label {
 .groupContent .avatar {
     background: #ccc url("/view/images/avatar_friends.svg") no-repeat center;
 }
+
+.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #000 !important;
+    background-color: rgba(0,0,0,0.02) !important;
+}

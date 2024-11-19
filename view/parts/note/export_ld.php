@@ -3,7 +3,7 @@
 <!-- Form for exporting TSV file -->
 <form method="post" action="model/note/export_ld.php" enctype="multipart/form-data">
   <!-- File input label for export -->
-  <label for="fileInput" class="form-label">Получите файл (.tsv):</label><br>
+  <label class="form-label">Получите файл (.tsv):</label><br>
   <!-- Submit button for exporting to TSV -->
   <input type="submit" class="btn btn-outline-secondary mb-4" name="upload_txt" value="Экспорт в .tsv файл" />
 </form>
