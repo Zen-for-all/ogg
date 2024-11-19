@@ -13,8 +13,9 @@ require '../../controller/setting.php';
 
 // Get the user ID from the session and the post data
 $user = $_SESSION['userId'];
-$title = $_POST['title'] ?? ''; // Default to empty string if title is not set
+$title = $_POST['title'];
 $text = $_POST['text'] ?? ''; // Default to empty string if text is not set
+$uploadDir = __DIR__ . '/../../view/uploads/group_avatars/';
 
 // Add Missions to an array, only if selected by the user
 $mission_array = [];
@@ -73,6 +74,100 @@ if ($title !== '') {
 
   // Update the user's group list in the database
   $setNewGroupInUser = mysqli_query($connect, "UPDATE `user` SET `grouplist` = '$groupnew_json' WHERE `id` = '$user'");
+
+
+
+  // Check if the file was uploaded
+  if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+    $groupId = $grouplast['id'];
+
+    // Get the file extension
+    $fileExtension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+
+    // Generate the filename with 'ava_' prefix and group ID
+    $fileName = 'ava_' . $groupId . '.' . $fileExtension;
+    $targetFile = $uploadDir . $fileName;
+
+    // Check the file type
+    $fileType = mime_content_type($_FILES['avatar']['tmp_name']);
+    if (strpos($fileType, 'image') === 0) {
+      // Get the image dimensions
+      list($width, $height) = getimagesize($_FILES['avatar']['tmp_name']);
+
+      // Define the maximum width or height
+      $maxSize = 800;
+
+      // Resize the image if necessary
+      if ($width > $maxSize || $height > $maxSize) {
+        // Calculate the scaling factor
+        if ($width > $height) {
+          $newWidth = $maxSize;
+          $newHeight = (int)($height * $maxSize / $width);
+        } else {
+          $newHeight = $maxSize;
+          $newWidth = (int)($width * $maxSize / $height);
+        }
+
+        // Create a new image resource for the resized image
+        $image = null;
+        switch ($fileExtension) {
+          case 'jpeg':
+          case 'jpg':
+            $image = imagecreatefromjpeg($_FILES['avatar']['tmp_name']);
+            break;
+          case 'png':
+            $image = imagecreatefrompng($_FILES['avatar']['tmp_name']);
+            break;
+          case 'gif':
+            $image = imagecreatefromgif($_FILES['avatar']['tmp_name']);
+            break;
+          default:
+            echo 'Unsupported image type.';
+            exit();
+        }
+
+        // Create a new true color image with the resized dimensions
+        $resizedImage = imagecreatetruecolor($newWidth, $newHeight);
+
+        // Resample the image to the new dimensions
+        imagecopyresampled($resizedImage, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+        // Save the resized image to the target file
+        switch ($fileExtension) {
+          case 'jpeg':
+          case 'jpg':
+            imagejpeg($resizedImage, $targetFile);
+            break;
+          case 'png':
+            imagepng($resizedImage, $targetFile);
+            break;
+          case 'gif':
+            imagegif($resizedImage, $targetFile);
+            break;
+        }
+
+        // Free up memory
+        imagedestroy($image);
+        imagedestroy($resizedImage);
+      } else {
+        // If the image does not need resizing, move the file directly
+        move_uploaded_file($_FILES['avatar']['tmp_name'], $targetFile);
+      }
+
+      // Prepare the SQL query to update the avatar URL in the database
+      $avatarUrl = '/view/uploads/group_avatars/' . $fileName;
+
+      // Prepare the SQL query to update the avatar in the database
+      $updateQuery = "UPDATE `groups` SET `avatar` = ? WHERE `id` = ?";
+      $stmt = $connect->prepare($updateQuery); // Prepare the query for execution
+      $stmt->bind_param('si', $avatarUrl, $groupId); // Bind the parameters: 's' for string (avatar URL), 'i' for integer (group ID)
+      $stmt->execute(); // Execute the prepared statement
+
+      echo 'File uploaded and avatar updated successfully.';
+    } else {
+      echo 'The file must be an image.';
+    }
+  }
 }
 
 // Redirect to the groups page after the operation

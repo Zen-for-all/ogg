@@ -20,8 +20,8 @@
   <div class="row">
     <!-- Group Title -->
     <div class="col-md-6">
-      <p>Название группы</p>
-      <input type="text" class="form-control mb-4" name="title" value="<?php echo $groupTitle ?: ''; ?>">
+      <label for="title" class="form-label">Название группы</label>
+      <input type="text" class="form-control mb-4" name="title" id="title" value="<?php echo $groupTitle ?: ''; ?>">
     </div>
 
     <!-- Group Avatar -->
@@ -32,7 +32,7 @@
         </div>
       <?php endif; ?>
 
-      <label for="avatar" class="form-label"><b>Загрузить аватарку</b></label>
+      <label for="avatar" class="form-label">Загрузить аватарку</label>
       <input class="form-control mb-3" type="file" name="avatar" id="avatar" accept="image/*">
     </div>
 
