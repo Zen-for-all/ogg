@@ -31,7 +31,7 @@ $missionList = [
 ];
 
 // Available group chat platforms
-$groupChat = [
+$сhatList = [
   'telegram',
   'facebook',
   'discord',
