@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $missionList
- * @var $groupChat
+ * @var $сhatList
  */
 ?>
 

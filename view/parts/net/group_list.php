@@ -3,36 +3,59 @@
  * @var object $user The current user object, containing information about the logged-in user.
  * @var string $title The title of the current page or section.
  * @var array $missionList List of available group missions that can be assigned to a group.
- * @var array $groupChat List of available chat types or channels associated with the group.
  * @var array $groupOnPage List of groups or information related to the groups displayed on the page.
  */
 ?>
 
 <h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
 
-<div class="row mb-5">
-  <form action="" method="post">
-    <?php
-    $missionListId = [];
-    foreach ($missionList as $key => $mission):
-      $checked = isset($_POST['mission_' . $key]) && $_POST['mission_' . $key] !== false;
-      if ($checked) $missionListId[] = $key;
-      ?>
-      <div class="rl me-3">
-        <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>" <?php echo $checked ? 'checked' : ''; ?> />
-        <label for="mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
-      </div>
-    <?php endforeach; ?>
+<div class="row mb-3">
+  <div class="col-md-6">
+    <p>Найти по названию</p>
+    <form action="/groups" method="post">
+      <input type="text" class="form-control no_space" name="search"
+             value="<?= isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '' ?>">
+      <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
+    </form>
+    <br>
 
-    <div class="clear"></div>
-    <input type="submit" class="btn btn-outline-secondary mt-3" value="Сортировать по цели">
-  </form>
+    <?php if (!empty($_POST['search'])) { ?>
+      <h3><?= htmlspecialchars($_POST['search']) ?> <a href="/groups">(x)</a></h3><br>
+    <?php } ?>
+  </div>
+
+  <div class="col-md-6">
+    <form action="" method="post">
+      <?php
+      $missionListId = [];
+      foreach ($missionList as $key => $mission):
+        $checked = isset($_POST['mission_' . $key]) && $_POST['mission_' . $key] !== false;
+        if ($checked) $missionListId[] = $key;
+        ?>
+        <div class="rl me-3">
+          <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>" <?php echo $checked ? 'checked' : ''; ?> />
+          <label for="mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
+        </div>
+      <?php endforeach; ?>
+
+      <div class="clear"></div>
+      <input type="submit" class="btn btn-outline-secondary mt-3" value="Сортировать по цели">
+    </form>
+  </div>
 </div>
 
 <div class="row">
   <?php
   // Get groups
   $groupArray = getAllGroups($missionListId);
+
+  // Filter groups by title if 'search' parameter is provided
+  if (!empty($_POST['search'])) {
+    $group_title = mb_strtolower($_POST['search']);
+    $groupArray = array_filter($groupArray, function ($group) use ($group_title) {
+      return isset($group->title) && mb_strpos(mb_strtolower($group->title), $group_title) !== false;
+    });
+  }
 
   // Get current page and calculate the total pages
   $pages = ceil(count($groupArray) / $groupOnPage);

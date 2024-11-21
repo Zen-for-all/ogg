@@ -2,7 +2,7 @@
 /**
  * @var object $connect The database connection object used to interact with the database.
  * @var array $missionList An array of missions associated with the group.
- * @var array $groupChat An array of chat groups associated with the group.
+ * @var array $сhatList An array of chat groups associated with the group.
  */
 ?>
 
@@ -154,7 +154,7 @@ $mission = json_encode($mission_array); // Encode the mission array as JSON
 
 // Prepare chats array (store the chat group values from the form)
 $chat_array = [];
-foreach ($groupChat as $key => $chat) {
+foreach ($сhatList as $key => $chat) {
   $chat_array[$chat] = $_POST[$chat]; // Assign form values to chat keys
 }
 $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array as JSON

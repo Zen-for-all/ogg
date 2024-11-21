@@ -1,7 +1,7 @@
 <?php
 /**
  * @var array $missionList List of available group missions.
- * @var array $groupChat List of available chat types for the group.
+ * @var array $сhatList List of available chat types for the group.
  * @var mixed $groupValue The group ID if editing, false if creating a new group.
  * @var string $groupAvatar
  * @var string $groupTitle The title of the group.
@@ -57,7 +57,7 @@
     <!-- Chat Selection -->
     <div class="col-md-6">
       <p>Место общения:</p>
-      <?php foreach ($groupChat as $chat): ?>
+      <?php foreach ($сhatList as $chat): ?>
         <div class="mb-3">
           <label for="<?php echo $chat; ?>"><?php echo $chat; ?></label>
           <input name="<?php echo $chat; ?>" id="<?php echo $chat; ?>" type="text" placeholder="<?php echo $chat; ?>"

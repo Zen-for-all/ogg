@@ -8,7 +8,7 @@
 
 <h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
 
-<div class="row">
+<div class="row mb-3">
   <div class="col-md-6">
     <p>Найти по городу</p>
     <form action="/people" method="post">

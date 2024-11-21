@@ -2,7 +2,7 @@
 /**
  * @var object $connect The database connection object used to interact with the database.
  * @var array $missionList List of available missions for the group.
- * @var array $groupChat List of available chat groups for the group.
+ * @var array $сhatList List of available chat groups for the group.
  */
 ?>
 
@@ -33,7 +33,7 @@ $users = json_encode($user_array); // Encode the users array to JSON
 
 // Add Chat settings to an array
 $chat_array = [];
-foreach ($groupChat as $key => $chat) {
+foreach ($сhatList as $key => $chat) {
   $chat_value = $_POST[$chat] ?? null; // Get the chat value or null
   if ($chat_value !== null) {
     $chat_array[$chat] = $chat_value; // Store chat value
