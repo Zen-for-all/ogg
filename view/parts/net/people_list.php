@@ -23,40 +23,40 @@
 
       <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
     </form>
+    <br>
+
+    <?php if (!empty($_POST['search'])) { ?>
+      <h3><?= htmlspecialchars($_POST['search']) ?> <a href="/people">(x)</a></h3><br>
+    <?php } ?>
   </div>
-</div>
-<br><br>
 
-<?php if (!empty($_POST['search'])) { ?>
-  <h3><?= htmlspecialchars($_POST['search']) ?> <a href="/people">(x)</a></h3><br>
-<?php } ?>
+  <div class="col-md-6">
+    <form action="/people" method="post">
+      <input type="hidden" name="search" value="<?= isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '' ?>">
 
-<div class="row mb-5">
-  <form action="/people" method="post">
-    <input type="hidden" name="search" value="<?= isset($_POST['search']) ? htmlspecialchars($_POST['search']) : '' ?>">
+      <?php
+      $missionListId = [];
+      foreach ($missionList as $key => $mission):
+        $checked = isset($_POST['mission_' . $key]) && $_POST['mission_' . $key] !== false;
+        if ($checked) {
+          $missionListId[] = (int)$key;
+        }
+        ?>
+        <div class="rl me-3">
+          <input
+            type="checkbox"
+            id="mission_<?= $key ?>"
+            name="mission_<?= $key ?>"
+            <?= $checked ? 'checked' : '' ?>
+          />
+          <label for="mission_<?= $key ?>"><?= htmlspecialchars($mission) ?></label>
+        </div>
+      <?php endforeach; ?>
 
-    <?php
-    $missionListId = [];
-    foreach ($missionList as $key => $mission):
-      $checked = isset($_POST['mission_' . $key]) && $_POST['mission_' . $key] !== false;
-      if ($checked) {
-        $missionListId[] = (int)$key;
-      }
-      ?>
-      <div class="rl me-3">
-        <input
-          type="checkbox"
-          id="mission_<?= $key ?>"
-          name="mission_<?= $key ?>"
-          <?= $checked ? 'checked' : '' ?>
-        />
-        <label for="mission_<?= $key ?>"><?= htmlspecialchars($mission) ?></label>
-      </div>
-    <?php endforeach; ?>
-
-    <div class="clear"></div>
-    <input type="submit" class="btn btn-outline-secondary mt-3" value="Сортировать по цели">
-  </form>
+      <div class="clear"></div>
+      <input type="submit" class="btn btn-outline-secondary mt-3" value="Сортировать по цели">
+    </form>
+  </div>
 </div>
 
 <div class="row">
