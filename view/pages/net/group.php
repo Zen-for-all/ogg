@@ -94,16 +94,18 @@ $groupCity = $group->city;
   <!-- Join group button -->
   <div class="delete_ld show mb-5">
     <form action="model/net/join_group.php" method="post">
+      <input type="hidden" name="user_id" value="<?=$_SESSION['userId']?>">
       <input type="hidden" name="group_id" value="<?=$group->id?>">
-      <input type="submit" value="Присоедениться" class="btn btn-outline-success">
+      <input type="submit" value="Присоедениться" class="btn btn-outline-success mt-5">
     </form>
   </div>
 <?php else: ?>
   <!-- If NOT admin -->
   <?php if ($admin->id !== $_SESSION['userId']): ?>
     <!-- Leave group button -->
-    <div class="delete_ld show mb-5">
+    <div class="delete_ld show mb-5 mt-5">
       <form action="model/net/leave_group.php" method="post">
+        <input type="hidden" name="user_id" value="<?=$_SESSION['userId']?>">
         <input type="hidden" name="group_id" value="<?=$group->id?>">
         <input type="submit" value="Покинуть группу" class="btn btn-outline-danger">
       </form>

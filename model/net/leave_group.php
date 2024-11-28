@@ -10,7 +10,7 @@ require '../connect.php';
 require '../../controller/class/Group.php';
 
 // Sanitize and retrieve POST data
-$userId = $_SESSION['userId'];
+$userId = $_POST['user_id'];
 $groupId = $_POST['group_id'];
 
 // Create a new instance of the Group class to get group data
