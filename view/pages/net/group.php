@@ -78,11 +78,20 @@ $groupCity = $group->city;
 
       <div class="groupUsers mb-5">
         <p><b>Участники (<?=$userCount?>):</b></p>
-        <p>
+        <div>
           <?php foreach ($groupUsersArray as $user): ?>
-            <a href="/?user=<?=$user->id?>"><?= $user->login ?></a> |
+            <a href="/?user=<?=$user->id?>"><?= $user->login ?></a>
+
+            <?php if ($_SESSION['userId'] === $admin->id && $user->id !== $admin->id): ?>
+              <form method="post" action="model/net/leave_group.php" class="btn-nostyle">
+                <input type="hidden" name="user_id" value="<?=$user->id?>">
+                <input type="hidden" name="group_id" value="<?=$group->id?>">
+                <input type="submit" class="btn-nostyle" value="(x)">
+              </form>
+            <?php endif; ?>
+            |
           <?php endforeach; ?>
-        </p>
+        </div>
       </div>
 
       <div class="groupDate"><?= $groupDate ? 'Дата создания: ' . $groupDate : '' ?></div>

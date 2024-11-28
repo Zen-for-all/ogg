@@ -268,3 +268,9 @@ label {
     color: #000 !important;
     background-color: rgba(0,0,0,0.02) !important;
 }
+
+.btn-nostyle {
+    border: none;
+    background: none;
+    display: inline;
+}
