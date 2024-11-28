@@ -26,7 +26,7 @@ $fieldsToUpdate = [
   'ideology' => 'ideology',
   'description' => 'description'
 ];
-
+var_dump($_POST);
 // Process each field update from POST data
 foreach ($fieldsToUpdate as $key => $field) {
   if (isset($_POST[$key])) {
@@ -37,8 +37,8 @@ foreach ($fieldsToUpdate as $key => $field) {
       case 'gender':
       case 'city':
       case 'description':
-        $value = trim($value);
-        $updateQuery = "UPDATE user SET description = ? WHERE id = ?";
+        $value = trim($value); // Sanitize string input
+        $updateQuery = "UPDATE `user` SET `$field` = ? WHERE `id` = ?";
         $stmt = $connect->prepare($updateQuery);
         $stmt->bind_param('si', $value, $id);
         break;
