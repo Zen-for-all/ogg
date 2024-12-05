@@ -71,6 +71,12 @@
 
 =====================================
 
+DB news
+
+id - title - text - date (unix) - image - admin [null|1] - groupid [null|id] - eventid [null|id]
+
+=====================================
+
 Lucid dream
 Lucid note
 Lucid net

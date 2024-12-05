@@ -39,11 +39,18 @@ $contacts = $user->contact ? json_decode($user->contact, true) : []; // Handle n
 
   <div class="row">
     <div class="col-md-4 col-12">
-      <div class="avatar">
+      <div class="avatar mb-3">
         <?php if (!empty($user->avatar)): ?>
           <img src="<?= $user->avatar ?>" alt="ava <?= $user->login ?>">
         <?php endif; ?>
       </div>
+
+      <?php if ($user->description != false): ?>
+        <div class="">
+          <p>О себе:</p>
+          <div class=""><?= $user->description ?></div>
+        </div>
+      <?php endif; ?>
     </div>
 
     <div class="col-md-8 col-12">
@@ -100,13 +107,6 @@ $contacts = $user->contact ? json_decode($user->contact, true) : []; // Handle n
         </div>
       <?php endif; ?>
 
-      <?php if ($user->description != false): ?>
-        <div class="">
-          <p>О себе:</p>
-          <div class=""><?= $user->description ?></div>
-        </div>
-      <?php endif; ?>
-
       <?php if (!empty($contacts)): ?>
         <div class="">
           <p>Контакты:</p>
@@ -120,6 +120,51 @@ $contacts = $user->contact ? json_decode($user->contact, true) : []; // Handle n
           <?php endforeach; ?>
         </div>
       <?php endif; ?>
+
+      <div class="wall mt-5">
+        <hr>
+        <div class="wall-title"><b>News</b></div>
+        <hr>
+
+        <?php
+        // Retrieve an array of news IDs
+        $newsIds = getAllNewsIds();
+
+        // Create an array of News objects
+        $newsArray = [];
+        foreach ($newsIds as $id) {
+          $newsArray[] = new News($id);
+        }
+
+        // Render news items on the page
+        foreach ($newsArray as $news) {
+          ?>
+
+          <div class="wall-item mb-3">
+            <div class="wall-item-header">
+              <div class="wall-item-image">
+                <?php if ($news->groupid != false): ?>
+                  <img src="view/images/wall-group.svg" alt="icon">
+                <?php elseif ($news->eventid != false): ?>
+                  <img src="view/images/wall-event.svg" alt="icon">
+                <?php else: ?>
+                  <img src="view/images/wall-news.svg" alt="icon">
+                <?php endif; ?>
+              </div>
+
+              <div class="wall-item-title"><b><?= htmlspecialchars($news->title) ?></b></div>
+              <div class="wall-item-date small grey"><?= date('d.m.Y (H:i)', $news->date) ?></div>
+            </div>
+
+            <div class="wall-item-content"><?= htmlspecialchars($news->text) ?></div>
+            <hr>
+          </div>
+
+        <?php
+        }
+        ?>
+
+      </div>
     </div>
   </div>
 </section>

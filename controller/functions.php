@@ -4,6 +4,7 @@ require_once 'class/User.php';
 require_once 'class/Ld.php';
 require_once 'class/Location.php';
 require_once 'class/Group.php';
+require_once 'class/News.php';
 
 // Debug function
 function de($str) {
@@ -279,4 +280,20 @@ function getAllUsers($missionIds = []) {
 
   // Map the result to create User objects
   return array_map(fn($row) => new User($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));
+}
+
+
+function getAllNewsIds() {
+  global $connect;
+  $ids = [];
+  $query = "SELECT `id` FROM `news`";
+  $result = mysqli_query($connect, $query);
+
+  if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      $ids[] = (int) $row['id'];
+    }
+  }
+
+  return $ids;
 }

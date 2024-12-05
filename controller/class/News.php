@@ -1,17 +1,13 @@
 <?php
-class Group
+class News
 {
   public $id;
-  public $avatar;
   public $title;
   public $text;
-  public $mission;
-  public $admin;
-  public $users;
-  public $chats;
-  public $city;
   public $date;
-  /*public $private;*/
+  public $admin;
+  public $groupid;
+  public $eventid;
 
   function __construct(int $id) {
     $this->id = $id;
@@ -20,8 +16,8 @@ class Group
 
   private function loadInfo() {
     global $connect;
-    $query = "SELECT `avatar`, `title`, `text`, `mission`, `admin`, `users`, `chats`, `city`, `date`, `private` 
-                  FROM `groups` 
+    $query = "SELECT `title`, `text`, `date`, `admin`, `groupid`, `eventid` 
+                  FROM `news` 
                   WHERE `id` = {$this->id}";
     $result = mysqli_query($connect, $query);
 
