@@ -282,11 +282,27 @@ function getAllUsers($missionIds = []) {
   return array_map(fn($row) => new User($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));
 }
 
-
+// This function retrieves all news IDs from the 'news' table.
 function getAllNewsIds() {
   global $connect;
   $ids = [];
   $query = "SELECT `id` FROM `news`";
+  $result = mysqli_query($connect, $query);
+
+  if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      $ids[] = (int) $row['id'];
+    }
+  }
+
+  return $ids;
+}
+
+// This function retrieves news IDs from the 'news' table where the 'admin' field is not null.
+function getAdminNewsIds() {
+  global $connect;
+  $ids = [];
+  $query = "SELECT `id` FROM `news` WHERE `admin` IS NOT NULL";
   $result = mysqli_query($connect, $query);
 
   if ($result) {
