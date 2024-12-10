@@ -48,6 +48,10 @@ b, strong {
     font-weight: 500 !important;
 }
 
+.opacity-30 {
+    opacity: .3;
+}
+
 /* Filters section */
 .filters {
     width: 100%;

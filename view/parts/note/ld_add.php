@@ -117,7 +117,7 @@ if ($ldValue == false) {
 
   <!-- Hashtags Fields -->
   <div class="col-md-12">
-    <p>Хэштеги</p>
+    <p>Теги</p>
     <div class="row">
       <?php
       // Loop to create input fields for hashtags (up to 4)

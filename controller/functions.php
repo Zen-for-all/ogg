@@ -287,11 +287,7 @@ function getAllPublicUsers($missionIds = []) {
   global $connect;
 
   // Base SQL query with public parameter check
-  $query = "
-    SELECT id 
-    FROM `user`
-    WHERE anonym = 0
-  ";
+  $query = "SELECT id FROM `user`WHERE anonym = 0";
 
   // Check if the array of mission IDs is not empty
   if (!empty($missionIds)) {
@@ -331,6 +327,22 @@ function getAdminNewsIds() {
   global $connect;
   $ids = [];
   $query = "SELECT `id` FROM `news` WHERE `admin` IS NOT NULL";
+  $result = mysqli_query($connect, $query);
+
+  if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      $ids[] = (int) $row['id'];
+    }
+  }
+
+  return $ids;
+}
+
+// Get IDs public lds
+function getPublicLd() {
+  global $connect;
+  $ids = [];
+  $query = "SELECT `id` FROM `ld` WHERE publish = 1";
   $result = mysqli_query($connect, $query);
 
   if ($result) {

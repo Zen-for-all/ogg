@@ -11,10 +11,11 @@
       <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'net' ? 'active' : ''; ?>" href="/net">Профиль</a>
       <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'groups' ? 'active' : ''; ?>" href="/groups">Группы</a>
       <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'people' ? 'active' : ''; ?>" href="/people">Люди</a>
+      <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'posts' ? 'active' : ''; ?>" href="/posts">Публикации</a>
       <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'settings-net' ? 'active' : ''; ?>" href="/settings-net">Настройки</a>
 
       <?php if ($_SESSION['userId'] == 1): ?>
-        <a class="nav-link <?php echo isset($_GET['page']) && $_GET['page'] === 'edit-news' ? 'active' : ''; ?>" href="/edit-news">Новости</a>
+        <a class="nav-link opacity-30 <?php echo isset($_GET['page']) && $_GET['page'] === 'edit-news' ? 'active' : ''; ?>" href="/edit-news">Новости</a>
       <?php endif; ?>
     <?php else: ?>
       <!-- Links for the default section -->

@@ -25,7 +25,7 @@ if (isset($_SESSION['userId'])) {
   $valid_pages = [
     'main' => 'Главная', 'journal' => 'Журнал', 'location' => 'Локации', 'settings' => 'Настройки', 'user_delete' => 'Удалить пользователя', 'ld_delete' => 'Удалить запись', 'location_delete' => 'Удалить локацию', 'ld' => 'Локации', 'faq' => 'FAQ'
   ];
-  $valid_pages_net = ['net' => 'Сеть', 'groups' => 'Группы', 'people' => 'Люди', 'group' => 'Группа', 'profile' => 'Профиль', 'group_delete' => 'Удалить группу', 'settings-net' => 'Настройки'];
+  $valid_pages_net = ['net' => 'Сеть', 'groups' => 'Группы', 'people' => 'Люди', 'group' => 'Группа', 'profile' => 'Профиль', 'posts' => 'Публикации', 'group_delete' => 'Удалить группу', 'settings-net' => 'Настройки'];
   $valid_pages_admin = ['edit-news' => 'Управление новостями'];
 
   // Check if requested page is valid

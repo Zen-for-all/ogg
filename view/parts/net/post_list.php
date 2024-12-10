@@ -1,7 +1,5 @@
 <?php
 /**
- * @var object $user The current user object, containing information about the logged-in user.
- * @var string $title The title displayed on the page, representing the main heading.
  * @var int $ldOnPage The number of LD (learning data) items to display per page for pagination.
  * @var array $enterMethod An array mapping method IDs to entry methods, used for displaying entry method names.
  */
@@ -19,12 +17,10 @@ if (!empty($_GET['hashtag'])) {
 $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) : '';
 ?>
 
-<h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
-
 <div class="row">
   <div class="col-md-6">
     <p>Найти по тегу</p>
-    <form action="/journal" method="get">
+    <form action="/posts" method="get">
       <input type="text" class="form-control no_space" name="search" value="<?= isset($hashtag_title) ? htmlspecialchars($hashtag_title) : '' ?>">
       <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
     </form>
@@ -33,7 +29,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
 <br><br>
 
 <?php if (!empty($hashtag_title)) { ?>
-  <h3>#<?= htmlspecialchars($hashtag_title) ?> <a href="/journal">(x)</a></h3><br>
+  <h3>#<?= htmlspecialchars($hashtag_title) ?> <a href="/posts">(x)</a></h3><br>
 <?php } ?>
 
 <div class="container-fluid gx-0">
@@ -44,11 +40,9 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
     // Array of sorting criteria
     $criteria = [
       'date' => 'По дате:',
-      'time' => 'По времени:',
       'duration' => 'По длительности:',
       'quality' => 'По качеству:',
       'interest' => 'По интересности:',
-      'location' => 'По локации:',
       'method' => 'По входу:'
     ];
 
@@ -56,8 +50,8 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
     foreach ($criteria as $key => $label) { ?>
       <div class="filter border mb-2">
         <div class="rl"><?= $label ?></div>
-        <a class="db rl" href="/?page=journal&sort=<?= $key ?><?= $hashtag_link ?>">+</a>
-        <a class="db rl" href="/?page=journal&sort=<?= $key ?>&reverse=1<?= $hashtag_link ?>">-</a>
+        <a class="db rl" href="/?page=posts&sort=<?= $key ?><?= $hashtag_link ?>">+</a>
+        <a class="db rl" href="/?page=posts&sort=<?= $key ?>&reverse=1<?= $hashtag_link ?>">-</a>
       </div>
     <?php } ?>
   </div>
@@ -65,10 +59,10 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
   <div class="row">
 
     <?php
-    if ($user->ldlist != null) {
-      // get ld id's array
-      $ldArray = json_decode($user->ldlist, true);
+    // Get IDs public lds
+    $ldArray = getPublicLd();
 
+    if (!empty($ldArray)) {
       // Get all the information for the provided IDs
       $allInfoArray = getAllInfo($ldArray);
 
@@ -94,7 +88,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
 
       // Check if 'sort' parameter is set and sort accordingly
       $sortCriteria = $_GET['sort'] ?? 'date';  // Use a default value of 'date' if no 'sort' parameter is provided
-      $validSortCriteria = ['time', 'duration', 'location', 'quality', 'interest', 'method']; // Define valid sort criteria
+      $validSortCriteria = ['time', 'duration', 'quality', 'interest', 'method']; // Define valid sort criteria
 
       // Sort the array only if the 'sort' parameter is valid
       if (in_array($sortCriteria, $validSortCriteria)) {
@@ -129,14 +123,6 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
         // Get all info about ld
         $ld = new Ld($ldValue);
 
-        // Get all info about location
-        $locationTitle = false;
-        if ($ld->location) {
-          $location = new Location($ld->location);
-          $locationId = $location->id;
-          $locationTitle = $location->title;
-        }
-
         // Get ld date
         $ldDate = $ld->date;
 
@@ -158,12 +144,6 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
         // Get ld text, defaulting to false if not set
         $ldText = ($ld->text != 0) ? $ld->text : false;
 
-        // Get ld notice, defaulting to false if not set
-        $ldNotice = ($ld->notice != 0) ? $ld->notice : false;
-
-        // Get ld publish value
-        $ldPublish = $ld->publish;
-
         // Get hashtags, defaulting to false if not set
         $hashtags = !empty($ld->hashtags) ? json_decode($ld->hashtags, true) : false;
         ?>
@@ -174,10 +154,6 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
 
             <?php if ($ldDuration) { ?>
               <span>Длительность: <b><?=$ldDuration?></b></span>
-            <?php } ?>
-
-            <?php if ($locationTitle) { ?>
-              <span>Локация: <b><?=$locationTitle?></b></span>
             <?php } ?>
 
             <?php if ($ldQuality) { ?>
@@ -196,24 +172,16 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
               <span><b>Описание:</b> <?=excerpt($ldText, 300)?></span><br>
             <?php } ?>
 
-            <?php if ($ldNotice) { ?>
-              <span><b>Заметки:</b> <?=excerpt($ldNotice, 200)?></span><br>
-            <?php } ?>
-
             <?php if (!empty($hashtags)) { ?>
               <span><b>Теги:</b></span>
               <div>
                 <?php
                 foreach ($hashtags as $hashtag) {
-                  echo '<a href="/?page=journal&hashtag=' . $hashtag . '">#' . $hashtag . '</a> | ';
+                  echo '<a href="/?page=posts&hashtag=' . $hashtag . '">#' . $hashtag . '</a> | ';
                 }
                 echo '<br><br>';
                 ?>
               </div>
-            <?php } ?>
-
-            <?php if ($ldPublish == 1) { ?>
-              <span><?='Опубликовано'?></span>
             <?php } ?>
 
             <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=ld&id=<?=$ld->id?>">Подробнее</a>
