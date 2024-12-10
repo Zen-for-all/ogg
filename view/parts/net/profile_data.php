@@ -58,6 +58,12 @@
       </div>
 
       <div class="col-md-8 col-12">
+        <?php if ($user->name != false): ?>
+          <div class="">
+            <p>Имя: <?= $user->name ?></p>
+          </div>
+        <?php endif; ?>
+
         <?php if ($gender != false): ?>
           <div class="">
             <p>Пол: <?= $gender ?></p>

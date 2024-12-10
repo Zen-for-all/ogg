@@ -65,6 +65,12 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE);
 <form action="/model/net/edit_profile.php" method="post">
   <div class="row">
     <div class="col-md-4 mb-3">
+      <!-- Name Section -->
+      <label for="name" class="form-label"><b>Имя</b></label>
+      <input class="form-control" type="text" name="name" id="name" value="<?= $user->name ?>">
+    </div>
+
+    <div class="col-md-4 mb-3">
       <!-- Gender Selection -->
       <label for="gender" class="form-label"><b>Ваш пол</b></label>
       <select name="gender" id="gender" class="form-control">
@@ -98,18 +104,6 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE);
       <input type="number" name="ldcount" id="ldcount" class="form-control" min="0" max="9999" value="<?= $user->ldcount ?>">
     </div>
 
-    <div class="col-md-4 mb-3">
-      <!-- Ideology -->
-      <label for="ideology" class="form-label"><b>Наиболее близкая концепция природы ОСов</b></label>
-      <select name="ideology" id="ideology" class="form-select">
-        <?php foreach ($ideologyList as $key => $ideology): ?>
-          <option value="<?= $key ?>" <?= (isset($user->ideology) && $key == $user->ideology) ? 'selected' : ''; ?>>
-            <?= $ideology ?>
-          </option>
-        <?php endforeach; ?>
-      </select>
-    </div>
-
     <div class="col-md-12 mb-3">
       <!-- Description -->
       <label for="description" class="form-label"><b>Описание</b></label>
@@ -127,6 +121,18 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE);
           <label for="mission_<?= $key ?>"><?= $mission ?></label>
         </div>
       <?php endforeach; ?>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <!-- Ideology -->
+      <label for="ideology" class="form-label"><b>Наиболее близкая концепция природы ОСов</b></label>
+      <select name="ideology" id="ideology" class="form-select">
+        <?php foreach ($ideologyList as $key => $ideology): ?>
+          <option value="<?= $key ?>" <?= (isset($user->ideology) && $key == $user->ideology) ? 'selected' : ''; ?>>
+            <?= $ideology ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
     </div>
 
     <div class="col-md-4 mb-3">

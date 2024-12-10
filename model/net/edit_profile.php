@@ -24,9 +24,10 @@ $fieldsToUpdate = [
   'experience' => 'experience',
   'ldcount' => 'ldcount',
   'ideology' => 'ideology',
-  'description' => 'description'
+  'description' => 'description',
+  'name' => 'name' // Add 'name' field
 ];
-var_dump($_POST);
+
 // Process each field update from POST data
 foreach ($fieldsToUpdate as $key => $field) {
   if (isset($_POST[$key])) {
@@ -37,6 +38,7 @@ foreach ($fieldsToUpdate as $key => $field) {
       case 'gender':
       case 'city':
       case 'description':
+      case 'name': // Process 'name' as a string field
         $value = trim($value); // Sanitize string input
         $updateQuery = "UPDATE `user` SET `$field` = ? WHERE `id` = ?";
         $stmt = $connect->prepare($updateQuery);
