@@ -36,7 +36,13 @@ foreach ($newsArray as $news) {
     </div>
 
     <div class="wall-item-content"><?= htmlspecialchars($news->text) ?></div>
-    <button class="col-auto edit_location_btn show btn mt-2 mb-3 me-3 edit-btn" data-id="<?= $news->id ?>">Редакировать</button>
+    <button class="col-auto edit_location_btn show btn mt-2 me-3 edit-btn rl" data-id="<?= $news->id ?>">Редакировать</button>
+
+    <form action="model/admin/delete_news.php" method="post" class="rl mt-2">
+      <input type="hidden" name="id" value="<?= $news->id ?>">
+      <input type="submit" value="Удалить" class="btn btn-outline-danger">
+    </form>
+    <div class="clear"></div>
     <hr>
 
     <!-- Hidden form for editing the news -->
