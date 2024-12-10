@@ -42,9 +42,16 @@ foreach ($newsArray as $news) {
     <!-- Hidden form for editing the news -->
     <form class="edit-form" data-id="<?= $news->id ?>" style="display: none;" method="POST" action="model/admin/update_news.php">
       <input type="hidden" name="id" value="<?= $news->id ?>">
-      <div class="form-group mb-2">
-        <label for="title-<?= $news->id ?>">Title:</label>
-        <input type="text" id="title-<?= $news->id ?>" name="title" class="form-control" value="<?= htmlspecialchars($news->title) ?>">
+      <div class="form-group d-flex justify-content-start mb-2">
+        <div class="me-3" style="width: 50%;">
+          <label for="title-<?= $news->id ?>">Title:</label>
+          <input type="text" id="title-<?= $news->id ?>" name="title" class="form-control" value="<?= htmlspecialchars($news->title) ?>">
+        </div>
+        <div>
+          <label for="date-<?= $news->id ?>">Date:</label>
+          <input type="datetime-local" id="date-<?= $news->id ?>" name="date" class="form-control"
+                 value="<?= date('Y-m-d\TH:i', $news->date) ?>">
+        </div>
       </div>
       <div class="form-group mb-3">
         <label for="text-<?= $news->id ?>">Text:</label>

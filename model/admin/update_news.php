@@ -18,11 +18,12 @@ if ($_SESSION['userId'] != 1) {
 $id = intval($_POST['id']); // Ensure the news ID is an integer
 $title = mysqli_real_escape_string($connect, trim($_POST['title'])); // Sanitize and trim the title input
 $text = mysqli_real_escape_string($connect, trim($_POST['text'])); // Sanitize and trim the text input
+$date = strtotime($_POST['date']); // Convert the date to Unix format
 
 // Prepare the SQL query to update the news in the database
-$updateQuery = "UPDATE `news` SET `title` = ?, `text` = ? WHERE `id` = ?";
+$updateQuery = "UPDATE `news` SET `title` = ?, `text` = ?, `date` = ? WHERE `id` = ?";
 $stmt = $connect->prepare($updateQuery); // Prepare the query for execution
-$stmt->bind_param('ssi', $title, $text, $id); // Bind the parameters: 's' for string (title), 's' for string (text), 'i' for integer (id)
+$stmt->bind_param('ssii', $title, $text, $date, $id); // Bind the parameters: 's' for strings (title, text), 'i' for integers (date, id)
 $stmt->execute(); // Execute the prepared statement
 
 // Redirect back to the previous page or a specific page after the update
