@@ -136,6 +136,14 @@ $contacts = $user->contact ? json_decode($user->contact, true) : []; // Handle n
           $newsArray[] = new News($id);
         }
 
+        // Sort news array by date in descending order
+        usort($newsArray, function ($a, $b) {
+          return $b->date <=> $a->date; // Sort by date descending
+        });
+
+        // Limit the array to 10 items
+        $newsArray = array_slice($newsArray, 0, 10);
+
         // Render news items on the page
         foreach ($newsArray as $news) {
           ?>
@@ -157,6 +165,7 @@ $contacts = $user->contact ? json_decode($user->contact, true) : []; // Handle n
             </div>
 
             <div class="wall-item-content"><?= htmlspecialchars($news->text) ?></div>
+            <div class="clear"></div>
             <hr>
           </div>
 

@@ -25,7 +25,8 @@ if (isset($_SESSION['userId'])) {
   $valid_pages = [
     'main' => 'Главная', 'journal' => 'Журнал', 'location' => 'Локации', 'settings' => 'Настройки', 'user_delete' => 'Удалить пользователя', 'ld_delete' => 'Удалить запись', 'location_delete' => 'Удалить локацию', 'ld' => 'Локации', 'faq' => 'FAQ'
   ];
-  $valid_pages_net = ['net' => 'Сеть', 'groups' => 'Группы', 'people' => 'Люди', 'group' => 'Группа', 'profile' => 'Профиль', 'group_delete' => 'Удалить группу', 'settings-net' => 'Настройки', 'edit-news' => 'Управление новостями'];
+  $valid_pages_net = ['net' => 'Сеть', 'groups' => 'Группы', 'people' => 'Люди', 'group' => 'Группа', 'profile' => 'Профиль', 'group_delete' => 'Удалить группу', 'settings-net' => 'Настройки'];
+  $valid_pages_admin = ['edit-news' => 'Управление новостями'];
 
   // Check if requested page is valid
   if (array_key_exists($page, $valid_pages)) {
@@ -35,6 +36,10 @@ if (isset($_SESSION['userId'])) {
     $net = true;
     $title = $valid_pages_net[$page]; // Set the title for valid net pages
     $require_file = "view/pages/net/{$page}.php";
+  } elseif (array_key_exists($page, $valid_pages_admin)) {
+    $net = true;
+    $title = $valid_pages_admin[$page]; // Set the title for valid admin pages
+    $require_file = "view/pages/admin/{$page}.php";
   } else {
     // Invalid page - set 404 status
     header("HTTP/1.0 404 Not Found");

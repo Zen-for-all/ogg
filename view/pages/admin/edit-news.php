@@ -25,10 +25,14 @@ foreach ($newsIds as $id) {
   $newsArray[] = new News($id);
 }
 
+// Sort news array by date in descending order
+usort($newsArray, function ($a, $b) {
+    return $b->date <=> $a->date; // Sort by date descending
+});
+
 // Render news items on the page
 foreach ($newsArray as $news) {
   ?>
-
   <div class="wall-item mb-3">
     <div class="wall-item-header">
       <div class="wall-item-title"><b><?= htmlspecialchars($news->title) ?></b></div>
@@ -36,7 +40,7 @@ foreach ($newsArray as $news) {
     </div>
 
     <div class="wall-item-content"><?= htmlspecialchars($news->text) ?></div>
-    <button class="col-auto edit_location_btn show btn mt-2 me-3 edit-btn rl" data-id="<?= $news->id ?>">Редакировать</button>
+    <button class="col-auto edit_location_btn show btn mt-2 me-3 edit-btn rl" data-id="<?= $news->id ?>">Редактировать</button>
 
     <form action="model/admin/delete_news.php" method="post" class="rl mt-2">
       <input type="hidden" name="id" value="<?= $news->id ?>">
@@ -46,32 +50,24 @@ foreach ($newsArray as $news) {
     <hr>
 
     <!-- Hidden form for editing the news -->
-    <form class="edit-form" data-id="<?= $news->id ?>" style="display: none;" method="POST" action="model/admin/update_news.php">
-      <input type="hidden" name="id" value="<?= $news->id ?>">
-      <div class="form-group d-flex justify-content-start mb-2">
-        <div class="me-3" style="width: 50%;">
-          <label for="title-<?= $news->id ?>">Title:</label>
-          <input type="text" id="title-<?= $news->id ?>" name="title" class="form-control" value="<?= htmlspecialchars($news->title) ?>">
-        </div>
-        <div>
-          <label for="date-<?= $news->id ?>">Date:</label>
-          <input type="datetime-local" id="date-<?= $news->id ?>" name="date" class="form-control"
-                 value="<?= date('Y-m-d\TH:i', $news->date) ?>">
-        </div>
-      </div>
-      <div class="form-group mb-3">
-        <label for="text-<?= $news->id ?>">Text:</label>
-        <textarea id="text-<?= $news->id ?>" name="text" class="form-control"><?= htmlspecialchars($news->text) ?></textarea>
-      </div>
-      <button type="submit" class="btn btn-outline-success me-3">Сохранить</button>
-      <button type="button" class="btn btn-outline-danger cancel-btn">Отмена</button>
-      <hr>
-    </form>
+    <?php include 'view/parts/admin/news_add.php'; ?>
   </div>
-
   <?php
 }
 ?>
+
+
+<!-- Button to open the location form -->
+<a href="#add-location-form" class="btn btn-outline-success btn_show mt-3 me-3">Добавить новость</a>
+
+<!-- Hidden block for adding a location -->
+<div class="block_hide hide">
+  <h2 class="mt-5">Добавить новость:</h2>
+  <?php
+  // Initializing values for the location add form
+  $news->id = $news->title = $news->date = $news->text = false;
+  include 'view/parts/admin/news_add.php'; ?>
+</div>
 
 <script>
   // Handle edit button click
