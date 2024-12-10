@@ -62,7 +62,7 @@
 <div class="row">
   <?php
   // Get the list of all users
-  $userArray = getAllUsers();
+  $userArray = getAllPublicUsers();
 
   // Filter users by selected missions
   if (!empty($missionListId)) {

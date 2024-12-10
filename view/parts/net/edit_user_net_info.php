@@ -53,7 +53,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE);
         <!-- Checkbox to toggle anonymity -->
         <label>
           <input class="form-check-input" type="checkbox" name="anonym" value="anonym" <?= $user->anonym == 1 ? 'checked' : ''; ?>>
-          Закрытый профиль
+          <span>Закрытый профиль</span> <span class="grey">(запрещает просмотр вашего профиля)</span>
         </label>
       </div>
       <button class="btn btn-outline-secondary mb-3" type="submit">Сохранить</button>

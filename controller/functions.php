@@ -282,6 +282,34 @@ function getAllUsers($missionIds = []) {
   return array_map(fn($row) => new User($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));
 }
 
+// Get all Users filtered by mission IDs and public parameter (anonym = 0)
+function getAllPublicUsers($missionIds = []) {
+  global $connect;
+
+  // Base SQL query with public parameter check
+  $query = "
+    SELECT id 
+    FROM `user`
+    WHERE anonym = 0
+  ";
+
+  // Check if the array of mission IDs is not empty
+  if (!empty($missionIds)) {
+    // Prepare the JSON format of mission IDs for the SQL query
+    $missionIdsJson = json_encode($missionIds);
+
+    // Add filtering by mission IDs to the query
+    $query .= " AND JSON_CONTAINS(mission, '$missionIdsJson')";
+  }
+
+  // Execute the query
+  $result = mysqli_query($connect, $query);
+
+  // Map the result to create User objects
+  return array_map(fn($row) => new User($row['id']), mysqli_fetch_all($result, MYSQLI_ASSOC));
+}
+
+
 // This function retrieves all news IDs from the 'news' table.
 function getAllNewsIds() {
   global $connect;
