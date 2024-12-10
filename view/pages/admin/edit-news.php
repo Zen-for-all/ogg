@@ -56,16 +56,14 @@ foreach ($newsArray as $news) {
 }
 ?>
 
-
 <!-- Button to open the location form -->
-<a href="#add-location-form" class="btn btn-outline-success btn_show mt-3 me-3">Добавить новость</a>
+<a href="#add-location-form" class="btn btn-outline-success btn_show mt-3 me-3 mb-3">Добавить новость</a>
 
 <!-- Hidden block for adding a location -->
 <div class="block_hide hide">
   <h2 class="mt-5">Добавить новость:</h2>
   <?php
   // Initializing values for the location add form
-  $news->id = $news->title = $news->date = $news->text = false;
   include 'view/parts/admin/news_add.php'; ?>
 </div>
 

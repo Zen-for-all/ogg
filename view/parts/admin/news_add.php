@@ -1,4 +1,4 @@
-<?php if ($news->id != false ) { ?>
+<?php if (isset($news->id) && $news->id != false ) { ?>
   <form class="edit-form" data-id="<?= $news->id ?>" style="display: none;" method="POST" action="model/admin/update_news.php">
     <input type="hidden" name="id" value="<?= $news->id ?>">
     <div class="form-group d-flex justify-content-start mb-2">
@@ -24,7 +24,7 @@
   <form class="edit-form" method="POST" action="model/admin/add_news.php">
     <div class="form-group d-flex justify-content-start mb-2">
       <div class="me-3" style="width: 50%;">
-        <label for="title-<?= $news->id ?>">Title:</label>
+        <label for="title">Title:</label>
         <input type="text" name="title" class="form-control" value="">
       </div>
       <div>
