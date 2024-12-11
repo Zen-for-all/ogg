@@ -85,6 +85,7 @@ while ($group = $result->fetch_assoc()) {
 // Clear the session data and destroy the session to log the user out
 session_unset();
 session_destroy();
+setcookie("userId", "", time() - 3600, "/");
 
 // Redirect the user to the homepage after account deletion
 header("Location: /");
