@@ -304,3 +304,17 @@ b, strong {
 .grey {
     color: #ccc;
 }
+
+.button-container > div {
+    margin-right: 20px;
+}
+
+.like-icon button {
+    background: none;
+    border: none;
+}
+
+.view-block svg,
+.like-block svg{
+    width: 30px;
+}

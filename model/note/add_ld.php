@@ -42,8 +42,8 @@ $publish = isset($_POST['publish']) && $_POST['publish'] === 'on' ? 1 : 0;
 
 // Add a new entry to the learning and development table
 $setNewLd = mysqli_query($connect, "
-    INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `hashtags`, `public_text`, `publish`, `notice`, `user`)
-    VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$jsonHashtags', '$public_text', '$publish', '$notice', '$user')
+    INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `hashtags`, `public_text`, `publish`, `notice`, `user`, `views`, `likes`)
+    VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$jsonHashtags', '$public_text', '$publish', '$notice', '$user', '[]', '[]')
 ");
 
 // Fetch user data by user ID to get the current learning and development list

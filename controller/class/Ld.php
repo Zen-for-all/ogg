@@ -15,6 +15,7 @@ class Ld
   public $publish;
   public $notice;
   public $user;
+  public $likes;
 
   function __construct(int $id)
   {
@@ -26,7 +27,7 @@ class Ld
   {
     global $connect;
     $query = "SELECT `date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, 
-                         `text`, `hashtags`, `public_text`, `publish`, `notice`, `user`
+                         `text`, `hashtags`, `public_text`, `publish`, `notice`, `user`, `views`, `likes`
                   FROM `ld` 
                   WHERE `id` = {$this->id}";
     $result = mysqli_query($connect, $query);
