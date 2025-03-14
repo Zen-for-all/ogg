@@ -48,5 +48,5 @@ mysqli_stmt_execute($stmt);
 mysqli_stmt_close($stmt);
 
 // Redirect to the updated page after the operation
-header("Location:/?page=ld&id=" . $id);
+header("Location:/?page=post&id=" . $id);
 exit();

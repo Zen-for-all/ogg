@@ -22,11 +22,34 @@ if (isset($_SESSION['userId'])) {
   $page = $_GET['page'] ?? 'main'; // Set default page if not provided
 
   // Define valid page lists
+  // LucidNote
   $valid_pages = [
-    'main' => 'Главная', 'journal' => 'Журнал', 'location' => 'Локации', 'settings' => 'Настройки', 'user_delete' => 'Удалить пользователя', 'ld_delete' => 'Удалить запись', 'location_delete' => 'Удалить локацию', 'ld' => 'Локации', 'faq' => 'FAQ'
+    'main' => 'Главная',
+    'journal' => 'Журнал',
+    'location' => 'Локации',
+    'settings' => 'Настройки',
+    'user_delete' => 'Удалить пользователя',
+    'ld_delete' => 'Удалить запись',
+    'location_delete' => 'Удалить локацию',
+    'ld' => 'Запись',
+    'faq' => 'FAQ'
   ];
-  $valid_pages_net = ['net' => 'Сеть', 'groups' => 'Группы', 'people' => 'Люди', 'group' => 'Группа', 'profile' => 'Профиль', 'posts' => 'Публикации', 'group_delete' => 'Удалить группу', 'settings-net' => 'Настройки'];
-  $valid_pages_admin = ['edit-news' => 'Управление новостями'];
+  // LucidNet
+  $valid_pages_net = [
+    'net' => 'Сеть',
+    'groups' => 'Группы',
+    'people' => 'Люди',
+    'group' => 'Группа',
+    'profile' => 'Профиль',
+    'posts' => 'Публикации',
+    'group_delete' => 'Удалить группу',
+    'settings-net' => 'Настройки',
+    'post' => 'Запись'
+  ];
+  // Admin
+  $valid_pages_admin = [
+    'edit-news' => 'Управление новостями'
+  ];
 
   // Check if requested page is valid
   if (array_key_exists($page, $valid_pages)) {

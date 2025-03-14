@@ -144,6 +144,9 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
         // Get ld text, defaulting to false if not set
         $ldText = ($ld->text != 0) ? $ld->text : false;
 
+        // Get ld public text, defaulting to false if not set
+        $ldPublicText = ($ld->public_text != 0) ? $ld->public_text : false;
+
         // Get hashtags, defaulting to false if not set
         $hashtags = !empty($ld->hashtags) ? json_decode($ld->hashtags, true) : false;
         ?>
@@ -169,7 +172,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
             <?php } ?>
 
             <?php if ($ldText) { ?>
-              <span><b>Описание:</b> <?=excerpt($ldText, 300)?></span><br>
+              <span><b>Описание:</b> <?=html_entity_decode(excerpt($ldPublicText, 300))?></span><br>
             <?php } ?>
 
             <?php if (!empty($hashtags)) { ?>
@@ -184,7 +187,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
               </div>
             <?php } ?>
 
-            <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=ld&id=<?=$ld->id?>">Подробнее</a>
+            <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=post&id=<?=$ld->id?>">Подробнее</a>
           </div>
         </div>
 
