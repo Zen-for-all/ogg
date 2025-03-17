@@ -38,6 +38,7 @@ $ld = new Ld($ldValue);
   $ldPublish = $ld->publish;
   $hashtags = (!empty($ld->hashtags)) ? json_decode($ld->hashtags, true) : false;
 
+  // likes
   $likes = ($ld->likes != 0) ? $ld->likes : false;
   if (is_string($likes) && !empty($likes)) {
     $likes = json_decode($likes, true);
@@ -46,7 +47,10 @@ $ld = new Ld($ldValue);
     $likes = [];
   }
 
-  $views = ($ld->likes != 0) ? $ld->views : false;
+  // views
+  $views = ($ld->views != 0) ? $ld->views : false;
+
+  // Convert views to array
   if (is_string($views) && !empty($views)) {
     $views = json_decode($views, true);
   }
@@ -54,30 +58,22 @@ $ld = new Ld($ldValue);
     $views = [];
   }
 
+  // Check if userId is already in views
   if (!in_array($_SESSION['userId'], $views, true)) {
-    // Ensure $views is a valid array
-    if (is_string($views) && !empty($views)) {
-      $views = json_decode($views, true);
-    }
-    if (!is_array($views)) {
-      $views = [];
-    }
+    $views[] = $_SESSION['userId']; // Add user to views
 
-    // Add view
-    if (!in_array($_SESSION['userId'], $views, true)) {
-      $views[] = $_SESSION['userId'];
-    }
-
-    // Encode likes back to JSON format
-    $new_views = json_encode($likes, JSON_UNESCAPED_UNICODE);
+    // Encode views back to JSON format
+    $new_views = json_encode($views, JSON_UNESCAPED_UNICODE);
 
     // Update the database record
     $query = "UPDATE `ld` SET `views` = ? WHERE `id` = ?";
     require 'model/connect.php';
     $stmt = mysqli_prepare($connect, $query);
-    mysqli_stmt_bind_param($stmt, "si", $new_views, $ldValue);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
+    if ($stmt) {
+      mysqli_stmt_bind_param($stmt, "si", $new_views, $ldValue);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_close($stmt);
+    }
   }
   ?>
 

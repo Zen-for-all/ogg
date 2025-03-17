@@ -149,6 +149,24 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
 
         // Get hashtags, defaulting to false if not set
         $hashtags = !empty($ld->hashtags) ? json_decode($ld->hashtags, true) : false;
+
+        // likes
+        $likes = ($ld->likes != 0) ? $ld->likes : false;
+        if (is_string($likes) && !empty($likes)) {
+          $likes = json_decode($likes, true);
+        }
+        if (!is_array($likes)) {
+          $likes = [];
+        }
+
+        // views
+        $views = ($ld->views != 0) ? $ld->views : false;
+        if (is_string($views) && !empty($views)) {
+          $views = json_decode($views, true);
+        }
+        if (!is_array($views)) {
+          $views = [];
+        }
         ?>
 
         <div class="col-xxl-3 col-lg-3 col-md-6 mb-5">
@@ -186,6 +204,25 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
                 ?>
               </div>
             <?php } ?>
+
+            <!-- Like icon -->
+            <div class="rl like-count">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+
+              <?php echo count($likes); ?>
+            </div>
+
+            <!-- Views -->
+            <div class="rl view-block">
+              <div class="rl view-icon">
+                <svg enable-background="new 0 0 32 32" id="Editable-line" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="  M16,7C9.934,7,4.798,10.776,3,16c1.798,5.224,6.934,9,13,9s11.202-3.776,13-9C27.202,10.776,22.066,7,16,7z" fill="none" id="XMLID_10_" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/><circle cx="16" cy="16" fill="none" id="XMLID_12_" r="5" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/></svg>
+              </div>
+              <div class="rl view-count">
+                <?php echo count($views); ?>
+              </div>
+            </div>
 
             <a class="btn btn-outline-secondary mt-4 mb-3" href="/?page=post&id=<?=$ld->id?>">Подробнее</a>
           </div>
