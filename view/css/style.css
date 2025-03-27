@@ -305,16 +305,24 @@ b, strong {
     color: #ccc;
 }
 
-.button-container > div {
-    margin-right: 20px;
+.button-container {
+    display: flex;
+    gap: 20px;
 }
 
-.like-icon button {
-    background: none;
+.icon-count-block {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.icon-count-block button {
+    padding: 0;
+    margin: 0;
     border: none;
+    background: none;
 }
 
-.view-block svg,
-.like-block svg{
+.icon-img svg {
     width: 30px;
 }

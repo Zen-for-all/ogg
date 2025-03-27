@@ -100,8 +100,8 @@ $ld = new Ld($ldValue);
     <br>
     <div class="button-container w-100">
       <!-- Likes -->
-      <div class="rl like-block">
-        <div class="rl like-icon">
+      <div class="rl icon-count-block">
+        <div class="rl icon-img">
           <form action="model/net/like.php" method="POST" class="like-form">
             <input type="hidden" name="id" value=<?php echo $ldValue; ?>>
             <input type="hidden" name="user_id" value=<?php echo $_SESSION['userId']; ?>>
@@ -119,8 +119,8 @@ $ld = new Ld($ldValue);
       </div>
 
       <!-- Views -->
-      <div class="rl view-block">
-        <div class="rl view-icon">
+      <div class="rl icon-count-block">
+        <div class="rl icon-img">
           <svg enable-background="new 0 0 32 32" id="Editable-line" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="  M16,7C9.934,7,4.798,10.776,3,16c1.798,5.224,6.934,9,13,9s11.202-3.776,13-9C27.202,10.776,22.066,7,16,7z" fill="none" id="XMLID_10_" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/><circle cx="16" cy="16" fill="none" id="XMLID_12_" r="5" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/></svg>
         </div>
         <div class="rl view-count">
