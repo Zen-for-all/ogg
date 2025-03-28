@@ -83,7 +83,10 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE);
     <div class="col-md-4 mb-3">
       <!-- Birth Year -->
       <label for="birth_year" class="form-label"><b>Год рождения</b></label>
-      <input type="number" name="birth_year" id="birth_year" class="form-control" min="1920" max="<?= date('Y') - 10 ?>" value="<?= $user->birth_year ?>">
+      <input type="number" name="birth_year" id="birth_year" class="form-control"
+             min="1920" max="<?= date('Y') - 10 ?>"
+             value="<?= isset($user->birth_year) && $user->birth_year !== '' ? htmlspecialchars($user->birth_year, ENT_QUOTES, 'UTF-8') : '' ?>"
+             placeholder="Выберите год">
     </div>
 
     <div class="col-md-4 mb-3">

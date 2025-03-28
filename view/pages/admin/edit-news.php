@@ -64,6 +64,7 @@ foreach ($newsArray as $news) {
   <h2 class="mt-5">Добавить новость:</h2>
   <?php
   // Initializing values for the location add form
+  unset($news);
   include 'view/parts/admin/news_add.php'; ?>
 </div>
 
