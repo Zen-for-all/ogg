@@ -67,7 +67,7 @@
   // Filter users by selected missions
   if (!empty($missionListId)) {
     $userArray = array_filter($userArray, function ($user) use ($missionListId) {
-      $missionIdArray = json_decode($user->mission, true);
+      $missionIdArray = is_string($user->mission) ? json_decode($user->mission, true) : [];
 
       if (is_array($missionIdArray)) {
         return !array_diff($missionListId, $missionIdArray);
