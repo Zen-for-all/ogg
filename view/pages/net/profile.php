@@ -9,4 +9,9 @@ $profile_owner = 0;
 
 <?php
 include 'view/parts/net/profile_data.php';
+
+$ldArray = [];
+$ldArray = json_decode($user->ldlist, true);
+$ldArray = getPublicLdFromArray($ldArray);
+include 'view/parts/net/post_list.php';
 ?>

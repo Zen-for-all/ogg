@@ -29,10 +29,10 @@
     $age = date("Y") - $user->birth_year;
   }
 
-// Decode the user's current missions from JSON to an array or set to an empty array if null
+  // Decode the user's current missions from JSON to an array or set to an empty array if null
   $userMissions = $user->mission ? json_decode($user->mission, true) : []; // Handle null values gracefully
 
-// Decode the contact JSON string to an array or set to an empty array if null
+  // Decode the contact JSON string to an array or set to an empty array if null
   $contacts = $user->contact ? json_decode($user->contact, true) : []; // Handle null values gracefully
   ?>
 
@@ -186,6 +186,8 @@
 
           </div>
         <?php endif; ?>
+
+
       </div>
     </div>
   </section>

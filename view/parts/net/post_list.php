@@ -40,6 +40,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
     // Array of sorting criteria
     $criteria = [
       'date' => 'По дате:',
+      'likes' => 'По лайкам:',
       'duration' => 'По длительности:',
       'quality' => 'По качеству:',
       'interest' => 'По интересности:',
@@ -60,12 +61,11 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
 
     <?php
     // Get IDs public lds
-    $ldArray = getPublicLd();
+    if (!(isset($ldArray))) {
+      $ldArray = getPublicLd();
+    }
 
     if (!empty($ldArray)) {
-      // Get all the information for the provided IDs
-      $allInfoArray = getAllInfo($ldArray);
-
       // Initialize an array to hold Ld objects
       $ldObjects = [];
 
@@ -88,11 +88,20 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
 
       // Check if 'sort' parameter is set and sort accordingly
       $sortCriteria = $_GET['sort'] ?? 'date';  // Use a default value of 'date' if no 'sort' parameter is provided
-      $validSortCriteria = ['time', 'duration', 'quality', 'interest', 'method']; // Define valid sort criteria
+      $validSortCriteria = ['time', 'duration', 'quality', 'interest', 'method', 'likes']; // Define valid sort criteria
 
       // Sort the array only if the 'sort' parameter is valid
       if (in_array($sortCriteria, $validSortCriteria)) {
-        sortLdObjects($ldObjects, $sortCriteria);
+        if ($sortCriteria === 'likes') {
+          // Сортировка по количеству лайков
+          usort($ldObjects, function($a, $b) {
+            $likesA = $a->likes ? (is_string($a->likes) ? count(json_decode($a->likes, true)) : count($a->likes)) : 0;
+            $likesB = $b->likes ? (is_string($b->likes) ? count(json_decode($b->likes, true)) : count($b->likes)) : 0;
+            return $likesA - $likesB;
+          });
+        } else {
+          sortLdObjects($ldObjects, $sortCriteria);
+        }
       } else {
         sortLdObjects($ldObjects, 'date'); // Default sorting by 'date'
       }

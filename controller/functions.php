@@ -28,13 +28,22 @@ function getDuration($ldArrayObjects) {
 
 // Get average duration
 function getAverageDuration($ldArrayObjects) {
-  $durations = array_map(fn($ld) => (int)$ld->duration, $ldArrayObjects);
-  $filteredDurations = array_filter($durations);
+    if (empty($ldArrayObjects)) {
+        return null;
+    }
 
-  if ($filteredDurations) {
-    return round(array_sum($filteredDurations) / count($filteredDurations));
-  }
-  return null;
+    $sum = 0;
+    $count = 0;
+
+    foreach ($ldArrayObjects as $ld) {
+        $duration = (int)$ld->duration;
+        if ($duration > 0) {
+            $sum += $duration;
+            $count++;
+        }
+    }
+
+    return $count > 0 ? round($sum / $count) : null;
 }
 
 // Get average quality
@@ -352,4 +361,28 @@ function getPublicLd() {
   }
 
   return $ids;
+}
+
+// Get public lds from given IDs
+function getPublicLdFromArray(array $ids) {
+  global $connect;
+  $publicIds = [];
+
+  if (empty($ids)) {
+    return $publicIds;
+  }
+
+  // Sanitize input and create a comma-separated list of integers
+  $idsList = implode(',', array_map('intval', $ids));
+
+  $query = "SELECT `id` FROM `ld` WHERE publish = 1 AND `id` IN ($idsList)";
+  $result = mysqli_query($connect, $query);
+
+  if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+      $publicIds[] = (int) $row['id'];
+    }
+  }
+
+  return $publicIds;
 }
