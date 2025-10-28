@@ -117,7 +117,7 @@
           </div>
         <?php endif; ?>
 
-        <?php if (!empty($contacts)): ?>
+        <?php if (array_filter($contacts)): ?>
           <div class="">
             <p>Контакты:</p>
             <?php foreach ($сhatList as $chat): ?>
@@ -186,7 +186,6 @@
 
           </div>
         <?php endif; ?>
-
 
       </div>
     </div>
