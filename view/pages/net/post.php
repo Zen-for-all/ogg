@@ -26,6 +26,11 @@ $ld = new Ld($ldValue);
     $locationTitle = $location->title;
   }
 
+  // Get author id & name
+  $userid = $ld->user;
+  $user = new User($userid);
+  $username = $user->login;
+
   $ldDate = $ld->date;
   $ldTime = ($ld->time != 0) ? $ld->time : false;
   $ldDuration = ($ld->duration != 0) ? $ld->duration : false;
@@ -97,7 +102,9 @@ $ld = new Ld($ldValue);
 
     <?php if ($ldPublicText) { echo '<br>Публичное описание:<br>' . html_entity_decode($ldPublicText) . '<br>'; } ?>
 
-    <br>
+    Автор: <a href="/?page=profile&id=<?php echo $userid; ?>"><?php echo $username; ?></a>
+
+    <br><br>
     <div class="button-container w-100">
       <!-- Likes -->
       <div class="rl icon-count-block">
