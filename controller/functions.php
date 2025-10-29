@@ -170,10 +170,21 @@ function compareTime($a, $b) {
 
 // Get all information for the array of IDs
 function getAllInfo($ldArray) {
-    global $connect;
-    $ids = implode(",", $ldArray);
-    $result = mysqli_query($connect, "SELECT * FROM `ld` WHERE `id` IN ($ids)");
-    return mysqli_fetch_all($result, MYSQLI_ASSOC); // Directly return all data as an array
+  global $connect;
+
+  // Return empty array if $ldArray is empty or not an array
+  if (empty($ldArray) || !is_array($ldArray)) {
+    return [];
+  }
+
+  $ids = implode(",", array_map('intval', $ldArray)); // Convert all IDs to integers
+  $result = mysqli_query($connect, "SELECT * FROM `ld` WHERE `id` IN ($ids)");
+
+  if (!$result) {
+    return [];
+  }
+
+  return mysqli_fetch_all($result, MYSQLI_ASSOC); // Directly return all data as an array
 }
 
 // Get method percentages for Ld objects

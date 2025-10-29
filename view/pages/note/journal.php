@@ -1,6 +1,18 @@
 <?php
-include 'view/parts/note/ld_list.php';
-include 'view/parts/pagination.php';
+/**
+ * @var string $title The title displayed on the page, representing the main heading.
+ */
+?>
+
+<h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
+
+<?php
+$user = new User($_SESSION['userId']);
+
+if ($user->ldlist !== null && $user->ldlist !== '[]') {
+  include 'view/parts/note/ld_list.php';
+  include 'view/parts/pagination.php';
+}
 ?>
 
 <a href="#add-ld-form" class="btn btn-outline-success btn_show mt-3 me-3" id="add-ld-form">Добавить запись</a>

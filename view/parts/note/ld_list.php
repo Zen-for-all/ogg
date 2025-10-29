@@ -1,7 +1,6 @@
 <?php
 /**
  * @var object $user The current user object, containing information about the logged-in user.
- * @var string $title The title displayed on the page, representing the main heading.
  * @var int $ldOnPage The number of LD (learning data) items to display per page for pagination.
  * @var array $enterMethod An array mapping method IDs to entry methods, used for displaying entry method names.
  */
@@ -18,8 +17,6 @@ if (!empty($_GET['hashtag'])) {
 // Generate hashtag link if hashtag title is set
 $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) : '';
 ?>
-
-<h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
 
 <div class="row">
   <div class="col-md-6">
