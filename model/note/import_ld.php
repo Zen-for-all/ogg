@@ -61,7 +61,6 @@ foreach ($array_ld as $ld) {
   // Parse the date from the file and format it properly
   $date = DateTime::createFromFormat('d.m.y', $ld[0]);
   $date = $date !== false ? $date->format('d.m.y') : date("d.m.y", strtotime($ld[0], 0));
-
   // Extract other fields from the file
   $time = $ld[1];
   $duration = $ld[2];
@@ -72,7 +71,7 @@ foreach ($array_ld as $ld) {
   $text = isset($ld[7]) ? trim(htmlspecialchars($ld[7], ENT_QUOTES | ENT_HTML5, 'UTF-8')) : '';
 
   // Check for duplicates in the database to avoid inserting the same record
-  $duplicateCheckQuery = "SELECT COUNT(*) AS count FROM `ld` WHERE `date` = '$date' AND `time` = '$time' AND `duration` = '$duration' AND `quality` = '$quality' AND `interest` = '$interest' AND `method` = '$method' AND `text` = '$text'";
+  $duplicateCheckQuery = "SELECT COUNT(*) AS count FROM `ld` WHERE `date` = '$date' AND `time` = '$time' AND `duration` = '$duration' AND `quality` = '$quality' AND `interest` = '$interest' AND `method` = '$method' AND `text` = '$text' AND `user` = '$user'";
   $duplicateCheckResult = mysqli_query($connect, $duplicateCheckQuery);
   $duplicateCount = mysqli_fetch_assoc($duplicateCheckResult)['count'];
 
@@ -88,7 +87,9 @@ foreach ($array_ld as $ld) {
   // Retrieve the user's 'ldlist' to update with the new 'ld' ID
   $result = mysqli_query($connect, "SELECT * FROM `user` WHERE `id` = '$user'");
   $resultldlist = mysqli_fetch_assoc($result);
-  $ldlist = json_decode($resultldlist['ldlist'], true) ?: [];
+
+  $json = $resultldlist['ldlist'] ?? '';
+  $ldlist = json_decode($json ?: '[]', true) ?: [];
 
   // Get the latest 'ld' ID and add it to the user's 'ldlist'
   $result = mysqli_query($connect, "SELECT `id` FROM `ld` ORDER BY id DESC LIMIT 1;");
