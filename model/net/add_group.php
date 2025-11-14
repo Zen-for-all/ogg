@@ -20,7 +20,7 @@ $uploadDir = __DIR__ . '/../../view/uploads/group_avatars/';
 // Add Missions to an array, only if selected by the user
 $mission_array = [];
 foreach ($missionList as $key => $mission) {
-  $mission_value = $_POST['mission_' . $key] ?? null; // Get the mission value or null
+  $mission_value = $_POST['mission_edit_' . $key] ?? null; // Get the mission value or null
   if ($mission_value !== null && $mission_value !== false) {
     $mission_array[] = $key; // Add the mission key if it is selected
   }

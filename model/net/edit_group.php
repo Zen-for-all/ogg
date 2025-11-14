@@ -145,7 +145,7 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
 $mission_array = [];
 foreach ($missionList as $key => $mission) {
   // Check if the mission value is not null or false
-  $mission_value = $_POST['mission_' . $key] ?? null;
+  $mission_value = $_POST['mission_edit_' . $key] ?? null;
   if ($mission_value !== null && $mission_value !== false) {
     $mission_array[] = $key; // Add mission key to the array
   }

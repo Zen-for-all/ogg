@@ -47,9 +47,9 @@
       <p>Назначение группы:</p>
       <?php foreach ($missionList as $key => $mission): ?>
         <div>
-          <input type="checkbox" id="mission_<?php echo $key; ?>" name="mission_<?php echo $key; ?>"
+          <input type="checkbox" id="mission_edit_<?php echo $key; ?>" name="mission_edit_<?php echo $key; ?>"
             <?php echo (isset($groupValue) && $groupValue !== false && in_array($key, $missionIdArray)) ? 'checked' : ''; ?> />
-          <label for="mission_<?php echo $key; ?>"><?php echo $mission; ?></label>
+          <label for="mission_edit_<?php echo $key; ?>"><?php echo $mission; ?></label>
         </div>
       <?php endforeach; ?>
     </div>
