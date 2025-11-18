@@ -81,7 +81,7 @@ foreach ($array_ld as $ld) {
   }
 
   // Sanitize and insert the new record into the 'ld' table
-  $notice = isset($ld[11]) ? trim(htmlspecialchars($ld[11], ENT_QUOTES | ENT_HTML5, 'UTF-8')) : '';
+  $notice = isset($ld[8]) ? trim(htmlspecialchars($ld[8], ENT_QUOTES | ENT_HTML5, 'UTF-8')) : '';
   $setNewLd = mysqli_query($connect, "INSERT INTO `ld` (`date`, `time`, `duration`, `location`, `quality`, `interest`, `method`, `text`, `notice`, `user`, `views`, `likes`) VALUES ('$date', '$time', '$duration', '$location', '$quality', '$interest', '$method', '$text', '$notice', '$user', '[]', '[]')");
 
   // Retrieve the user's 'ldlist' to update with the new 'ld' ID
