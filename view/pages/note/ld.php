@@ -47,7 +47,7 @@ $ld = new Ld($ldValue);
     <?=$ldDate;?>
     <br>
     <?php if ($ldTime) { echo $ldTime . '<br>'; } ?>
-    <?php if ($ldDuration) { echo 'Длительность: ' . $ldDuration . '<br>'; } ?>
+    <?php if ($ldDuration) { echo 'Длительность: ' . $ldDuration . ' сек<br>'; } ?>
     <?php if ($locationTitle) { echo 'Локация: ' . $locationTitle . '<br>'; } ?>
     <?php if ($ldQuality) { echo 'Качество: ' . $ldQuality . '<br>'; } ?>
     <?php if ($ldInterest) { echo 'Интерес: ' . $ldInterest . '<br>'; } ?>

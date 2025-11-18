@@ -186,7 +186,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
             <h5 class="mb-3"><?=$ldDate?> <?php if ($ldTime) { echo '(' . $ldTime . ')'; } ?></h5>
 
             <?php if ($ldDuration) { ?>
-              <div>Длительность: <b><?=$ldDuration?></b></div>
+              <div>Длительность: <b><?=$ldDuration?> сек</b></div>
             <?php } ?>
 
             <?php if ($ldQuality) { ?>

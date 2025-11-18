@@ -170,7 +170,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
             <h5 class="mb-3"><?=$ldDate?> <?php if ($ldTime) { echo '(' . $ldTime . ')'; } ?></h5>
 
             <?php if ($ldDuration) { ?>
-              <span>Длительность: <b><?=$ldDuration?></b></span>
+              <span>Длительность: <b><?=$ldDuration?> сек</b></span>
             <?php } ?>
 
             <?php if ($locationTitle) { ?>
