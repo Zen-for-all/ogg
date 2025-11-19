@@ -142,7 +142,7 @@ $ld = new Ld($ldValue);
     <div class="w-100">
       <div class="edit_ld_form hide mt-5">
         <h2>Редактировать запись:</h2>
-        <?php include 'view/parts/note/ld_add.php'; ?>
+        `<?php include 'view/parts/note/ld_add.php'; ?>`
       </div>
 
       <!-- Button for edit ld -->

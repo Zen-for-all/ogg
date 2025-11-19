@@ -2,35 +2,11 @@
 /**
  * @var int $ldOnPage The number of LD (learning data) items to display per page for pagination.
  * @var array $enterMethod An array mapping method IDs to entry methods, used for displaying entry method names.
+ * @var string $hashtag_link
  */
 ?>
 
-<?php
-// Check if either 'hashtag' or 'search' is set and assign their values
-if (!empty($_GET['hashtag'])) {
-  $hashtag_title = $_GET['hashtag'];
-} elseif (!empty($_GET['search'])) {
-  $hashtag_title = $_GET['search'];
-}
-
-// Generate hashtag link if hashtag title is set
-$hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) : '';
-?>
-
-<div class="row">
-  <div class="col-md-6">
-    <p>Найти по тегу</p>
-    <form action="/posts" method="get">
-      <input type="text" class="form-control no_space" name="search" value="<?= isset($hashtag_title) ? htmlspecialchars($hashtag_title) : '' ?>">
-      <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
-    </form>
-  </div>
-</div>
-<br><br>
-
-<?php if (!empty($hashtag_title)) { ?>
-  <h3>#<?= htmlspecialchars($hashtag_title) ?> <a href="/posts">(x)</a></h3><br>
-<?php } ?>
+<?php include 'view/parts/search_tag.php'; ?>
 
 <div class="container-fluid gx-0">
   <h4 class="mb-2">Сортировка:</h4>
@@ -58,7 +34,6 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
   </div>
 
   <div class="row">
-
     <?php
     // Get IDs public lds
     if (!(isset($ldArray))) {
@@ -93,7 +68,7 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
       // Sort the array only if the 'sort' parameter is valid
       if (in_array($sortCriteria, $validSortCriteria)) {
         if ($sortCriteria === 'likes') {
-          // Сортировка по количеству лайков
+          // Sort likes
           usort($ldObjects, function($a, $b) {
             $likesA = $a->likes ? (is_string($a->likes) ? count(json_decode($a->likes, true)) : count($a->likes)) : 0;
             $likesB = $b->likes ? (is_string($b->likes) ? count(json_decode($b->likes, true)) : count($b->likes)) : 0;
@@ -256,6 +231,5 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
       unset($ldValue);
     }
     ?>
-
   </div>
 </div>

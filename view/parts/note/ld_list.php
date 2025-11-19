@@ -3,35 +3,11 @@
  * @var object $user The current user object, containing information about the logged-in user.
  * @var int $ldOnPage The number of LD (learning data) items to display per page for pagination.
  * @var array $enterMethod An array mapping method IDs to entry methods, used for displaying entry method names.
+ * @var string $hashtag_link
  */
 ?>
 
-<?php
-// Check if either 'hashtag' or 'search' is set and assign their values
-if (!empty($_GET['hashtag'])) {
-  $hashtag_title = $_GET['hashtag'];
-} elseif (!empty($_GET['search'])) {
-  $hashtag_title = $_GET['search'];
-}
-
-// Generate hashtag link if hashtag title is set
-$hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) : '';
-?>
-
-<div class="row">
-  <div class="col-md-6">
-    <p>Найти по тегу</p>
-    <form action="/journal" method="get">
-      <input type="text" class="form-control no_space" name="search" value="<?= isset($hashtag_title) ? htmlspecialchars($hashtag_title) : '' ?>">
-      <input type="submit" value="Искать" class="btn btn-outline-success btn_show mt-3">
-    </form>
-  </div>
-</div>
-<br><br>
-
-<?php if (!empty($hashtag_title)) { ?>
-  <h3>#<?= htmlspecialchars($hashtag_title) ?> <a href="/journal">(x)</a></h3><br>
-<?php } ?>
+<?php include 'view/parts/search_tag.php'; ?>
 
 <div class="container-fluid gx-0">
   <h4 class="mb-2">Сортировка:</h4>
@@ -60,7 +36,6 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
   </div>
 
   <div class="row">
-
     <?php
     if ($user->ldlist != null) {
       // get ld id's array
@@ -223,6 +198,5 @@ $hashtag_link = isset($hashtag_title) ? '&hashtag=' . urlencode($hashtag_title) 
       unset($ldValue);
     }
     ?>
-
   </div>
 </div>
