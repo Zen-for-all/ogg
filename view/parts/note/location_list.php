@@ -6,7 +6,7 @@
  */
 ?>
 
-<h2 class="pb-5"><?= htmlspecialchars($title) ?></h2>
+<h1 class="pb-5"><?= htmlspecialchars($title) ?></h1>
 
 <div class="row">
 

@@ -13,7 +13,7 @@ if ($_SESSION['userId'] != 1) {
 }
 ?>
 
-<h2 class="pb-5"><?= $title ?></h2>
+<h1 class="pb-5"><?= $title ?></h1>
 
 <?php
 // Retrieve an array of news IDs

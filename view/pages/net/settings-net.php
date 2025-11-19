@@ -4,7 +4,7 @@
  */
 ?>
 
-<h2 class="mb-3"><?= htmlspecialchars($user->login) ?></h2>
+<h1 class="mb-5"><?= htmlspecialchars($user->login) ?></h1>
 
 <a href="/settings">К настройкам дневника</a>
 
