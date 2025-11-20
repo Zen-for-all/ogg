@@ -146,11 +146,11 @@
             <h5 class="mb-3"><?=$ldDate?> <?php if ($ldTime) { echo '(' . $ldTime . ')'; } ?></h5>
 
             <?php if ($ldDuration) { ?>
-              <span>Длительность: <b><?=$ldDuration?> сек</b></span>
+              <span><b>Длительность:</b> <?=$ldDuration?> сек</span>
             <?php } ?>
 
             <?php if ($locationTitle) { ?>
-              <span>Локация: <b><?=$locationTitle?></b></span>
+              <span><b>Локация:</b> <?=$locationTitle?></span>
             <?php } ?>
 
             <?php if ($ldQuality) { ?>
