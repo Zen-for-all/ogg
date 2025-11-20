@@ -10,7 +10,11 @@
 
 <?php if ($profile_owner === 0 && $user->anonym == '1'): ?>
   <h2>Профиль анонимный</h2>
-<?php else: ?>
+<?php elseif ($user->login === null):
+  // Redirect to the homepage after processing
+  header("Location: /404");
+  exit();
+else: ?>
   <?php
   if ($user->ldlist) {
     $ldArrayObjects = getLd($user->ldlist);
