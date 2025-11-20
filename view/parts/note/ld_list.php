@@ -29,6 +29,7 @@
     foreach ($criteria as $key => $label) { ?>
       <div class="filter border mb-2">
         <div class="rl"><?= $label ?></div>
+
         <a class="db rl" href="/?page=journal&sort=<?= $key ?><?= $hashtag_link ?>">+</a>
         <a class="db rl" href="/?page=journal&sort=<?= $key ?>&reverse=1<?= $hashtag_link ?>">-</a>
       </div>
