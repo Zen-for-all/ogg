@@ -43,6 +43,10 @@ else: ?>
   <section class="container">
     <div class="row mb-5">
       <h1><?= $user->login ?></h1>
+
+      <?php if ($user->anonym == '1'): ?>
+        <i class="small grey">Анонимный профиль</i>
+      <?php endif; ?>
     </div>
 
     <div class="row">
