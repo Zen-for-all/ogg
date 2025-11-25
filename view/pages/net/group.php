@@ -35,16 +35,14 @@ $groupCity = $group->city;
 ?>
 
 <div class="groupContent">
-  <div class="row flex-row-reverse">
-    <div class="col-md-4 col-12 mb-3">
+  <div class="row">
+    <div class="col-md-4 col-12 mb-5">
       <div class="avatar">
         <?php if (!empty($groupAvatar)): ?>
           <img src="<?= $groupAvatar ?>" alt="ava">
         <?php endif; ?>
       </div>
-    </div>
 
-    <div class="col-md-8 col-12">
       <h1><?=$groupTitle;?></h1>
 
       <?php if (!empty($groupMissionArray)) : ?>
@@ -95,6 +93,43 @@ $groupCity = $group->city;
       </div>
 
       <div class="groupDate"><?= $groupDate ? 'Дата создания: ' . $groupDate : '' ?></div>
+    </div>
+
+    <div class="col-md-8 col-12">
+      <div class="wall">
+        <div class="wall-title"><b>News</b></div>
+        <hr>
+
+        <div class="wall-item mb-3">
+          <div class="wall-item-header">
+            <div class="wall-item-image">
+              <img src="view/images/wall-news.svg" alt="icon">
+            </div>
+
+            <div class="wall-item-title"><b>Тест</b></div>
+            <div class="wall-item-date small grey">20.11.2025 (14:26)</div>
+          </div>
+
+          <div class="wall-item-content">Тест Тест Тест</div>
+          <div class="clear"></div>
+          <hr>
+        </div>
+
+        <div class="wall-item mb-3">
+          <div class="wall-item-header">
+            <div class="wall-item-image">
+              <img src="view/images/wall-news.svg" alt="icon">
+            </div>
+
+            <div class="wall-item-title"><b>Тест</b></div>
+            <div class="wall-item-date small grey">20.11.2025 (14:26)</div>
+          </div>
+
+          <div class="wall-item-content">Тест Тест Тест</div>
+          <div class="clear"></div>
+          <hr>
+        </div>
+      </div>
     </div>
   </div>
 </div>
