@@ -39,7 +39,7 @@ foreach ($newsArray as $news) {
       <div class="wall-item-date small grey"><?= date('d.m.Y (H:i)', $news->date) ?></div>
     </div>
 
-    <div class="wall-item-content"><?= htmlspecialchars($news->text) ?></div>
+    <div class="wall-item-content"><?= $news->text ?></div>
     <button class="col-auto edit_location_btn show btn mt-2 me-3 edit-btn rl" data-id="<?= $news->id ?>">Редактировать</button>
 
     <form action="model/admin/delete_news.php" method="post" class="rl mt-2">

@@ -40,7 +40,7 @@
         <div class="wall-item-date small grey"><?= date('d.m.Y (H:i)', $news->date) ?></div>
       </div>
 
-      <div class="wall-item-content"><?= htmlspecialchars($news->text) ?></div>
+      <div class="wall-item-content"><?= $news->text ?></div>
       <div class="clear"></div>
       <hr>
     </div>

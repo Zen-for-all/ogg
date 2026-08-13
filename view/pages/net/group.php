@@ -38,7 +38,7 @@ $groupCity = $group->city;
   <div class="row">
     <div class="col-md-4 col-12 mb-5">
       <div class="avatar">
-        <?php if (!empty($groupAvatar)): ?>
+        <?php if (!empty($groupAvatar) && file_exists($_SERVER['DOCUMENT_ROOT'] . $groupAvatar)): ?>
           <img src="<?= $groupAvatar ?>" alt="ava">
         <?php endif; ?>
       </div>

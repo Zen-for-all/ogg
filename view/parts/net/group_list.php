@@ -94,7 +94,7 @@
         <div class="card card-group px-3 py-3 h100">
           <div class="location_info show">
             <a href="/?page=group&id=<?= htmlspecialchars($group->id) ?>" class="avatar">
-              <?php if (!empty($groupAvatar)): ?>
+              <?php if (!empty($groupAvatar) && file_exists($_SERVER['DOCUMENT_ROOT'] . $groupAvatar)): ?>
                 <img src="<?= $groupAvatar ?>" alt="ava">
               <?php endif; ?>
             </a>

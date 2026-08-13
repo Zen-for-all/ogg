@@ -2,9 +2,7 @@
 /**
  * @var object $connect The database connection object used to interact with the MySQL database.
  */
-?>
 
-<?php
 session_start();
 require '../connect.php';
 
@@ -39,7 +37,7 @@ if (isset($_POST['delete_avatar'])) {
   $stmt->bind_param('i', $user);
   $stmt->execute();
 
-  echo 'Avatar deleted successfully.';
+  //echo 'Avatar deleted successfully.';
   header("Location: /settings-net");
   exit();
 }
@@ -128,9 +126,9 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
     $stmt->bind_param('si', $avatarUrl, $user); // Bind the parameters: 's' for string (avatar URL), 'i' for integer (user ID)
     $stmt->execute(); // Execute the prepared statement
 
-    echo 'File uploaded and avatar updated successfully.';
+    //echo 'File uploaded and avatar updated successfully.';
   } else {
-    echo 'The file must be an image.';
+    //echo 'The file must be an image.';
   }
 }
 

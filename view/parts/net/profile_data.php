@@ -52,7 +52,7 @@ else: ?>
     <div class="row">
       <div class="col-md-4 col-12">
         <div class="avatar mb-3">
-          <?php if (!empty($user->avatar)): ?>
+          <?php if (!empty($user->avatar) && file_exists($_SERVER['DOCUMENT_ROOT'] . $user->avatar)): ?>
             <img src="<?= $user->avatar ?>" alt="ava <?= $user->login ?>">
           <?php endif; ?>
         </div>

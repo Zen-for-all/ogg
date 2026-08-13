@@ -26,7 +26,7 @@
 
     <!-- Group Avatar -->
     <div class="col-md-6">
-      <?php if (isset($groupAvatar) && $groupAvatar != false): ?>
+      <?php if (isset($groupAvatar) && file_exists($_SERVER['DOCUMENT_ROOT'] . $groupAvatar)): ?>
         <div class="avatar-setting">
           <img src="<?= $groupAvatar ?>" alt="avatar">
         </div>

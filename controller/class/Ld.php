@@ -16,6 +16,7 @@ class Ld
   public $notice;
   public $user;
   public $likes;
+  public $views;
 
   function __construct(int $id)
   {

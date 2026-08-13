@@ -125,7 +125,7 @@
         <div class="card px-3 py-3 h100">
           <div class="location_info show">
             <a href="/?page=profile&id=<?= htmlspecialchars($user->id) ?>" class="avatar mb-3">
-              <?php if (!empty($user->avatar)): ?>
+              <?php if (!empty($user->avatar) && file_exists($_SERVER['DOCUMENT_ROOT'] . $user->avatar)): ?>
                 <img src="<?= $user->avatar ?>" alt="ava <?= $user->login ?>">
               <?php endif; ?>
             </a>

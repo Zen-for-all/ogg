@@ -24,7 +24,7 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE);
 <div class="row">
   <!-- Avatar Section -->
   <div class="col-md-6 mb-3">
-    <?php if (!empty($user->avatar)): ?>
+    <?php if (!empty($user->avatar) && file_exists($_SERVER['DOCUMENT_ROOT'] . $user->avatar)): ?>
       <div class="row justify-content-start pl-3">
         <div class="avatar-setting">
           <img src="<?= $user->avatar ?>" alt="avatar"> <!-- Display current avatar -->

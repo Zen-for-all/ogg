@@ -11,7 +11,7 @@ class Group
   public $chats;
   public $city;
   public $date;
-  /*public $private;*/
+  public $private;
 
   function __construct(int $id) {
     $this->id = $id;
