@@ -62,6 +62,28 @@ else: ?>
             <p>О себе:</p>
             <div class=""><?= $user->description ?></div>
           </div>
+          <hr>
+        <?php endif; ?>
+
+        <?php
+        $userGroupIds = $user->grouplist ? json_decode($user->grouplist, true) : [];
+        $userGroupIds = is_array($userGroupIds) ? $userGroupIds : [];
+        ?>
+        <?php if (!empty($userGroupIds)): ?>
+          <div class="">
+            <p>Группы:</p>
+            <div class="">
+              <?php foreach ($userGroupIds as $groupId): ?>
+                <?php $group = new Group((int)$groupId); ?>
+                <?php if (!empty($group->title)): ?>
+                  <div>
+                    <a href="/?page=group&id=<?= (int)$groupId ?>"><?= htmlspecialchars($group->title) ?></a>
+                  </div>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </div>
+          </div>
+          <hr>
         <?php endif; ?>
       </div>
 
