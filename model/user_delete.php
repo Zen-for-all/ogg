@@ -46,8 +46,8 @@ foreach ($queries as $query) {
   $stmt->execute();
 }
 
-// Remove the user ID from the user lists in the `groups` table
-$result = $connect->query("SELECT `id`, `users`, `admin` FROM `groups`");
+// Remove the user ID from the user lists in the `group` table
+$result = $connect->query("SELECT `id`, `users`, `admin` FROM `group`");
 while ($group = $result->fetch_assoc()) {
   // Decode the list of users for the group
   $users = json_decode($group['users'], true);
@@ -70,10 +70,10 @@ while ($group = $result->fetch_assoc()) {
 
     // Prepare the query to update the `users` list and admin in the group
     if ($newAdminId !== null) {
-      $stmt = $connect->prepare("UPDATE `groups` SET `users` = ?, `admin` = ? WHERE `id` = ?");
+      $stmt = $connect->prepare("UPDATE `group` SET `users` = ?, `admin` = ? WHERE `id` = ?");
       $stmt->bind_param('sii', $updatedUsers, $newAdminId, $group['id']);
     } else {
-      $stmt = $connect->prepare("UPDATE `groups` SET `users` = ? WHERE `id` = ?");
+      $stmt = $connect->prepare("UPDATE `group` SET `users` = ? WHERE `id` = ?");
       $stmt->bind_param('si', $updatedUsers, $group['id']);
     }
 

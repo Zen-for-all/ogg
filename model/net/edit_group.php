@@ -24,7 +24,7 @@ $uploadDir = __DIR__ . '/../../view/uploads/group_avatars/';
 // Check if the avatar is being deleted
 if (isset($_POST['delete_avatar'])) {
   // Get the current avatar file path from the database
-  $query = "SELECT `avatar` FROM `groups` WHERE `id` = ?";
+  $query = "SELECT `avatar` FROM `group` WHERE `id` = ?";
   $stmt = $connect->prepare($query);
   $stmt->bind_param('i', $groupId);
   $stmt->execute();
@@ -41,7 +41,7 @@ if (isset($_POST['delete_avatar'])) {
   }
 
   // Set avatar field to NULL in the database
-  $updateQuery = "UPDATE `groups` SET `avatar` = NULL WHERE `id` = ?";
+  $updateQuery = "UPDATE `group` SET `avatar` = NULL WHERE `id` = ?";
   $stmt = $connect->prepare($updateQuery);
   $stmt->bind_param('i', $groupId);
   $stmt->execute();
@@ -130,7 +130,7 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
     $avatarUrl = '/view/uploads/group_avatars/' . $fileName;
 
     // Prepare the SQL query to update the avatar in the database
-    $updateQuery = "UPDATE `groups` SET `avatar` = ? WHERE `id` = ?";
+    $updateQuery = "UPDATE `group` SET `avatar` = ? WHERE `id` = ?";
     $stmt = $connect->prepare($updateQuery); // Prepare the query for execution
     $stmt->bind_param('si', $avatarUrl, $groupId); // Bind the parameters: 's' for string (avatar URL), 'i' for integer (group ID)
     $stmt->execute(); // Execute the prepared statement
@@ -163,11 +163,11 @@ $chats = json_encode($chat_array, JSON_UNESCAPED_UNICODE); // Encode chat array 
 $city = $_POST['group_city'];
 
 // Check if a record with the given group ID exists
-$checkExistingRecord = mysqli_query($connect, "SELECT * FROM `groups` WHERE `id` = '$id'");
+$checkExistingRecord = mysqli_query($connect, "SELECT * FROM `group` WHERE `id` = '$id'");
 
 if (mysqli_num_rows($checkExistingRecord) > 0) {
   // If a record exists, update the group information
-  $updateRecord = mysqli_query($connect, "UPDATE `groups` SET
+  $updateRecord = mysqli_query($connect, "UPDATE `group` SET
         `title` = '$title',
         `text` = '$text',
         `mission` = '$mission',

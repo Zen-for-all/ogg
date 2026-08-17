@@ -4,9 +4,7 @@
  * @var array $missionList List of available missions for the group.
  * @var array $сhatList List of available chat groups for the group.
  */
-?>
 
-<?php
 session_start();
 require '../connect.php';
 require '../../controller/setting.php';
@@ -54,7 +52,7 @@ $private = 0;
 if ($title !== '') {
   // Insert the new group into the database
   $setNewGroup = mysqli_query($connect, "
-    INSERT INTO `groups` (`title`, `text`, `mission`, `admin`, `users`, `chats`, `city`, `date`, `private`) 
+    INSERT INTO `group` (`title`, `text`, `mission`, `admin`, `users`, `chats`, `city`, `date`, `private`) 
     VALUES ('$title', '$text', '$mission', '$user', '$users', '$chats', '$city', '$datePublic', '$private')
   ");
 
@@ -64,7 +62,7 @@ if ($title !== '') {
   $grouplist = json_decode($resultgrouplist['grouplist'], true); // Decode the user's group list from JSON
 
   // Get the ID of the last inserted group
-  $result = mysqli_query($connect, "SELECT `id` FROM `groups` ORDER BY id DESC LIMIT 1;");
+  $result = mysqli_query($connect, "SELECT `id` FROM `group` ORDER BY id DESC LIMIT 1;");
   $grouplast = mysqli_fetch_assoc($result);
 
   // Update the user's group list by adding the new group ID
@@ -158,7 +156,7 @@ if ($title !== '') {
       $avatarUrl = '/view/uploads/group_avatars/' . $fileName;
 
       // Prepare the SQL query to update the avatar in the database
-      $updateQuery = "UPDATE `groups` SET `avatar` = ? WHERE `id` = ?";
+      $updateQuery = "UPDATE `group` SET `avatar` = ? WHERE `id` = ?";
       $stmt = $connect->prepare($updateQuery); // Prepare the query for execution
       $stmt->bind_param('si', $avatarUrl, $groupId); // Bind the parameters: 's' for string (avatar URL), 'i' for integer (group ID)
       $stmt->execute(); // Execute the prepared statement

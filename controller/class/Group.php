@@ -21,7 +21,7 @@ class Group
   private function loadInfo() {
     global $connect;
     $query = "SELECT `avatar`, `title`, `text`, `mission`, `admin`, `users`, `chats`, `city`, `date`, `private` 
-                  FROM `groups` 
+                  FROM `group` 
                   WHERE `id` = {$this->id}";
     $result = mysqli_query($connect, $query);
 

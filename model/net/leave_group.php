@@ -21,7 +21,7 @@ $userIdArray = json_decode($group->users, true);
 
 // If the group has only 1 user, delete the group
 if (count($userIdArray) === 1) {
-  $deletegroup = mysqli_query($connect, "DELETE FROM `groups` WHERE `id` = '$groupId'");
+  $deletegroup = mysqli_query($connect, "DELETE FROM `group` WHERE `id` = '$groupId'");
 } else {
   // Remove the current user from the group if there are multiple users
   $userIdArray = array_diff($userIdArray, [$userId]);
@@ -29,7 +29,7 @@ if (count($userIdArray) === 1) {
 }
 
 // Update the group with the new user list
-$updateGroup = mysqli_query($connect, "UPDATE `groups` SET
+$updateGroup = mysqli_query($connect, "UPDATE `group` SET
       `users` = '$jsonuserIdArray'
       WHERE `id` = '$groupId'");
 

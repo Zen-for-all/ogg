@@ -26,7 +26,7 @@ if ($group->admin == $userId) { // If admin
   $users = json_decode($group->users, true); // Decode the JSON string into an array of user IDs
 
   // Delete the group from the 'groups' table based on the group ID
-  $deletegroup = mysqli_query($connect, "DELETE FROM `groups` WHERE `id` = '$group->id'");
+  $deletegroup = mysqli_query($connect, "DELETE FROM `group` WHERE `id` = '$group->id'");
 
   // Loop through each user and remove the group from their 'grouplist'
   foreach ($users as $userId) {

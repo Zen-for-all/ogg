@@ -104,7 +104,7 @@ function getAllGroups($missionIds = []) {
     // SQL query to get groups ordered by the number of users, where all mission IDs are present in the "mission" field
     $query = "
       SELECT id 
-      FROM `groups`
+      FROM `group`
       WHERE JSON_CONTAINS(mission, '$missionIdsJson')
       ORDER BY JSON_LENGTH(users) DESC
     ";
@@ -112,7 +112,7 @@ function getAllGroups($missionIds = []) {
     // If missionIds is empty, get all groups without filtering by mission
     $query = "
       SELECT id 
-      FROM `groups`
+      FROM `group`
       ORDER BY JSON_LENGTH(users) DESC
     ";
   }

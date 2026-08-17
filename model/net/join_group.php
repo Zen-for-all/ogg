@@ -20,7 +20,7 @@ $userIdArray[] = $userId;  // Add the new user ID to the group users list
 $jsonUserIdArray = json_encode($userIdArray);  // Re-encode users list to JSON
 
 // Update the Group's user list in the database
-$updateGroupQuery = "UPDATE `groups` SET `users` = '$jsonUserIdArray' WHERE `id` = '$groupId'";
+$updateGroupQuery = "UPDATE `group` SET `users` = '$jsonUserIdArray' WHERE `id` = '$groupId'";
 mysqli_query($connect, $updateGroupQuery);
 
 // Update User's group list
