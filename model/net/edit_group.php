@@ -4,9 +4,7 @@
  * @var array $missionList An array of missions associated with the group.
  * @var array $сhatList An array of chat groups associated with the group.
  */
-?>
 
-<?php
 session_start();
 
 // Include necessary files

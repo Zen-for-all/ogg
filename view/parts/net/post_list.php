@@ -4,9 +4,7 @@
  * @var array $enterMethod An array mapping method IDs to entry methods, used for displaying entry method names.
  * @var string $hashtag_link
  */
-?>
-
-<?php include 'view/parts/search_tag.php'; ?>
+ include 'view/parts/search_tag.php'; ?>
 
 <div class="container-fluid gx-0">
   <h4 class="mb-2">Сортировка:</h4>

@@ -2,9 +2,7 @@
 /**
  * @var int $current_page The current page number being displayed in the pagination.
  */
-?>
 
-<?php
 // Get the current URL
 $currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $urlComponents = parse_url($currentURL);
@@ -25,9 +23,7 @@ if (isset($urlComponents['query'])) {
   $updatedQuery = http_build_query($queryParams);
   $updatedURL .= !empty($updatedQuery) ? '?' . $updatedQuery : '';
 }
-?>
-
-<?php if (isset($pages) && $pages > 1) { ?>
+ if (isset($pages) && $pages > 1) { ?>
   <nav>
     <ul class="pagination">
       <?php if ($current_page != 1) { ?>

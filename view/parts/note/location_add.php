@@ -4,9 +4,7 @@
  * @var string $locationTitle The title of the location, used for pre-filling the title input field when editing.
  * @var string $locationText The description of the location, used for pre-filling the textarea when editing.
  */
-?>
 
-<?php
 // Determine the action URL based on the presence of $locationValue
 $formAction = $locationValue ? 'model/note/edit_location.php' : 'model/note/add_location.php';
 $formInput = $locationValue ? '<input type="hidden" name="id" value="' . $locationValue . '">' : '';

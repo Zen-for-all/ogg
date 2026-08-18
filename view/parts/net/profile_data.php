@@ -6,9 +6,7 @@
  * @var array $сhatList
  * @var int $profile_owner
  */
-?>
-
-<?php if ($profile_owner === 0 && $user->anonym == '1'): ?>
+ if ($profile_owner === 0 && $user->anonym == '1'): ?>
   <h2>Профиль анонимный</h2>
 <?php elseif ($user->login === null):
   // Redirect to the homepage after processing

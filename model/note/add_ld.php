@@ -2,9 +2,7 @@
 /**
  * @var object $connect The database connection object used to interact with the database.
  */
-?>
 
-<?php
 // Start a session to use session variables
 session_start();
 

@@ -5,9 +5,7 @@
  * @var array $ideologyList The current user object, containing information about the logged-in user.
  * @var array $сhatList
  */
-?>
 
-<?php
 // Add Chat settings to an array
 $chat_array = []; // Initialize an empty array to store chat settings
 foreach ($сhatList as $key => $chat) {

@@ -3,9 +3,7 @@
  * @var $enterMethod
  * @var object $connect The database connection object used to interact with the database.
  */
-?>
 
-<?php
 $ldValue = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 if ($ldValue === 0) {
@@ -15,9 +13,7 @@ if ($ldValue === 0) {
 
 // Get all info about ld
 $ld = new Ld($ldValue);
-?>
-
-<?php if ($_SESSION['userId'] === (int)$ld->user): ?>
+ if ($_SESSION['userId'] === (int)$ld->user): ?>
   <!-- If the owner is viewing -->
   <a class="btn btn-light mb-4" href="/journal"><- К дневнику</a>
 

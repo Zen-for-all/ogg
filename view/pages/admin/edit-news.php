@@ -2,9 +2,7 @@
 /**
  * @var $title
  */
-?>
 
-<?php
 // Check if the current user is not authorized (userId is not 1) and terminate execution if true
 session_start(); // Start the session to access session variables
 if ($_SESSION['userId'] != 1) {

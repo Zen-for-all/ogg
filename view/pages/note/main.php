@@ -2,9 +2,7 @@
 /**
  * @var $user
  */
-?>
 
-<?php
 // Personal info section
 if ($user->ldlist != false) {
   $ldArrayObjects = getLd($user->ldlist);

@@ -15,9 +15,7 @@
  * @var string|false $ldPublicText A publicly visible description for the "ld" record, used for display purposes, or `false` if not set.
  * @var bool $ldPublish Indicates whether the "ld" record is marked for publication. It's a boolean value (`true` or `false`).
  */
-?>
 
-<?php
 // Determine whether the form is for adding or editing based on the value of $ldValue
 if ($ldValue == false) {
   echo '<form action="model/note/add_ld.php" method="post">';

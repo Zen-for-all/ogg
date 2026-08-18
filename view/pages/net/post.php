@@ -3,9 +3,7 @@
  * @var $enterMethod
  * @var object $connect The database connection object used to interact with the database.
  */
-?>
 
-<?php
 $ldValue = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 if ($ldValue === 0) {
@@ -15,9 +13,7 @@ if ($ldValue === 0) {
 
 // Get all info about ld
 $ld = new Ld($ldValue);
-?>
-
-<?php if ((int)$ld->publish === 1): ?>
+ if ((int)$ld->publish === 1): ?>
   <?php
   // Get all info about location
   $locationTitle = false;
