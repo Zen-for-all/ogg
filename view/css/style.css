@@ -1,3 +1,20 @@
+/* Theme Stylesheet */
+
+:root {
+    --color-background: #F8F9FA;
+    --color-muted: #ccc;
+    --color-border-transparent: transparent;
+    --color-border-light: #f8f9fa;
+    --color-bar: #333;
+    --color-white: white;
+    --color-scrollbar-track: #f1f1f1;
+    --color-scrollbar-thumb: #888;
+    --color-scrollbar-thumb-hover: #555;
+    --color-primary: #0d6efd;
+    --color-success-dark: darkgreen;
+    --color-black: #000;
+}
+
 /* Layout utility classes */
 .rl {
     position: relative;
@@ -24,7 +41,7 @@ a, input, textarea, .btn, .totop, a#show_more span, .accord_title span, .overlay
 
 /* Global styles */
 html {
-    background: #F8F9FA;
+    background: var(--color-background);
 }
 
 label {
@@ -70,7 +87,7 @@ b, strong {
 .filter a {
     padding: 3px 5px;
     font-size: 120%;
-    color: #ccc;
+    color: var(--color-muted);
     line-height: 1;
     text-decoration: none;
 }
@@ -95,7 +112,7 @@ b, strong {
 
 .year-chart-wrap {
     padding: 0 10px;
-    border: 1px solid transparent;
+    border: 1px solid var(--color-border-transparent);
     height: 0;
     overflow: hidden;
     transition: all .4s;
@@ -105,7 +122,7 @@ b, strong {
     height: 200px;
     margin-top: 20px;
     padding: 30px 10px 40px 10px;
-    border: 1px solid #f8f9fa;
+    border: 1px solid var(--color-border-light);
 }
 
 .year-chart {
@@ -124,7 +141,7 @@ b, strong {
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    background-color: #333;
+    background-color: var(--color-bar);
     border-radius: 5px;
 }
 
@@ -141,7 +158,7 @@ b, strong {
 .year-chart .count {
     margin-bottom: 5px;
     font-size: 80%;
-    color: white;
+    color: var(--color-white);
     mix-blend-mode: difference;
     transform: rotate(-90deg);
 }
@@ -162,15 +179,15 @@ b, strong {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--color-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: var(--color-scrollbar-thumb);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--color-scrollbar-thumb-hover);
 }
 
 /* Logo styles */
@@ -188,20 +205,20 @@ b, strong {
 
 .logo-link {
     text-decoration: none;
-    color: #ccc;
+    color: var(--color-muted);
 }
 
 .logo-link:hover {
-    color: #0d6efd;
+    color: var(--color-primary);
 }
 
 .logo-active.logo-link {
-    color: #0d6efd;
+    color: var(--color-primary);
 }
 
 /* Active group styles */
 .group-active .card {
-    border: 1px solid darkgreen;
+    border: 1px solid var(--color-success-dark);
 }
 
 
@@ -209,8 +226,8 @@ b, strong {
     width: 100%;
     height: 400px;
     position: relative;
-    border: 1px solid #ccc;
-    background: #ccc url("/view/images/avatar_cat.svg") no-repeat center;
+    border: 1px solid var(--color-muted);
+    background: var(--color-muted) url("/view/images/avatar_cat.svg") no-repeat center;
     overflow: hidden;
 }
 
@@ -228,7 +245,7 @@ b, strong {
     height: 100px !important;
     position: relative;
     margin-left: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-muted);
     border-radius: 0.375rem;
     overflow: hidden;
 }
@@ -261,11 +278,11 @@ b, strong {
     position: relative;
     float: left;
     margin-right: 5%;
-    background: #ccc url("/view/images/avatar_friends.svg") no-repeat center;
+    background: var(--color-muted) url("/view/images/avatar_friends.svg") no-repeat center;
 }
 
 .groupContent .avatar {
-    background: #ccc url("/view/images/avatar_friends.svg") no-repeat center;
+    background: var(--color-muted) url("/view/images/avatar_friends.svg") no-repeat center;
 }
 
 .accordion-button:focus {
@@ -273,7 +290,7 @@ b, strong {
 }
 
 .accordion-button:not(.collapsed) {
-    color: #000 !important;
+    color: var(--color-black) !important;
     background-color: rgba(0,0,0,0.02) !important;
 }
 
@@ -302,7 +319,7 @@ b, strong {
 }
 
 .grey {
-    color: #ccc;
+    color: var(--color-muted);
 }
 
 .button-container {

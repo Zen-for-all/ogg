@@ -2,7 +2,7 @@
 
 <!-- Checking if the user is logged in -->
 <?php if (isset($_SESSION['userId'])): ?>
-  <footer class="container-fluid bg-body-tertiary mt-5">
+  <footer class="container-fluid mt-5">
     <div class="container py-3">
       <div class="row">
         <div class="col">

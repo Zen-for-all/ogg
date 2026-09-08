@@ -4,7 +4,7 @@
  */
 ?>
 
-<nav class="navbar mb-5 navbar-expand-lg bg-body-tertiary sticky-top">
+<nav class="navbar mb-5 navbar-expand-lg sticky-top">
   <div class="container">
     <div class="logo navbar-brand me-5 row">
       <div class="logo-text col gx-0 ms-2 me-1">LUCID</div>
